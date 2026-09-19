@@ -1,9 +1,9 @@
-# Nyay-Sutra Backend
+# ClearCase Backend
 
 > **Offline-First, Voice-Native AI Dispute Resolution Mesh for Bharat**  
 > Hackathon: *Bharat Builds by WeMakeDevs* | Track: AWS First Commit
 
-Nyay-Sutra bridges the justice gap for rural citizens by combining voice-first regional dialect intake, statutory RAG matching against state acts, Bedrock Claude 3.5 Sonnet neutral settlement drafting, fine-grained Cedar authorization, dual-party OTP digital consent, human mediator escalation queues, and cryptographic settlement anchoring on Polygon Amoy.
+ClearCase bridges the justice gap for rural citizens by combining voice-first regional dialect intake, statutory RAG matching against state acts, Bedrock Claude 3.5 Sonnet neutral settlement drafting, fine-grained Cedar authorization, dual-party OTP digital consent, human mediator escalation queues, and cryptographic settlement anchoring on Polygon Amoy.
 
 This repository hosts the **complete end-to-end backend system** (Phases 1 through 4), implementing a DynamoDB Single-Table Design, AWS Cedar AuthZ, Amazon Bedrock AI orchestration, Twilio/Exotel OTP state machine, and Polygon Amoy smart contract anchoring.
 
@@ -35,7 +35,7 @@ This repository hosts the **complete end-to-end backend system** (Phases 1 throu
         +------------------------------+       +------------------------------+
         |   Dual-Party OTP Consent     |       |   Polygon Amoy Blockchain    |
         |  - SMS & IVR Audio Stubs     | ----> |  - Deterministic SHA-256     |
-        |  - Atomic CONSENT_ACHIEVED   |       |  - NyayRegistry.sol Anchor   |
+        |  - Atomic CONSENT_ACHIEVED   |       |  - ClearCaseRegistry Anchor  |
         +------------------------------+       +------------------------------+
 ```
 
@@ -56,11 +56,11 @@ This repository hosts the **complete end-to-end backend system** (Phases 1 throu
 | `AWS_REGION` | `ap-south-1` | AWS Region (e.g., Mumbai `ap-south-1` or `us-east-1` for Bedrock) |
 | `BEDROCK_MODEL_ID` | `anthropic.claude-3-5-sonnet-20240620-v1:0` | Amazon Bedrock Foundation Model ID |
 | `MOCK_AI` | `true` | When `true`, returns calibrated legal RAG responses without Bedrock network calls |
-| `TABLE_NAME` | `NyayTable-local` | Target DynamoDB table name |
+| `TABLE_NAME` | `ClearCaseTable-local` | Target DynamoDB table name |
 | `DYNAMODB_ENDPOINT` | `http://localhost:8000` | Custom DynamoDB endpoint (used in local development) |
 | `POLYGON_RPC_URL` | `https://rpc-amoy.polygon.technology/` | Polygon Amoy testnet RPC endpoint (Chain ID: 80002) |
 | `PRIVATE_KEY` | `mock-key` | Signer private key for on-chain anchoring transactions |
-| `NYAY_REGISTRY_ADDRESS` | `0x435A9D490EbF92C32D19D20888913B0957917C5B` | Deployed `NyayRegistry.sol` smart contract on Amoy |
+| `CLEARCASE_REGISTRY_ADDRESS` | `0x435A9D490EbF92C32D19D20888913B0957917C5B` | Deployed `ClearCaseRegistry.sol` smart contract on Amoy |
 | `MOCK_BLOCKCHAIN` | `true` | When `true`, simulates ~2.5s block confirmation and returns realistic Amoy receipts |
 
 ---
@@ -89,13 +89,13 @@ docker compose up -d
 
 Verify that the container is healthy:
 ```bash
-docker ps --filter "name=nyay-dynamodb-local"
+docker ps --filter "name=clearcase-dynamodb-local"
 ```
 
 ---
 
 ### 4. Initialize Local Database Table
-Run the schema initialization script to create `NyayTable-local`, configure the `MediatorQueueIndex` GSI, and activate TTL on `otpExpiry`:
+Run the schema initialization script to create `ClearCaseTable-local`, configure the `MediatorQueueIndex` GSI, and activate TTL on `otpExpiry`:
 ```bash
 npm run db:init
 ```
@@ -165,7 +165,7 @@ Verify that the service is running and connected to the DynamoDB table:
 ```bash
 curl -X GET http://localhost:3000/health
 ```
-**Expected Output**: `{"status":"UP","service":"Nyay-Sutra Backend API","environment":"SAM_LOCAL",...}`
+**Expected Output**: `{"status":"UP","service":"ClearCase Backend API","environment":"SAM_LOCAL",...}`
 
 ---
 
@@ -184,7 +184,7 @@ curl -s -X POST http://localhost:3000/cases \
     "state": "Uttar Pradesh",
     "district": "Varanasi",
     "village": "Shivpur",
-    "originalAudioUrl": "s3://nyay-sutra-audio/grievance-shivpur-01.wav",
+    "originalAudioUrl": "s3://clearcase-audio/grievance-shivpur-01.wav",
     "petitioner": {
       "name": "Ram Lakhan Yadav",
       "phone": "+919876543210"
@@ -347,15 +347,16 @@ curl -s -X PATCH http://localhost:3000/cases/<CASE_ID>/mediator-review \
 ```
 .
 ├── contracts/
-│   └── NyayRegistry.sol          # Solidity contract for Polygon Amoy anchoring
+│   └── ClearCaseRegistry.sol     # Solidity contract for Polygon Amoy anchoring
 ├── docs/
 │   ├── ai-orchestration.md       # Bedrock Claude 3.5 Sonnet & OpenSearch RAG doc
 │   ├── authorization-cedar.md    # AWS Cedar fine-grained policies specification
+│   ├── backend-api-summary.md    # Complete backend API & endpoints reference
 │   ├── blockchain-anchoring.md   # Polygon Amoy anchoring & SHA-256 hashing doc
 │   ├── database-schema.md        # Comprehensive DynamoDB Single-Table schema doc
 │   └── otp-consent-flow.md       # Dual-party OTP consent state machine doc
 ├── policies/
-│   └── nyay-sutra.cedar          # Cedar policy rules (Citizen Isolation & Mediator Guards)
+│   └── clearcase.cedar           # Cedar policy rules (Citizen Isolation & Mediator Guards)
 ├── scripts/
 │   ├── init-local-db.ts          # Table & GSI creation for local DynamoDB
 │   ├── test-ai-orchestration.ts  # End-to-end multi-agent AI & escalation tests
@@ -374,12 +375,13 @@ curl -s -X PATCH http://localhost:3000/cases/<CASE_ID>/mediator-review \
 │   ├── services/
 │   │   ├── aiService.ts          # Bedrock Claude 3.5 Sonnet & OpenSearch RAG service
 │   │   ├── blockchainService.ts  # Canonical SHA-256 hashing & Polygon Amoy service
+│   │   ├── mediaService.ts       # S3 audio storage & Polly TTS service
 │   │   └── otpService.ts         # Twilio/Exotel SMS stub & dual-consent evaluator
 │   ├── types/
 │   │   └── index.ts              # TypeScript entities, keys, DTOs & Cedar types
 │   └── app.ts                    # API Gateway Lambda catch-all router with Cedar AuthZ
 ├── docker-compose.yml            # Local DynamoDB container definition
-├── legal.md                      # Nyay-Sutra hackathon architecture & master plan
+├── legal.md                      # ClearCase hackathon architecture & master plan
 ├── package.json
 ├── template.yaml                 # AWS SAM infrastructure definition
 └── tsconfig.json

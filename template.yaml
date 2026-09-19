@@ -1,0 +1,181 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  Project ClearCase Backend: Offline-First, Voice-Native AI Dispute Resolution Mesh for Bharat.
+  Data Access Layer, Single-Table DynamoDB, GSI MediatorQueueIndex, and Local SAM API.
+
+Parameters:
+  MockAi:
+    Type: String
+    Default: 'true'
+    Description: "Set to 'true' to use resilient local AI mocks, or 'false' to invoke Amazon Bedrock"
+  BedrockModelId:
+    Type: String
+    Default: 'anthropic.claude-3-5-sonnet-20240620-v1:0'
+    Description: "Amazon Bedrock Foundation Model ID"
+  MockBlockchain:
+    Type: String
+    Default: 'true'
+    Description: "Set to 'true' to use resilient local blockchain mocks, or 'false' for live Polygon Amoy broadcast"
+  PolygonRpcUrl:
+    Type: String
+    Default: 'https://rpc-amoy.polygon.technology/'
+    Description: "Polygon Amoy RPC URL"
+  ClearCaseRegistryAddress:
+    Type: String
+    Default: '0x435A9D490EbF92C32D19D20888913B0957917C5B'
+    Description: "Deployed ClearCaseRegistry smart contract address"
+  MockMedia:
+    Type: String
+    Default: 'true'
+    Description: "Set to 'true' to simulate S3 audio storage & TTS synthesis, or 'false' for live S3/Polly"
+
+Globals:
+  Function:
+    Timeout: 30
+    MemorySize: 512
+    Runtime: nodejs20.x
+    Tracing: Active
+    Environment:
+      Variables:
+        TABLE_NAME: !Ref ClearCaseTable
+        MOCK_AI: !Ref MockAi
+        BEDROCK_MODEL_ID: !Ref BedrockModelId
+        MOCK_BLOCKCHAIN: !Ref MockBlockchain
+        POLYGON_RPC_URL: !Ref PolygonRpcUrl
+        CLEARCASE_REGISTRY_ADDRESS: !Ref ClearCaseRegistryAddress
+        MOCK_MEDIA: !Ref MockMedia
+        AUDIO_BUCKET: !Ref ClearCaseAudioBucket
+        AWS_NODEJS_CONNECTION_REUSE_ENABLED: '1'
+  Api:
+    Cors:
+      AllowMethods: "'*'"
+      AllowHeaders: "'*'"
+      AllowOrigin: "'*'"
+
+Resources:
+  # ==============================================================================
+  # DynamoDB Single-Table Design for ClearCase
+  # ==============================================================================
+  ClearCaseTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: !Sub "ClearCaseTable-${AWS::StackName}"
+      BillingMode: PAY_PER_REQUEST
+      AttributeDefinitions:
+        - AttributeName: PK
+          AttributeType: S
+        - AttributeName: SK
+          AttributeType: S
+        - AttributeName: GSI1PK
+          AttributeType: S
+        - AttributeName: GSI1SK
+          AttributeType: S
+        - AttributeName: GSI2PK
+          AttributeType: S
+      KeySchema:
+        - AttributeName: PK
+          KeyType: HASH
+        - AttributeName: SK
+          KeyType: RANGE
+      GlobalSecondaryIndexes:
+        - IndexName: MediatorQueueIndex
+          KeySchema:
+            - AttributeName: GSI1PK
+              KeyType: HASH
+            - AttributeName: GSI1SK
+              KeyType: RANGE
+          Projection:
+            ProjectionType: ALL
+        - IndexName: PartyPhoneIndex
+          KeySchema:
+            - AttributeName: GSI2PK
+              KeyType: HASH
+          Projection:
+            ProjectionType: ALL
+      TimeToLiveSpecification:
+        AttributeName: otpExpiry
+        Enabled: true
+      Tags:
+        - Key: Project
+          Value: ClearCase
+        - Key: Hackathon
+          Value: BharatBuilds-WeMakeDevs
+
+  # ==============================================================================
+  # S3 Bucket for Voice Grievance Recordings & Settlement TTS Audio
+  # ==============================================================================
+  ClearCaseAudioBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: !Sub "clearcase-audio-${AWS::AccountId}-${AWS::Region}"
+      VersioningConfiguration:
+        Status: Enabled
+      CorsConfiguration:
+        CorsRules:
+          - AllowedHeaders: ['*']
+            AllowedMethods: ['GET', 'PUT', 'POST']
+            AllowedOrigins: ['*']
+            MaxAge: 3000
+      Tags:
+        - Key: Project
+          Value: ClearCase
+        - Key: Hackathon
+          Value: BharatBuilds-WeMakeDevs
+
+  # ==============================================================================
+  # Catch-all API Gateway Lambda Function
+  # ==============================================================================
+  ClearCaseApiFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Description: "ClearCase API router handling dispute intake, party registration, and mediator queries"
+      CodeUri: .
+      Handler: src/app.lambdaHandler
+      Policies:
+        - DynamoDBCrudPolicy:
+            TableName: !Ref ClearCaseTable
+        - Statement:
+            - Effect: Allow
+              Action:
+                - dynamodb:Query
+              Resource:
+                - !Sub "arn:aws:dynamodb:${AWS::Region}:${AWS::AccountId}:table/ClearCaseTable-${AWS::StackName}/index/MediatorQueueIndex"
+                - !Sub "arn:aws:dynamodb:${AWS::Region}:${AWS::AccountId}:table/ClearCaseTable-${AWS::StackName}/index/PartyPhoneIndex"
+            - Effect: Allow
+              Action:
+                - bedrock:InvokeModel
+                - bedrock:InvokeModelWithResponseStream
+              Resource: "*"
+        - S3CrudPolicy:
+            BucketName: !Ref ClearCaseAudioBucket
+      Events:
+        RootPath:
+          Type: Api
+          Properties:
+            Path: /
+            Method: ANY
+        ProxyPath:
+          Type: Api
+          Properties:
+            Path: /{proxy+}
+            Method: ANY
+    Metadata:
+      BuildMethod: esbuild
+      BuildProperties:
+        Minify: false
+        Target: "es2022"
+        Sourcemap: true
+        EntryPoints:
+          - src/app.ts
+
+Outputs:
+  ClearCaseApiUrl:
+    Description: "API Gateway endpoint URL for ClearCase API"
+    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/"
+  ClearCaseTableName:
+    Description: "DynamoDB Single Table Name"
+    Value: !Ref ClearCaseTable
+  ClearCaseTableArn:
+    Description: "DynamoDB Single Table ARN"
+    Value: !GetAtt ClearCaseTable.Arn
