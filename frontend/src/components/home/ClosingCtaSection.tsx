@@ -1,10 +1,16 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useScrollReveal } from '@/hooks/useScrollTrigger';
+import { useMagnetic } from '@/hooks/useGsapHover';
 import styles from './ClosingCtaSection.module.css';
 
 export const ClosingCtaSection: React.FC = () => {
   const revealRef = useScrollReveal<HTMLDivElement>();
+  const ctaRef = useMagnetic<HTMLAnchorElement>({
+    strength: 0.35,
+    innerStrength: 0.65,
+    innerSelector: `.${styles.arrow}`,
+  });
 
   return (
     <section className={styles.section} aria-label="Closing Call to Action">
@@ -14,7 +20,7 @@ export const ClosingCtaSection: React.FC = () => {
             Ready to bring statutory dispute resolution to your Gram Panchayat?
           </h2>
 
-          <Link to="/contact" className={styles.ctaBtn}>
+          <Link ref={ctaRef} to="/pilot" className={styles.ctaBtn}>
             <span className={styles.ctaText}>Deploy ClearCase Mesh</span>
             <span className={styles.arrow} aria-hidden="true">
               <svg viewBox="0 0 14.879 32.733" width="14" height="26" fill="none">

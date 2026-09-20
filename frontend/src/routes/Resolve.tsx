@@ -387,12 +387,6 @@ export const Resolve: React.FC = () => {
 
           {/* Voice Intake & Speech-to-Text Model Console */}
           <div className={styles.recordHeroArea}>
-            <div className={styles.sttModelBadge}>
-              <span className={styles.sttModelDot} />
-              <span className={styles.sttModelName}>STT Model: Groq Whisper-Large-v3</span>
-              <span className={styles.sttModelDivider}>•</span>
-              <span className={styles.sttModelSpec}>Multilingual Acoustic Decoder (hi / en)</span>
-            </div>
 
             <button
               onClick={handleToggleRecord}
@@ -561,11 +555,12 @@ export const Resolve: React.FC = () => {
                 <div className={styles.cardHeader}>
                   <span className={styles.cardTag}>2. Village Precedent RAG</span>
                   <span style={{ fontSize: 12, fontWeight: 700, color: '#059669' }}>
-                    91% Semantic Match
+                    {Math.round((analysisResult.confidence_score || 0.88) * 100)}% Context Match
                   </span>
                 </div>
                 <h3 className={styles.cardTitle}>
-                  {analysisResult.precedent_citation?.village || 'Mauza Shivpur Gram Sabha'}
+                  {analysisResult.precedent_citation?.village || 'Gram Sabha'}
+                  {analysisResult.precedent_citation?.district ? ` (${analysisResult.precedent_citation.district})` : ''}
                 </h3>
                 <p className={styles.cardText}>
                   <strong>Historical Accord ({analysisResult.precedent_citation?.year || 2024}):</strong>{' '}

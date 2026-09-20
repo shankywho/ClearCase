@@ -27,11 +27,11 @@ export const MobileNav: React.FC<MobileNavProps> = ({ isOpen, onClose, links }) 
         </nav>
 
         <div className={styles.footerActions}>
-          <Link to="/contact" onClick={onClose} className="btn-primary" style={{ width: '100%' }}>
-            Start a Project
+          <Link to="/pilot" onClick={onClose} className="btn-primary" style={{ width: '100%' }}>
+            Deploy Pilot Mesh
           </Link>
           <div className={styles.locations}>
-            <span>New Delhi</span> ✦ <span>Dubai</span>
+            <span>Varanasi</span> ✦ <span>DLSA Corridor</span>
           </div>
         </div>
       </div>

@@ -1,5 +1,6 @@
 import React from 'react';
 import { useScrollReveal } from '@/hooks/useScrollTrigger';
+import { useTilt3D } from '@/hooks/useGsapHover';
 import { ThreeDIcon, ThreeDIconName } from '@/components/common/ThreeDIcon';
 import styles from './TestimonialsSection.module.css';
 
@@ -75,6 +76,41 @@ const TESTIMONIAL_COLUMNS: TestimonialItem[][] = [
 const TESTIMONIALS = TESTIMONIAL_COLUMNS.flat();
 void TESTIMONIALS;
 
+const BentoCardItem: React.FC<{ item: TestimonialItem }> = ({ item }) => {
+  const cardRef = useTilt3D<HTMLElement>({
+    maxRotation: 6,
+    perspective: 800,
+    liftY: -7,
+    scale: 1.015,
+    subSelector: `.${styles.avatarFrame}`,
+  });
+
+  return (
+    <article ref={cardRef} className={styles.bentoCard}>
+      <div className={styles.cardTopRow}>
+        <span className={styles.categoryTag}>{item.category}</span>
+        <span className={styles.starsRating} aria-label="5 out of 5 stars">
+          ★★★★★
+        </span>
+      </div>
+
+      <blockquote className={styles.quoteText}>
+        &ldquo;{item.quote}&rdquo;
+      </blockquote>
+
+      <div className={styles.authorRow}>
+        <div className={styles.avatarFrame}>
+          <ThreeDIcon name={item.iconName} size={32} />
+        </div>
+        <div className={styles.authorMeta}>
+          <span className={styles.authorName}>{item.author}</span>
+          <span className={styles.authorRole}>{item.role}</span>
+        </div>
+      </div>
+    </article>
+  );
+};
+
 export const TestimonialsSection: React.FC = () => {
   const headerRef = useScrollReveal<HTMLDivElement>();
 
@@ -96,28 +132,7 @@ export const TestimonialsSection: React.FC = () => {
           {TESTIMONIAL_COLUMNS.map((column, colIdx) => (
             <div key={colIdx} className={styles.bentoColumn}>
               {column.map((item, itemIdx) => (
-                <article key={itemIdx} className={styles.bentoCard}>
-                  <div className={styles.cardTopRow}>
-                    <span className={styles.categoryTag}>{item.category}</span>
-                    <span className={styles.starsRating} aria-label="5 out of 5 stars">
-                      ★★★★★
-                    </span>
-                  </div>
-
-                  <blockquote className={styles.quoteText}>
-                    &ldquo;{item.quote}&rdquo;
-                  </blockquote>
-
-                  <div className={styles.authorRow}>
-                    <div className={styles.avatarFrame}>
-                      <ThreeDIcon name={item.iconName} size={32} />
-                    </div>
-                    <div className={styles.authorMeta}>
-                      <span className={styles.authorName}>{item.author}</span>
-                      <span className={styles.authorRole}>{item.role}</span>
-                    </div>
-                  </div>
-                </article>
+                <BentoCardItem key={itemIdx} item={item} />
               ))}
             </div>
           ))}

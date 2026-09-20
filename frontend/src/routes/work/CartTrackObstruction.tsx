@@ -28,6 +28,14 @@ export const CartTrackObstruction: React.FC = () => {
           50-year-old customary dirt rasta blocked with thorny hedges and barbed fencing, immobilizing tractor and harvest passage. ClearCase synthesized prescriptive easement statutes and brokered a formal 8-foot clearway accord.
         </p>
 
+        <div className={styles.heroImageWrapper}>
+          <img
+            src="/images/proj-cart-track.jpg"
+            alt="Village Cart-Track Obstruction Accord Case Study"
+            className={styles.heroImage}
+          />
+        </div>
+
         <div className={styles.metaGrid}>
           <div className={styles.metaItem}>
             <span className={styles.metaLabel}>Disputing Parties</span>
@@ -140,7 +148,7 @@ export const CartTrackObstruction: React.FC = () => {
           <Link to="/work" className="btn-secondary">
             ← Explore All Case Studies
           </Link>
-          <Link to="/contact" className="btn-primary">
+          <Link to="/pilot" className="btn-primary">
             Deploy Mesh in Your Tehsil →
           </Link>
         </div>

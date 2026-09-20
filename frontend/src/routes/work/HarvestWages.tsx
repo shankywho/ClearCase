@@ -28,6 +28,14 @@ export const HarvestWages: React.FC = () => {
           15 days of intensive paddy harvesting wages withheld by an agricultural labor contractor. ClearCase captured Awadhi spoken testimony, referenced statutory minimum wage penalties, and finalized an enforceable disbursement schedule.
         </p>
 
+        <div className={styles.heroImageWrapper}>
+          <img
+            src="/images/proj-harvest-wages.jpg"
+            alt="Agricultural Harvest Wages Conciliation Case Study"
+            className={styles.heroImage}
+          />
+        </div>
+
         <div className={styles.metaGrid}>
           <div className={styles.metaItem}>
             <span className={styles.metaLabel}>Disputing Parties</span>
@@ -140,7 +148,7 @@ export const HarvestWages: React.FC = () => {
           <Link to="/work" className="btn-secondary">
             ← Explore All Case Studies
           </Link>
-          <Link to="/contact" className="btn-primary">
+          <Link to="/pilot" className="btn-primary">
             Deploy Mesh in Your Tehsil →
           </Link>
         </div>

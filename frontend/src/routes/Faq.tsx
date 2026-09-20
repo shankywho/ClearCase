@@ -1,6 +1,5 @@
 import React from 'react';
 import { useScrollReveal } from '@/hooks/useScrollTrigger';
-import { TestimonialsSection } from '@/components/home/TestimonialsSection';
 import { ClosingCtaSection } from '@/components/home/ClosingCtaSection';
 import styles from './Faq.module.css';
 
@@ -69,7 +68,6 @@ export const Faq: React.FC = () => {
         </div>
       </section>
 
-      <TestimonialsSection />
       <ClosingCtaSection />
     </main>
   );

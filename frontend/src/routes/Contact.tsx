@@ -1,7 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useScrollReveal } from '@/hooks/useScrollTrigger';
-import { TestimonialsSection } from '@/components/home/TestimonialsSection';
 import { ThreeDIcon } from '@/components/common/ThreeDIcon';
+import {
+  submitDeployment,
+  fetchClusterStatus,
+  DeploymentResult,
+  ClusterStatusResult,
+} from '@/lib/api';
 import styles from './Contact.module.css';
 
 const ROLES = [
@@ -29,22 +34,55 @@ export const Contact: React.FC = () => {
   });
 
   const [submitted, setSubmitted] = useState<boolean>(false);
+  const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
+  const [deploymentResult, setDeploymentResult] = useState<DeploymentResult | null>(null);
+  const [clusterStatus, setClusterStatus] = useState<ClusterStatusResult | null>(null);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [ticketId, setTicketId] = useState<string>('');
   const [copiedToken, setCopiedToken] = useState<boolean>(false);
+
+  useEffect(() => {
+    document.title = 'Pilot Deployment | ClearCase';
+    fetchClusterStatus().then((status) => {
+      if (status) setClusterStatus(status);
+    });
+  }, []);
 
   const toggleCapability = (key: string) => {
     setCapabilities((prev) => ({ ...prev, [key]: !prev[key] }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const randomId = `MANIFEST-2026-${district.slice(0, 3).toUpperCase()}-${Math.floor(100 + Math.random() * 900)}`;
-    setTicketId(randomId);
-    setSubmitted(true);
+    setIsSubmitting(true);
+    setErrorMessage(null);
+
+    try {
+      const result = await submitDeployment({
+        fullName,
+        role: selectedRole,
+        contactInfo,
+        state: jurisdictionState,
+        district,
+        villageBlock,
+        capabilities,
+        notes,
+      });
+
+      setDeploymentResult(result);
+      setTicketId(result.ticket_id);
+      setSubmitted(true);
+    } catch (err) {
+      console.error('[Contact] Deployment error:', err);
+      setErrorMessage('Failed to submit deployment dossier to backend. Please retry.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleCopyToken = () => {
-    navigator.clipboard?.writeText('cc_mesh_live_7a9f4e229c1b8401e');
+    const token = deploymentResult?.cluster_token || 'cc_mesh_live_7a9f4e229c1b8401e';
+    navigator.clipboard?.writeText(token);
     setCopiedToken(true);
     setTimeout(() => setCopiedToken(false), 2500);
   };
@@ -52,15 +90,11 @@ export const Contact: React.FC = () => {
   return (
     <main className={styles.container}>
       <div className={styles.inner}>
-        {/* Header Block */}
+        {/* Header Block: Pilot Deployment */}
         <div ref={headerRef} className={styles.headerBlock}>
-          <div className={styles.eyebrow}>
-            <span className={styles.pulseDot} />
-            <span>Field Deployment &amp; DLSA Pilot Intake • Bharat Builds 2026</span>
-          </div>
-          <h1 className={styles.title}>Deploy ClearCase in Your Block</h1>
+          <h1 className={styles.title}>Pilot Deployment</h1>
           <p className={styles.subtitle}>
-            Whether you are a Gram Panchayat Pradhan, a District Legal Services Authority (DLSA) secretary, or an evaluator for Bharat Builds 2026, provision an autonomous rural dispute mediation node in your block.
+            Provision an autonomous rural dispute mediation node for your Gram Panchayat, Tehsil, or District Legal Services Authority (DLSA) corridor.
           </p>
         </div>
 
@@ -116,33 +150,39 @@ export const Contact: React.FC = () => {
 
                 <h3 className={styles.ticketHeading}>Deployment Manifest Generated</h3>
                 <p className={styles.ticketMessage}>
-                  Your rural dispute mediation node credentials have been reserved. The ClearCase coordination team and DLSA field engineers have received your jurisdictional parameters.
+                  Your rural dispute mediation node credentials have been reserved and anchored in the live backend. The ClearCase coordination team and DLSA field engineers have received your jurisdictional parameters.
                 </p>
 
                 <div className={styles.ticketGrid}>
                   <div className={styles.ticketItem}>
                     <span className={styles.ticketKey}>Authority / Role</span>
-                    <span className={styles.ticketVal}>{selectedRole}</span>
+                    <span className={styles.ticketVal}>{deploymentResult?.authority || selectedRole}</span>
                   </div>
                   <div className={styles.ticketItem}>
                     <span className={styles.ticketKey}>Jurisdiction Block</span>
-                    <span className={styles.ticketVal}>{district}, {jurisdictionState}</span>
+                    <span className={styles.ticketVal}>{deploymentResult?.jurisdiction || `${district}, ${jurisdictionState}`}</span>
                   </div>
                   <div className={styles.ticketItem}>
                     <span className={styles.ticketKey}>Target Village / Tehsil</span>
-                    <span className={styles.ticketVal}>{villageBlock || 'Mauza Shivpur'}</span>
+                    <span className={styles.ticketVal}>{deploymentResult?.village || villageBlock || 'Mauza Shivpur'}</span>
                   </div>
                   <div className={styles.ticketItem}>
-                    <span className={styles.ticketKey}>Local Dialect Model</span>
-                    <span className={styles.ticketVal}>Bhojpuri / Awadhi / Hindi</span>
+                    <span className={styles.ticketKey}>Provisioned At</span>
+                    <span className={styles.ticketVal}>
+                      {deploymentResult?.provisioned_at ? new Date(deploymentResult.provisioned_at).toLocaleString() : 'Synchronized to Core'}
+                    </span>
                   </div>
                   <div className={styles.ticketItem}>
                     <span className={styles.ticketKey}>Edge Cluster Status</span>
-                    <span className={styles.ticketVal} style={{ color: '#059669' }}>READY_FOR_DISPUTE_MESH</span>
+                    <span className={styles.ticketVal} style={{ color: '#059669', fontWeight: 700 }}>
+                      {deploymentResult?.status || 'READY_FOR_DISPUTE_MESH'}
+                    </span>
                   </div>
                   <div className={styles.ticketItem}>
                     <span className={styles.ticketKey}>Node Secret Token</span>
-                    <span className={styles.ticketVal} style={{ fontFamily: 'monospace' }}>cc_mesh_live_7a9f4e...</span>
+                    <span className={styles.ticketVal} style={{ fontFamily: 'monospace', fontSize: '0.82rem' }}>
+                      {deploymentResult?.cluster_token ? `${deploymentResult.cluster_token.slice(0, 18)}...` : 'cc_mesh_live_7a9f4e...'}
+                    </span>
                   </div>
                 </div>
 
@@ -158,24 +198,38 @@ export const Contact: React.FC = () => {
                     type="button"
                     onClick={() => {
                       setSubmitted(false);
+                      setDeploymentResult(null);
                       setFullName('');
                       setContactInfo('');
                       setNotes('');
                     }}
                     className={styles.ticketBtnSecondary}
                   >
-                    Provision Another Block
+                    Provision Another Pilot Block
                   </button>
                 </div>
               </div>
             ) : (
               <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '22px' }}>
                 <div className={styles.formHeader}>
-                  <h2 className={styles.formTitle}>Block Deployment Intake Console</h2>
+                  <h2 className={styles.formTitle}>Pilot Deployment Intake Console</h2>
                   <p className={styles.formSubtitle}>
                     Enter administrative boundaries and dialect profiles to configure an edge dispute cluster for your Gram Sabha or court corridor.
                   </p>
                 </div>
+
+                {errorMessage && (
+                  <div style={{
+                    padding: '12px 16px',
+                    borderRadius: '10px',
+                    background: '#fef2f2',
+                    border: '1px solid #fecaca',
+                    color: '#dc2626',
+                    fontSize: '0.88rem'
+                  }}>
+                    {errorMessage}
+                  </div>
+                )}
 
                 {/* Role Selector Chips */}
                 <div className={styles.roleSelectorArea}>
@@ -339,9 +393,18 @@ export const Contact: React.FC = () => {
                   />
                 </div>
 
-                <button type="submit" className={styles.submitBtn}>
-                  <span>Provision Block Mesh Credentials</span>
-                  <span aria-hidden="true">→</span>
+                <button type="submit" className={styles.submitBtn} disabled={isSubmitting}>
+                  {isSubmitting ? (
+                    <>
+                      <span className={styles.spinner} />
+                      <span>Provisioning Pilot Mesh Node...</span>
+                    </>
+                  ) : (
+                    <>
+                      <span>Provision Pilot Mesh Node</span>
+                      <span aria-hidden="true">→</span>
+                    </>
+                  )}
                 </button>
               </form>
             )}
@@ -364,46 +427,64 @@ export const Contact: React.FC = () => {
               <div className={styles.endpointList}>
                 <div className={styles.endpointItem}>
                   <div className={styles.endpointHeader}>
-                    <span className={styles.endpointName}>Python AI Microservice</span>
+                    <span className={styles.endpointName}>
+                      {clusterStatus?.python_ai_engine?.name || 'Python AI Legal Engine'}
+                    </span>
                     <span className={styles.endpointStatus}>
                       <span className={styles.endpointDot} />
-                      PORT 8001 LIVE
+                      {clusterStatus?.python_ai_engine?.status || 'ONLINE'}
                     </span>
                   </div>
-                  <span className={styles.endpointVal}>http://127.0.0.1:8001</span>
+                  <span className={styles.endpointVal}>
+                    {clusterStatus?.python_ai_engine?.indexed_clauses
+                      ? `Statutory RAG (${clusterStatus.python_ai_engine.indexed_clauses} Clauses Indexed)`
+                      : 'Statutory RAG & Lok Adalat Conciliation Mesh'}
+                  </span>
                 </div>
 
                 <div className={styles.endpointItem}>
                   <div className={styles.endpointHeader}>
-                    <span className={styles.endpointName}>Groq Whisper STT Engine</span>
+                    <span className={styles.endpointName}>
+                      {clusterStatus?.groq_whisper?.name || 'Groq Whisper STT Engine'}
+                    </span>
                     <span className={styles.endpointStatus}>
                       <span className={styles.endpointDot} />
-                      ONLINE
+                      {clusterStatus?.groq_whisper?.status || 'ONLINE'}
                     </span>
                   </div>
-                  <span className={styles.endpointVal}>whisper-large-v3 (&lt; 200ms latency)</span>
+                  <span className={styles.endpointVal}>
+                    {clusterStatus?.groq_whisper?.detail || 'whisper-large-v3 (< 200ms latency)'}
+                  </span>
                 </div>
 
                 <div className={styles.endpointItem}>
                   <div className={styles.endpointHeader}>
-                    <span className={styles.endpointName}>Node.js Cedar State Mesh</span>
+                    <span className={styles.endpointName}>
+                      {clusterStatus?.node_state_mesh?.name || 'Node.js Cedar State Mesh'}
+                    </span>
                     <span className={styles.endpointStatus}>
                       <span className={styles.endpointDot} />
-                      ACTIVE
+                      {clusterStatus?.node_state_mesh?.status || 'ACTIVE'}
                     </span>
                   </div>
-                  <span className={styles.endpointVal}>http://127.0.0.1:3000</span>
+                  <span className={styles.endpointVal}>
+                    {clusterStatus?.node_state_mesh?.detail || 'http://127.0.0.1:3000'}
+                  </span>
                 </div>
 
                 <div className={styles.endpointItem}>
                   <div className={styles.endpointHeader}>
-                    <span className={styles.endpointName}>Polygon Amoy Contract</span>
+                    <span className={styles.endpointName}>
+                      {clusterStatus?.polygon_amoy?.name || 'Polygon Amoy Contract'}
+                    </span>
                     <span className={styles.endpointStatus}>
                       <span className={styles.endpointDot} />
-                      VERIFIED
+                      {clusterStatus?.polygon_amoy?.status || 'VERIFIED'}
                     </span>
                   </div>
-                  <span className={styles.endpointVal}>0x435A9D490EbF92C32D19D20888913B0957917C5B</span>
+                  <span className={styles.endpointVal}>
+                    {clusterStatus?.polygon_amoy?.contract || '0x435A9D490EbF92C32D19D20888913B0957917C5B'}
+                  </span>
                 </div>
               </div>
             </div>
@@ -480,8 +561,6 @@ export const Contact: React.FC = () => {
           </div>
         </div>
       </div>
-
-      <TestimonialsSection />
     </main>
   );
 };

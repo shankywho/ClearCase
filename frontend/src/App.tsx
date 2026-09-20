@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, useLocation, Navigate } from 'react-router-dom';
 import { useLenis } from '@/hooks/useLenis';
 import { initScrollTriggers } from '@/lib/scrollTriggers';
 import { Header } from '@/components/layout/Header';
@@ -64,7 +64,8 @@ export const AppContent: React.FC = () => {
           <Route path="/about" element={<About />} />
           <Route path="/approach" element={<Approach />} />
           <Route path="/faq" element={<Faq />} />
-          <Route path="/contact" element={<Contact />} />
+          <Route path="/pilot" element={<Contact />} />
+          <Route path="/contact" element={<Navigate to="/pilot" replace />} />
           <Route path="/benchmark" element={<Benchmark />} />
 
           {/* 8 ClearCase Dispute Accords */}

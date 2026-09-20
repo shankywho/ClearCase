@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
+import gsap from 'gsap';
 import { useScrollReveal } from '@/hooks/useScrollTrigger';
 import styles from './FeaturedProjectsSection.module.css';
 
@@ -79,6 +80,142 @@ const PROJECTS: FeaturedProject[] = [
   },
 ];
 
+const ProjectRowItem: React.FC<{ proj: FeaturedProject }> = ({ proj }) => {
+  const rowRef = useRef<HTMLAnchorElement>(null);
+  const titleRef = useRef<HTMLHeadingElement>(null);
+  const imageRef = useRef<HTMLImageElement>(null);
+  const arrowRef = useRef<HTMLSpanElement>(null);
+  const tagsRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const row = rowRef.current;
+    if (!row) return;
+
+    const ctx = gsap.context(() => {
+      const onMouseMove = (e: MouseEvent) => {
+        const rect = row.getBoundingClientRect();
+        const normX = (e.clientX - rect.left) / rect.width - 0.5;
+        const normY = (e.clientY - rect.top) / rect.height - 0.5;
+
+        if (imageRef.current) {
+          gsap.to(imageRef.current, {
+            x: normX * 24,
+            y: normY * 18,
+            scale: 1.06,
+            duration: 0.4,
+            ease: 'power2.out',
+            overwrite: 'auto',
+          });
+        }
+        if (titleRef.current) {
+          gsap.to(titleRef.current, {
+            x: 10,
+            color: '#71efe4',
+            duration: 0.28,
+            ease: 'power2.out',
+            overwrite: 'auto',
+          });
+        }
+        if (arrowRef.current) {
+          gsap.to(arrowRef.current, {
+            opacity: 1,
+            x: 0,
+            scale: 1,
+            duration: 0.3,
+            ease: 'back.out(2)',
+            overwrite: 'auto',
+          });
+        }
+        if (tagsRef.current) {
+          gsap.to(tagsRef.current, {
+            x: 6,
+            duration: 0.3,
+            ease: 'power2.out',
+            overwrite: 'auto',
+          });
+        }
+      };
+
+      const onMouseLeave = () => {
+        if (imageRef.current) {
+          gsap.to(imageRef.current, {
+            x: 0,
+            y: 0,
+            scale: 1,
+            duration: 0.65,
+            ease: 'power3.out',
+            overwrite: 'auto',
+          });
+        }
+        if (titleRef.current) {
+          gsap.to(titleRef.current, {
+            x: 0,
+            color: '',
+            duration: 0.45,
+            ease: 'power3.out',
+            overwrite: 'auto',
+          });
+        }
+        if (arrowRef.current) {
+          gsap.to(arrowRef.current, {
+            opacity: 0,
+            x: -8,
+            scale: 0.85,
+            duration: 0.35,
+            ease: 'power2.out',
+            overwrite: 'auto',
+          });
+        }
+        if (tagsRef.current) {
+          gsap.to(tagsRef.current, {
+            x: 0,
+            duration: 0.4,
+            ease: 'power3.out',
+            overwrite: 'auto',
+          });
+        }
+      };
+
+      row.addEventListener('mousemove', onMouseMove);
+      row.addEventListener('mouseleave', onMouseLeave);
+
+      return () => {
+        row.removeEventListener('mousemove', onMouseMove);
+        row.removeEventListener('mouseleave', onMouseLeave);
+      };
+    }, row);
+
+    return () => ctx.revert();
+  }, []);
+
+  return (
+    <Link ref={rowRef} to={`/work/${proj.slug}`} className={styles.projectRow}>
+      <div className={styles.infoCol}>
+        <div className={styles.titleRow}>
+          <h2 ref={titleRef} className={styles.title}>{proj.title}</h2>
+          <span ref={arrowRef} className={styles.arrowIcon} aria-hidden="true">→</span>
+        </div>
+        <p className={styles.description}>{proj.description}</p>
+        <div ref={tagsRef} className={styles.tags}>
+          <span>{proj.category}</span>
+          <span className={styles.dot}>,</span>
+          <span>{proj.location}</span>
+        </div>
+      </div>
+
+      <div className={styles.mediaCol}>
+        <img
+          ref={imageRef}
+          src={proj.image}
+          alt={`${proj.title} Showcase`}
+          className={styles.image}
+          loading="lazy"
+        />
+      </div>
+    </Link>
+  );
+};
+
 export const FeaturedProjectsSection: React.FC = () => {
   const headerRef = useScrollReveal<HTMLDivElement>();
 
@@ -91,33 +228,11 @@ export const FeaturedProjectsSection: React.FC = () => {
 
         <div className={styles.list}>
           {PROJECTS.map((proj) => (
-            <Link
-              key={proj.slug}
-              to={`/work/${proj.slug}`}
-              className={styles.projectRow}
-            >
-              <div className={styles.infoCol}>
-                <h2 className={styles.title}>{proj.title}</h2>
-                <p className={styles.description}>{proj.description}</p>
-                <div className={styles.tags}>
-                  <span>{proj.category}</span>
-                  <span className={styles.dot}>,</span>
-                  <span>{proj.location}</span>
-                </div>
-              </div>
-
-              <div className={styles.mediaCol}>
-                <img
-                  src={proj.image}
-                  alt={`${proj.title} Showcase`}
-                  className={styles.image}
-                  loading="lazy"
-                />
-              </div>
-            </Link>
+            <ProjectRowItem key={proj.slug} proj={proj} />
           ))}
         </div>
       </div>
     </section>
   );
 };
+

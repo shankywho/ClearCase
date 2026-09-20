@@ -234,6 +234,10 @@ class LocalJsonVectorStore(VectorStoreClient):
     Saves to local JSON file. 100% offline, zero-network, reliable on any OS.
     """
     def __init__(self, index_path: str = "data/local_vector_index.json"):
+        if not os.path.isabs(index_path) and not os.path.exists(index_path):
+            candidate = os.path.join(os.path.dirname(__file__), index_path)
+            if os.path.exists(candidate):
+                index_path = candidate
         self.index_path = index_path
         self.chunks: List[LegalChunk] = []
         self._load()

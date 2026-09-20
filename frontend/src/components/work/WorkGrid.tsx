@@ -22,7 +22,7 @@ export const ALL_PROJECTS: ProjectItem[] = [
     categories: ['Land & Demarcation'],
     disciplines: ['UP Revenue Code §24', 'Lekhpal Demarcation', 'Ridge Realignment'],
     description: 'Boundary ridge trimmed by 2 feet during wheat sowing. Demarcation conducted under Section 24 with mutual stone boundary placement.',
-    image: '/images/mH1dZ5k3x7s6g2bF8.png',
+    image: '/images/proj-land-demarcation.jpg',
   },
   {
     slug: 'harvest-wages',
@@ -32,7 +32,7 @@ export const ALL_PROJECTS: ProjectItem[] = [
     categories: ['Labor & Wages'],
     disciplines: ['Minimum Wages Act §20', 'Direct Wage Disbursement', 'Panchayat Conciliation'],
     description: 'Three harvesters unpaid after 14 days of wheat harvesting. Settled via Section 20 statutory minimums with verified electronic payout.',
-    image: '/images/3bWTAYyjV4ZJTmkBRESfDTzRXc.png',
+    image: '/images/proj-harvest-wages.jpg',
   },
   {
     slug: 'cart-track-obstruction',
@@ -42,7 +42,7 @@ export const ALL_PROJECTS: ProjectItem[] = [
     categories: ['Land & Demarcation', 'Water & Rights'],
     disciplines: ['CrPC Section 133', 'Indian Easements Act', 'Passage Restoration'],
     description: 'Field access blocked with thorn hedges preventing tractor movement. Clear passage restored with neutral Gram Pradhan oversight.',
-    image: '/images/0xIKofBqUVt0AtuXzeJLHdfabM.png',
+    image: '/images/proj-cart-track.jpg',
   },
   {
     slug: 'tubewell-watercourse',
@@ -52,7 +52,7 @@ export const ALL_PROJECTS: ProjectItem[] = [
     categories: ['Water & Rights'],
     disciplines: ['Easements Act §15', 'Rotational Hours', 'Shared Electricity'],
     description: 'Dispute over diesel pump hours during paddy transplantation. Structured weekly irrigation schedule agreed with shared electricity costs.',
-    image: '/images/yapI2qAX7XKUS0mIvxWbKIZnuE4.png',
+    image: '/images/proj-tubewell-sharing.jpg',
   },
   {
     slug: 'sharecropping-division',
@@ -62,7 +62,7 @@ export const ALL_PROJECTS: ProjectItem[] = [
     categories: ['Tenancy & Lease'],
     disciplines: ['Model Tenancy Code', 'Batai Split', 'Input Cost Settlement'],
     description: 'Contested 50:50 vs 60:40 grain split following unseasonal rain damage. Compromise accord framed based on verified fertilizer receipts.',
-    image: '/images/ddgvUaFoQ769eVRNXfdbQEFnU.png',
+    image: '/images/proj-sharecropping.jpg',
   },
   {
     slug: 'commercial-shop-tenancy',
@@ -72,7 +72,7 @@ export const ALL_PROJECTS: ProjectItem[] = [
     categories: ['Tenancy & Lease'],
     disciplines: ['Transfer of Property Act §106', '3-Year Lease', 'Eviction Shield'],
     description: 'Village stallholder faced arbitrary eviction threats. Formal 3-year tenancy accord drafted with indexed annual rent adjustments.',
-    image: '/images/9d4TNGFKFnZL1yoQzXNrDNFc.png',
+    image: '/images/proj-shop-tenancy.jpg',
   },
   {
     slug: 'pasture-encroachment',
@@ -82,7 +82,7 @@ export const ALL_PROJECTS: ProjectItem[] = [
     categories: ['Land & Demarcation', 'Water & Rights'],
     disciplines: ['UP Revenue Code §67', 'Common Grazing Rights', 'Voluntary Vacation'],
     description: 'Encroachment on communal livestock pasture by private fencing. Voluntary retreat formalized preventing police intervention and penal fines.',
-    image: '/images/XJfLrvkcZ2tSJc3rEFULy4IfPdE.png',
+    image: '/images/proj-pasture-encroachment.jpg',
   },
   {
     slug: 'usurious-debt-escalation',
@@ -92,7 +92,7 @@ export const ALL_PROJECTS: ProjectItem[] = [
     categories: ['Labor & Wages'],
     disciplines: ['Usurious Loans Act', 'Coercion Gate', 'DLSA Transfer'],
     description: 'Moneylender demanded 60% compound interest and withheld identity papers. Coercion safety gate halted mediation and escalated to Legal Aid.',
-    image: '/images/cHIAn4C7y1kt8RvamESmM8uCk.png',
+    image: '/images/proj-usury-coercion.jpg',
   },
 ];
 

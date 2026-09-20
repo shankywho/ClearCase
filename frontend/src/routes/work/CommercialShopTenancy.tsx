@@ -28,6 +28,14 @@ export const CommercialShopTenancy: React.FC = () => {
           Arbitrary 75% rent escalation and summary eviction threat targeting a rural grocery stallholder in Pipraich Mandi. ClearCase matched statutory commercial rent ceiling guidelines, producing a signed three-year lease covenant.
         </p>
 
+        <div className={styles.heroImageWrapper}>
+          <img
+            src="/images/proj-shop-tenancy.jpg"
+            alt="Commercial Village Shop Tenancy Accord Case Study"
+            className={styles.heroImage}
+          />
+        </div>
+
         <div className={styles.metaGrid}>
           <div className={styles.metaItem}>
             <span className={styles.metaLabel}>Disputing Parties</span>
@@ -140,7 +148,7 @@ export const CommercialShopTenancy: React.FC = () => {
           <Link to="/work" className="btn-secondary">
             ← Explore All Case Studies
           </Link>
-          <Link to="/contact" className="btn-primary">
+          <Link to="/pilot" className="btn-primary">
             Deploy Mesh in Your Tehsil →
           </Link>
         </div>

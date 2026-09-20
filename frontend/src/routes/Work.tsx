@@ -1,7 +1,6 @@
 import React, { useState, useMemo } from 'react';
 import { WorkHeader } from '@/components/work/WorkHeader';
 import { WorkGrid, ALL_PROJECTS } from '@/components/work/WorkGrid';
-import { TestimonialsSection } from '@/components/home/TestimonialsSection';
 import { ClosingCtaSection } from '@/components/home/ClosingCtaSection';
 
 export const Work: React.FC = () => {
@@ -35,7 +34,6 @@ export const Work: React.FC = () => {
         filterCounts={filterCounts}
       />
       <WorkGrid filter={activeFilter} />
-      <TestimonialsSection />
       <ClosingCtaSection />
     </main>
   );

@@ -46,6 +46,8 @@
   flex-direction: column;
   justify-content: space-between;
   gap: var(--space-md);
+  cursor: default;
+  will-change: transform;
 }
 
 .brand {

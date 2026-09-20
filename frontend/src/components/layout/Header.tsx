@@ -49,7 +49,7 @@ const LINKS: NavLinkItem[] = [
   { label: 'Cases', path: '/work' },
   { label: 'Architecture', path: '/approach' },
   { label: 'Mission', path: '/about' },
-  { label: 'Deploy', path: '/contact' },
+  { label: 'Pilot', path: '/pilot' },
 ];
 
 export const Header: React.FC = () => {
@@ -74,6 +74,9 @@ export const Header: React.FC = () => {
         return ['/resolve', '/land-records', '/mediator', '/verify'].some((p) =>
           location.pathname.startsWith(p)
         );
+      }
+      if (link.path === '/pilot') {
+        return location.pathname === '/pilot' || location.pathname === '/contact';
       }
       if (link.path === '/') return location.pathname === '/';
       return location.pathname.startsWith(link.path);

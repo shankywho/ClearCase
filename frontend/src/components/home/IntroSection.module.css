@@ -56,8 +56,7 @@
   box-shadow: inset 0px 1px 25px 4px rgba(113, 239, 228, 0.8), 0 4px 18px rgba(113, 239, 228, 0.2);
   transition: gap 0.4s cubic-bezier(0.16, 1, 0.3, 1),
               background-color 0.4s cubic-bezier(0.16, 1, 0.3, 1),
-              box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1),
-              transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+              box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   will-change: gap, background-color, box-shadow, transform;
 }
 
@@ -65,7 +64,6 @@
   gap: 32px;
   background-color: rgb(113, 239, 228);
   box-shadow: inset 0px 1px 40px 20px rgba(247, 255, 254, 0.95), 0 8px 30px rgba(113, 239, 228, 0.4);
-  transform: translateY(-2px);
 }
 
 .arrow {
@@ -73,11 +71,7 @@
   align-items: center;
   justify-content: center;
   line-height: 0;
-  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.ctaBtn:hover .arrow {
-  transform: translateX(4px);
+  will-change: transform;
 }
 
 @media (max-width: 768px) {

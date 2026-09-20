@@ -46,10 +46,6 @@ export const InteractiveTerminalSection: React.FC = () => {
     <section className={styles.section} id="demo-terminal" aria-label="Interactive Dispute Resolution Engine">
       <div className={styles.inner}>
         <div className={styles.header}>
-          <div className={styles.eyebrow}>
-            <span className={styles.pulseDot} />
-            <span>Statutory Neural Engine</span>
-          </div>
           <h2 className={styles.title}>Real-Time Statutory Resolution</h2>
           <p className={styles.subtitle}>
             Select a verified benchmark case or input rural boundary disputes. The Python AI pipeline evaluates statutory citations, precedent memory, and compromise terms.
@@ -72,8 +68,9 @@ export const InteractiveTerminalSection: React.FC = () => {
 
           <div className={styles.terminalBody}>
             <div className={styles.pane}>
-              <div className={styles.paneTitle}>
-                Case Narration ({dialect.toUpperCase()} · {district}, {state})
+              <div className={styles.paneHeader}>
+                <span className={styles.paneTitle}>Case Narration</span>
+                <span className={styles.dialectBadge}>{dialect} · {district}, {state}</span>
               </div>
               <textarea
                 className={styles.textarea}
@@ -88,42 +85,64 @@ export const InteractiveTerminalSection: React.FC = () => {
                 onClick={handleRunAnalysis}
                 disabled={loading}
               >
-                {loading ? 'Evaluating Precedents & Statutes...' : 'Run Neural Statutory Resolution →'}
+                {loading ? (
+                  <>
+                    <span className={styles.btnSpinner} />
+                    <span>Evaluating Statutes & Precedents...</span>
+                  </>
+                ) : (
+                  <>
+                    <span>Run Statutory Analysis</span>
+                    <span className={styles.btnArrow}>→</span>
+                  </>
+                )}
               </button>
             </div>
 
             <div className={styles.pane}>
-              <div className={styles.paneTitle}>Resolution & Statutory Alignment</div>
+              <div className={styles.paneHeader}>
+                <span className={styles.paneTitle}>Resolution & Statutory Alignment</span>
+                {result && <span className={styles.statusBadgeLive}>Analyzed</span>}
+              </div>
               <div className={styles.outputBox}>
                 {result ? (
-                  <div>
+                  <div className={styles.resultContainer}>
                     {primarySection && (
-                      <>
-                        <span className={styles.statuteTag}>{primarySection.act}</span>
-                        <h3 className={styles.statuteTitle}>{primarySection.section}</h3>
-                      </>
+                      <div className={styles.statuteHeader}>
+                        <span className={styles.statuteAct}>{primarySection.act}</span>
+                        <h3 className={styles.statuteSection}>{primarySection.section}</h3>
+                      </div>
                     )}
-                    <p className={styles.accordExcerpt}>{result.settlement_draft}</p>
+                    <div className={styles.accordBox}>
+                      <span className={styles.accordLabel}>Drafted Compromise Accord Terms</span>
+                      <p className={styles.accordExcerpt}>{result.settlement_draft}</p>
+                    </div>
                     <div className={styles.metaTagsRow}>
                       <span className={styles.metaPill}>
+                        <span className={styles.confidenceDot} />
                         Confidence: {(result.confidence_score * 100).toFixed(0)}%
                       </span>
                       <span className={styles.metaPill}>
                         Forum: Lok Adalat Pre-Litigation
                       </span>
                       <span className={styles.metaPillSuccess}>
-                        ✓ Panchayat Ready
+                        ✓ Enforceable Accord
                       </span>
                     </div>
                   </div>
                 ) : (
                   <div className={styles.emptyState}>
-                    <div className={styles.emptyIcon}>
-                      <ThreeDIcon name="scales" size={36} />
+                    <div className={styles.emptyIconCircle}>
+                      <ThreeDIcon name="scales" size={30} />
                     </div>
-                    <div style={{ fontSize: '0.88rem', fontWeight: 700, color: '#44403c' }}>Awaiting Execution</div>
-                    <div style={{ fontSize: '0.78rem', marginTop: '4px', maxWidth: '320px' }}>
-                      Click "Run Neural Statutory Resolution" to evaluate statutes, precedent memory, and compromise terms.
+                    <h4 className={styles.emptyTitle}>Ready for Evaluation</h4>
+                    <p className={styles.emptyDesc}>
+                      Select a rural dispute benchmark above or edit the narrative, then click <strong>Run Statutory Analysis</strong> to extract citations, precedents, and drafted terms.
+                    </p>
+                    <div className={styles.previewSpecs}>
+                      <span className={styles.specItem}>UP Revenue Code §24</span>
+                      <span className={styles.specItem}>Section 89 CPC Compromise</span>
+                      <span className={styles.specItem}>Panchayat Adalat Ready</span>
                     </div>
                   </div>
                 )}
@@ -136,7 +155,8 @@ export const InteractiveTerminalSection: React.FC = () => {
               Need deep voice synthesis, formal court petitions, or drone parcel demarcation?
             </span>
             <Link to="/resolve" className={styles.portalLink}>
-              Open Full Resolution Workspace →
+              <span>Open Full Resolution Workspace</span>
+              <span className={styles.linkArrow}>→</span>
             </Link>
           </div>
         </div>

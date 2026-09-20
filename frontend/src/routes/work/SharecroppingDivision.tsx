@@ -28,6 +28,14 @@ export const SharecroppingDivision: React.FC = () => {
           Contested 50:50 sharecropping crop division and unseasonal input deductions across five bighas of paddy. ClearCase formulated an audited input cost sharing model, restoring equitable tenant compensation.
         </p>
 
+        <div className={styles.heroImageWrapper}>
+          <img
+            src="/images/proj-sharecropping.jpg"
+            alt="Sharecropping Crop-Share Division Accord Case Study"
+            className={styles.heroImage}
+          />
+        </div>
+
         <div className={styles.metaGrid}>
           <div className={styles.metaItem}>
             <span className={styles.metaLabel}>Disputing Parties</span>
@@ -140,7 +148,7 @@ export const SharecroppingDivision: React.FC = () => {
           <Link to="/work" className="btn-secondary">
             ← Explore All Case Studies
           </Link>
-          <Link to="/contact" className="btn-primary">
+          <Link to="/pilot" className="btn-primary">
             Deploy Mesh in Your Tehsil →
           </Link>
         </div>

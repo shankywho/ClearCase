@@ -29,7 +29,8 @@
   height: 36px;
   filter: grayscale(1) brightness(0.9) contrast(1.2);
   opacity: 0.75;
-  transition: all var(--transition-fast);
+  transition: filter 0.3s ease, opacity 0.3s ease;
+  will-change: transform;
 }
 
 .logoItem:hover {

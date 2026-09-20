@@ -1,5 +1,5 @@
 @import './keyframes.css';
-@import url('https://fonts.googleapis.com/css2?family=Geist:wght@100;200;300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700;800;900&family=Geist+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap');
 
 /* 1. Typography: Geist Font Family */
 @font-face {
@@ -26,7 +26,7 @@
   font-display: swap;
 }
 
-/* Manuka Black Display Font */
+/* Manuka Black Display Font (reserved for hero wordmark & preloader counter) */
 @font-face {
   font-family: 'Manuka Black';
   src: url('/fonts/manuka-black.woff2') format('woff2');
@@ -44,7 +44,7 @@
   --color-bg-accent-soft: #e6f3ff;
   
   --color-text-primary: #000000;
-  --color-text-secondary: #999999;
+  --color-text-secondary: #64748b;
   --color-text-muted: #2e2e2e;
   --color-text-inverted: #ffffff;
 
@@ -54,10 +54,28 @@
   --color-border-faint: rgba(0, 0, 0, 0.08);
   --color-danger: #da3832;
 
-  /* Typography */
+  /* Typography System */
   --font-family-primary: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  --font-family-display: 'Geist', sans-serif;
-  --font-family-mono: 'Fragment Mono', monospace, monospace;
+  --font-family-display: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-family-mono: 'Geist Mono', 'Fragment Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+
+  /* Project-wide typographic aliases */
+  --font-primary: var(--font-family-primary);
+  --font-display: var(--font-family-display);
+  --font-body: var(--font-family-primary);
+  --font-mono: var(--font-family-mono);
+
+  /* Component text token fallbacks */
+  --text-primary: #111827;
+  --text-secondary: #64748b;
+  --text-muted: #94a3b8;
+  --text-tertiary: #94a3b8;
+  --bg-surface: #ffffff;
+  --bg-surface-hover: #f8fafc;
+  --bg-canvas: #fafafa;
+  --border-subtle: #e2e8f0;
+  --border-subtle-hover: #cbd5e1;
+  --border-muted: #cbd5e1;
 
   /* Spacing Scale */
   --space-2xs: 4px;

@@ -1,6 +1,5 @@
 import React from 'react';
 import { useScrollReveal } from '@/hooks/useScrollTrigger';
-import { TestimonialsSection } from '@/components/home/TestimonialsSection';
 import { ClosingCtaSection } from '@/components/home/ClosingCtaSection';
 import { InteractiveTerminalSection } from '@/components/home/InteractiveTerminalSection';
 import styles from './Approach.module.css';
@@ -96,7 +95,6 @@ export const Approach: React.FC = () => {
       {/* Interactive Live Statutory Resolution Bench */}
       <InteractiveTerminalSection />
 
-      <TestimonialsSection />
       <ClosingCtaSection />
     </main>
   );

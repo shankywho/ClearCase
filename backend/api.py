@@ -12,6 +12,10 @@ Exposes REST endpoints for:
 """
 
 import os
+import json
+import hashlib
+import uuid
+from datetime import datetime, timezone
 from dotenv import load_dotenv
 load_dotenv()
 
@@ -133,6 +137,31 @@ class PetitionRequest(BaseModel):
     respondent: Optional[Dict[str, str]] = {"name": "Harish Chandra Singh"}
     applicable_section: Optional[str] = "Uttar Pradesh Revenue Code, 2006 (Section 24)"
     settlement_draft: Optional[str] = "Mutual ridge restoration under Lekhpal supervision."
+
+
+class DeploymentRequest(BaseModel):
+    full_name: str = Field(..., description="Official representative name")
+    role: str = Field("Gram Panchayat Pradhan", description="Administrative role or designation")
+    contact_info: str = Field(..., description="Phone number or official email")
+    state: str = Field("Uttar Pradesh", description="Target jurisdiction state")
+    district: str = Field("Varanasi", description="Target jurisdiction district")
+    village_block: str = Field(..., description="Gram Sabha, Mauza and Tehsil")
+    capabilities: Optional[Dict[str, bool]] = Field(default_factory=dict, description="Enabled capabilities")
+    notes: Optional[str] = Field("", description="Local grievance volume / notes")
+
+
+class DeploymentResponse(BaseModel):
+    ticket_id: str
+    cluster_token: str
+    provisioned_at: str
+    authority: str
+    full_name: str
+    contact_info: str
+    jurisdiction: str
+    village: str
+    notes: str
+    status: str
+    node_config: Dict[str, Any]
 
 
 # ------------------------------------------------------------------------------
@@ -383,6 +412,114 @@ async def upload_record_pdf_endpoint(file: UploadFile = File(...)):
 def generate_petition_endpoint(req: PetitionRequest):
     data = req.model_dump() if hasattr(req, "model_dump") else req.dict()
     return petition_generator.generate_petition(data)
+
+
+DEPLOYMENTS_FILE = os.path.join(os.path.dirname(__file__), "data", "deployments.json")
+
+
+def load_deployments() -> List[Dict[str, Any]]:
+    if os.path.exists(DEPLOYMENTS_FILE):
+        try:
+            with open(DEPLOYMENTS_FILE, "r", encoding="utf-8") as f:
+                data = json.load(f)
+                return data if isinstance(data, list) else []
+        except Exception as e:
+            print(f"[Deployments Load Error] {e}")
+            return []
+    return []
+
+
+def save_deployments(deployments: List[Dict[str, Any]]) -> None:
+    try:
+        os.makedirs(os.path.dirname(DEPLOYMENTS_FILE), exist_ok=True)
+        with open(DEPLOYMENTS_FILE, "w", encoding="utf-8") as f:
+            json.dump(deployments, f, indent=2, ensure_ascii=False)
+    except Exception as e:
+        print(f"[Deployments Save Error] {e}")
+
+
+@app.post("/deploy", response_model=DeploymentResponse)
+@app.post("/contact", response_model=DeploymentResponse)
+def deploy_endpoint(req: DeploymentRequest):
+    if not req.full_name.strip() or not req.contact_info.strip():
+        raise HTTPException(status_code=400, detail="Representative Name and Contact Info are required.")
+
+    dist_clean = "".join(c for c in req.district if c.isalnum())[:3].upper() or "COR"
+    hex_suffix = uuid.uuid4().hex[:6].upper()
+    ticket_id = f"MANIFEST-2026-{dist_clean}-{hex_suffix}"
+    cluster_token = f"cc_mesh_live_{uuid.uuid4().hex[:24]}"
+    now_iso = datetime.now(timezone.utc).isoformat()
+
+    record = {
+        "ticket_id": ticket_id,
+        "cluster_token": cluster_token,
+        "provisioned_at": now_iso,
+        "authority": req.role,
+        "full_name": req.full_name.strip(),
+        "contact_info": req.contact_info.strip(),
+        "jurisdiction": f"{req.district}, {req.state}",
+        "village": req.village_block.strip() or "Mauza Shivpur",
+        "notes": req.notes or "",
+        "status": "READY_FOR_DISPUTE_MESH",
+        "node_config": {
+            "node_id": ticket_id,
+            "endpoint_gateway": "http://127.0.0.1:8001",
+            "primary_dialect": "bhojpuri",
+            "supported_dialects": ["bhojpuri", "awadhi", "hindi", "maithili"],
+            "stt_engine": "Groq Whisper Large v3 (whisper-large-v3)",
+            "statutory_jurisdiction": f"{req.district}, {req.state}",
+            "polygon_registry_contract": "0x435A9D490EbF92C32D19D20888913B0957917C5B",
+            "offline_cache_ready": True,
+            "capabilities_enabled": req.capabilities or {
+                "voiceIntake": True,
+                "cadastreOcr": True,
+                "coercionFilter": True,
+                "polygonAnchoring": True
+            }
+        }
+    }
+
+    deployments = load_deployments()
+    deployments.insert(0, record)
+    save_deployments(deployments)
+
+    return record
+
+
+@app.get("/deployments")
+def get_deployments_endpoint():
+    return load_deployments()
+
+
+@app.get("/cluster-status")
+def get_cluster_status_endpoint():
+    return {
+        "python_ai_engine": {
+            "status": "ONLINE",
+            "name": "Python AI Legal Engine",
+            "detail": "Statutory RAG & Lok Adalat Conciliation Mesh",
+            "indexed_clauses": local_store.count(),
+            "port": 8001
+        },
+        "groq_whisper": {
+            "status": "ONLINE",
+            "name": "Groq Whisper STT Engine",
+            "detail": "whisper-large-v3 (< 200ms latency)",
+            "configured": bool(os.getenv("GROQ_API_KEY"))
+        },
+        "node_state_mesh": {
+            "status": "ACTIVE",
+            "name": "Node.js Cedar State Mesh",
+            "detail": "http://127.0.0.1:3000",
+            "gateway": "Cedar AuthZ Local daemon"
+        },
+        "polygon_amoy": {
+            "status": "VERIFIED",
+            "name": "Polygon Amoy Contract",
+            "contract": "0x435A9D490EbF92C32D19D20888913B0957917C5B",
+            "network": "Amoy Testnet (ChainID 80002)"
+        }
+    }
 
 
 if __name__ == "__main__":

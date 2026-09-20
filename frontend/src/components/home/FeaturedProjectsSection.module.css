@@ -40,6 +40,13 @@
   padding-right: var(--space-md);
 }
 
+.titleRow {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-sm, 12px);
+  margin-bottom: var(--space-sm);
+}
+
 .title {
   font-family: var(--font-display);
   font-size: clamp(1.75rem, 3.5vw, 2.5rem);
@@ -47,12 +54,23 @@
   line-height: 1.15;
   letter-spacing: -0.03em;
   color: var(--text-primary);
-  margin-bottom: var(--space-sm);
-  transition: color var(--transition-fast);
+  margin: 0;
+  will-change: transform, color;
 }
 
-.projectRow:hover .title {
+.arrowIcon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(113, 239, 228, 0.14);
   color: var(--accent-primary, #71efe4);
+  font-size: 16px;
+  opacity: 0;
+  will-change: transform, opacity;
+  flex-shrink: 0;
 }
 
 .description {

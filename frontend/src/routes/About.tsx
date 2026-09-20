@@ -1,6 +1,5 @@
 import React from 'react';
 import { useScrollReveal } from '@/hooks/useScrollTrigger';
-import { TestimonialsSection } from '@/components/home/TestimonialsSection';
 import { ClosingCtaSection } from '@/components/home/ClosingCtaSection';
 import styles from './About.module.css';
 
@@ -53,7 +52,6 @@ export const About: React.FC = () => {
         </div>
       </section>
 
-      <TestimonialsSection />
       <ClosingCtaSection />
     </main>
   );

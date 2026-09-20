@@ -3,15 +3,13 @@
 }
 
 .title {
-  font-family: 'Manuka Black', -apple-system, BlinkMacSystemFont, sans-serif;
-  font-size: clamp(3rem, 7vw, 6rem);
-  font-weight: 850;
-  line-height: 0.94;
-  letter-spacing: 0.025em;
-  word-spacing: 0.15em;
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 5.5vw, 4.5rem);
+  font-weight: 750;
+  line-height: 1.06;
+  letter-spacing: -0.035em;
   color: var(--color-text-primary, #111111);
   margin-block: var(--space-md, 24px);
-  text-transform: uppercase;
 }
 
 .subhead {

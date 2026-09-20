@@ -1,0 +1,68 @@
+[
+  {
+    "ticket_id": "MANIFEST-2026-VAR-7BF2E8",
+    "cluster_token": "cc_mesh_live_bf170aef4fba42e49a66af61",
+    "provisioned_at": "2026-09-20T17:34:35.554833+00:00",
+    "authority": "Gram Panchayat Pradhan",
+    "full_name": "Pradhan Ramakant",
+    "contact_info": "+91 9876543210",
+    "jurisdiction": "Varanasi, Uttar Pradesh",
+    "village": "Mauza Shivpur",
+    "notes": "",
+    "status": "READY_FOR_DISPUTE_MESH",
+    "node_config": {
+      "node_id": "MANIFEST-2026-VAR-7BF2E8",
+      "endpoint_gateway": "http://127.0.0.1:8001",
+      "primary_dialect": "bhojpuri",
+      "supported_dialects": [
+        "bhojpuri",
+        "awadhi",
+        "hindi",
+        "maithili"
+      ],
+      "stt_engine": "Groq Whisper Large v3 (whisper-large-v3)",
+      "statutory_jurisdiction": "Varanasi, Uttar Pradesh",
+      "polygon_registry_contract": "0x435A9D490EbF92C32D19D20888913B0957917C5B",
+      "offline_cache_ready": true,
+      "capabilities_enabled": {
+        "voiceIntake": true,
+        "cadastreOcr": true,
+        "coercionFilter": true,
+        "polygonAnchoring": true
+      }
+    }
+  },
+  {
+    "ticket_id": "MANIFEST-2026-VAR-C1E2E9",
+    "cluster_token": "cc_mesh_live_9bad6a2811da2f40f3531b48",
+    "provisioned_at": "2026-09-20T17:26:11.629798+00:00",
+    "authority": "Gram Panchayat Pradhan",
+    "full_name": "Ramakant Tiwari",
+    "contact_info": "+91 9876543210",
+    "jurisdiction": "Varanasi, Uttar Pradesh",
+    "village": "Mauza Shivpur",
+    "notes": "",
+    "status": "READY_FOR_DISPUTE_MESH",
+    "node_config": {
+      "node_id": "MANIFEST-2026-VAR-C1E2E9",
+      "endpoint_gateway": "http://127.0.0.1:8001",
+      "primary_dialect": "bhojpuri",
+      "supported_dialects": [
+        "bhojpuri",
+        "awadhi",
+        "hindi",
+        "maithili"
+      ],
+      "stt_engine": "Groq Whisper Large v3 (whisper-large-v3)",
+      "statutory_jurisdiction": "Varanasi, Uttar Pradesh",
+      "polygon_registry_contract": "0x435A9D490EbF92C32D19D20888913B0957917C5B",
+      "offline_cache_ready": true,
+      "capabilities_enabled": {
+        "voiceIntake": true,
+        "cadastreOcr": true,
+        "coercionFilter": true,
+        "polygonAnchoring": true
+      }
+    }
+  }
+]

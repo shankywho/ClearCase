@@ -29,6 +29,14 @@ export const UsuriousDebtEscalation: React.FC = () => {
           An informal medical loan of 20,000 rupees compounded to 100,000 rupees with unlawful seizure of government identity and land title documents. ClearCase coercion safety gate halted automated mediation and transferred the file to Legal Aid authorities.
         </p>
 
+        <div className={styles.heroImageWrapper}>
+          <img
+            src="/images/proj-usury-coercion.jpg"
+            alt="Predatory Usury & Bond Escalation Case Study"
+            className={styles.heroImage}
+          />
+        </div>
+
         <div className={styles.metaGrid}>
           <div className={styles.metaItem}>
             <span className={styles.metaLabel}>Complainant & Respondent</span>
@@ -156,7 +164,7 @@ export const UsuriousDebtEscalation: React.FC = () => {
           <Link to="/work" className="btn-secondary">
             ← Explore All Case Studies
           </Link>
-          <Link to="/contact" className="btn-primary">
+          <Link to="/pilot" className="btn-primary">
             Deploy Mesh in Your Tehsil →
           </Link>
         </div>

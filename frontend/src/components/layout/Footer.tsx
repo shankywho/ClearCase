@@ -89,14 +89,14 @@ export const Footer: React.FC = () => {
               <Link to="/work" className={styles.footerLink}>Dispute Cases</Link>
               <Link to="/approach" className={styles.footerLink}>Architecture</Link>
               <Link to="/about" className={styles.footerLink}>Mission</Link>
-              <Link to="/contact" className={styles.footerLink}>Deploy Mesh</Link>
+              <Link to="/pilot" className={styles.footerLink}>Pilot Deployment</Link>
             </div>
 
             {/* Col 2: Legal & Infrastructure */}
             <div className={styles.col}>
               <Link to="/faq" className={styles.footerLink}>Legal FAQ</Link>
               <Link to="/approach" className={styles.footerLink}>Statutory RAG</Link>
-              <Link to="/contact" className={styles.footerLink}>Panchayat Pilot</Link>
+              <Link to="/pilot" className={styles.footerLink}>Panchayat Pilot</Link>
               <a
                 href="https://amoy.polygonscan.com"
                 target="_blank"
@@ -128,7 +128,7 @@ export const Footer: React.FC = () => {
 
             {/* Col 4: Action Button */}
             <div className={styles.colCta}>
-              <Link to="/contact" className={styles.ctaBtn}>
+              <Link to="/pilot" className={styles.ctaBtn}>
                 <span>Deploy for Panchayat</span>
                 <span className={styles.ctaChevron} aria-hidden="true">&rsaquo;</span>
               </Link>

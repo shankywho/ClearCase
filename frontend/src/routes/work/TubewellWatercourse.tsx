@@ -28,6 +28,14 @@ export const TubewellWatercourse: React.FC = () => {
           Unilateral severance of a shared irrigation watercourse during critical summer paddy transplantation. ClearCase matched prescriptive easement provisions and structured an audited rotational pumping agreement.
         </p>
 
+        <div className={styles.heroImageWrapper}>
+          <img
+            src="/images/proj-tubewell-sharing.jpg"
+            alt="Tubewell Irrigation Watercourse Accord Case Study"
+            className={styles.heroImage}
+          />
+        </div>
+
         <div className={styles.metaGrid}>
           <div className={styles.metaItem}>
             <span className={styles.metaLabel}>Disputing Parties</span>
@@ -140,7 +148,7 @@ export const TubewellWatercourse: React.FC = () => {
           <Link to="/work" className="btn-secondary">
             ← Explore All Case Studies
           </Link>
-          <Link to="/contact" className="btn-primary">
+          <Link to="/pilot" className="btn-primary">
             Deploy Mesh in Your Tehsil →
           </Link>
         </div>

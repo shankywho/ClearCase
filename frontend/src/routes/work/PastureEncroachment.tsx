@@ -28,6 +28,14 @@ export const PastureEncroachment: React.FC = () => {
           Private barbed wire fencing extended across 1.2 acres of notified communal grazing pasture (Charagah). ClearCase referenced Section 67 eviction liabilities and brokered voluntary clearance, averting revenue court penalties.
         </p>
 
+        <div className={styles.heroImageWrapper}>
+          <img
+            src="/images/proj-pasture-encroachment.jpg"
+            alt="Gram Sabha Pasture Encroachment Accord Case Study"
+            className={styles.heroImage}
+          />
+        </div>
+
         <div className={styles.metaGrid}>
           <div className={styles.metaItem}>
             <span className={styles.metaLabel}>Disputing Parties</span>
@@ -140,7 +148,7 @@ export const PastureEncroachment: React.FC = () => {
           <Link to="/work" className="btn-secondary">
             ← Explore All Case Studies
           </Link>
-          <Link to="/contact" className="btn-primary">
+          <Link to="/pilot" className="btn-primary">
             Deploy Mesh in Your Tehsil →
           </Link>
         </div>

@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
+import gsap from 'gsap';
 import { useScrollReveal } from '@/hooks/useScrollTrigger';
 import styles from './ReadinessSection.module.css';
 
@@ -12,6 +13,82 @@ const RURAL_JUSTICE_REALITIES = [
 
 export const ReadinessSection: React.FC = () => {
   const revealRef = useScrollReveal<HTMLDivElement>();
+  const listRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const listEl = listRef.current;
+    if (!listEl) return;
+
+    const ctx = gsap.context(() => {
+      const items = listEl.querySelectorAll<HTMLElement>(`.${styles.item}`);
+
+      items.forEach((item) => {
+        const bullet = item.querySelector(`.${styles.bullet}`);
+        const text = item.querySelector(`.${styles.text}`);
+
+        const onMouseEnter = () => {
+          gsap.to(item, {
+            x: 12,
+            duration: 0.3,
+            ease: 'power2.out',
+            overwrite: 'auto',
+          });
+
+          if (bullet) {
+            gsap.to(bullet, {
+              rotate: 90,
+              scale: 1.35,
+              duration: 0.4,
+              ease: 'back.out(2)',
+              overwrite: 'auto',
+            });
+          }
+
+          if (text) {
+            gsap.to(text, {
+              color: '#000000',
+              duration: 0.25,
+              ease: 'power2.out',
+              overwrite: 'auto',
+            });
+          }
+        };
+
+        const onMouseLeave = () => {
+          gsap.to(item, {
+            x: 0,
+            duration: 0.45,
+            ease: 'power3.out',
+            overwrite: 'auto',
+          });
+
+          if (bullet) {
+            gsap.to(bullet, {
+              rotate: 0,
+              scale: 1,
+              duration: 0.45,
+              ease: 'power3.out',
+              overwrite: 'auto',
+            });
+          }
+
+          if (text) {
+            gsap.to(text, {
+              color: '',
+              duration: 0.3,
+              ease: 'power2.out',
+              overwrite: 'auto',
+            });
+          }
+        };
+
+        item.addEventListener('mouseenter', onMouseEnter);
+        item.addEventListener('mouseleave', onMouseLeave);
+      });
+    }, listEl);
+
+    return () => ctx.revert();
+  }, []);
 
   return (
     <section className={styles.section} aria-label="Rural Justice Reality in Bharat">
@@ -19,7 +96,7 @@ export const ReadinessSection: React.FC = () => {
         <div ref={revealRef}>
           <p className={styles.label}>The rural justice chasm in Bharat:</p>
 
-          <div className={styles.list}>
+          <div ref={listRef} className={styles.list}>
             {RURAL_JUSTICE_REALITIES.map((item, idx) => (
               <div key={idx} className={styles.item}>
                 <span className={styles.bullet}>✦</span>

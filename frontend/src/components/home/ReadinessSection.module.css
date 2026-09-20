@@ -26,16 +26,14 @@
   display: flex;
   align-items: baseline;
   gap: var(--space-md);
-  transition: transform var(--transition-fast);
-}
-
-.item:hover {
-  transform: translateX(8px);
+  will-change: transform;
 }
 
 .bullet {
   color: var(--accent-primary, #71efe4);
   font-size: 1.25rem;
+  display: inline-block;
+  will-change: transform;
 }
 
 .text {

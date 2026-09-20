@@ -55,6 +55,66 @@ export const IntroSection: React.FC = () => {
           { opacity: 1, y: 0, scale: 1, duration: 0.65, ease: 'back.out(1.4)' },
           '-=0.4'
         );
+
+      // Magnetic hover interaction on CTA button
+      const cta = ctaRef.current;
+      if (cta) {
+        const arrow = cta.querySelector(`.${styles.arrow}`);
+        
+        const onMouseMove = (e: MouseEvent) => {
+          const rect = cta.getBoundingClientRect();
+          const cx = rect.left + rect.width / 2;
+          const cy = rect.top + rect.height / 2;
+          const dx = (e.clientX - cx) * 0.35;
+          const dy = (e.clientY - cy) * 0.35;
+
+          gsap.to(cta, {
+            x: dx,
+            y: dy,
+            duration: 0.3,
+            ease: 'power2.out',
+            overwrite: 'auto',
+          });
+
+          if (arrow) {
+            gsap.to(arrow, {
+              x: dx * 0.6 + 4,
+              y: dy * 0.6,
+              duration: 0.3,
+              ease: 'power2.out',
+              overwrite: 'auto',
+            });
+          }
+        };
+
+        const onMouseLeave = () => {
+          gsap.to(cta, {
+            x: 0,
+            y: 0,
+            duration: 0.7,
+            ease: 'elastic.out(1, 0.4)',
+            overwrite: 'auto',
+          });
+
+          if (arrow) {
+            gsap.to(arrow, {
+              x: 0,
+              y: 0,
+              duration: 0.6,
+              ease: 'elastic.out(1, 0.4)',
+              overwrite: 'auto',
+            });
+          }
+        };
+
+        cta.addEventListener('mousemove', onMouseMove);
+        cta.addEventListener('mouseleave', onMouseLeave);
+
+        return () => {
+          cta.removeEventListener('mousemove', onMouseMove);
+          cta.removeEventListener('mouseleave', onMouseLeave);
+        };
+      }
     }, sectionRef);
 
     return () => ctx.revert();
