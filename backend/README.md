@@ -56,6 +56,7 @@ This repository hosts the **complete end-to-end backend system** (Phases 1 throu
 * **12. Complete API & AI Endpoints Reference**: [docs/12-complete-api-and-ai-endpoints-reference.md](docs/12-complete-api-and-ai-endpoints-reference.md)
 * **13. Frontend Single-Shot Master Prompt**: [docs/13-frontend-master-prompt-single-shot.md](docs/13-frontend-master-prompt-single-shot.md)
 * **15. AWS Termination & Cleanup Guide**: [docs/15-aws-termination-and-cleanup-guide.md](docs/15-aws-termination-and-cleanup-guide.md)
+* **16. Render Backend Deployment Guide**: [docs/16-render-deployment-guide.md](docs/16-render-deployment-guide.md)
 * **Single-Table Design & Schema**: [docs/database-schema.md](docs/database-schema.md)
 * **AWS Cedar Authorization**: [docs/authorization-cedar.md](docs/authorization-cedar.md)
 * **Dual-Party OTP Consent Engine**: [docs/otp-consent-flow.md](docs/otp-consent-flow.md)

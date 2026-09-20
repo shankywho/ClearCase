@@ -1,0 +1,38 @@
+services:
+  - type: web
+    name: clearcase-backend
+    runtime: python
+    rootDir: backend
+    plan: free
+    region: oregon
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn api:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.9
+      - key: MOCK_AI
+        value: "false"
+      - key: EMBEDDING_PROVIDER
+        value: local
+      - key: VECTOR_STORE
+        value: local
+      - key: AWS_REGION
+        value: us-east-1
+      - key: TABLE_NAME
+        value: ClearCaseTable-Prod
+      - key: AUDIO_BUCKET
+        value: clearcase-audio-517025126295-us-east-1
+      - key: POLYGON_RPC_URL
+        value: https://polygon-amoy.drpc.org
+      - key: CLEARCASE_REGISTRY_ADDRESS
+        value: 0x700529c7b25f0ebae903c8Ca1EDcC09Fac1280d2
+      - key: GROQ_MODEL_ID
+        value: openai/gpt-oss-20b
+      - key: GROQ_FALLBACK_MODEL_ID
+        value: openai/gpt-oss-120b
+      - key: GROQ_API_KEY
+        sync: false
+      - key: AWS_ACCESS_KEY_ID
+        sync: false
+      - key: AWS_SECRET_ACCESS_KEY
+        sync: false
