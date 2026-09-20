@@ -17,7 +17,7 @@ const DEFAULT_CONTRACT_ADDRESS =
   process.env.CLEARCASE_REGISTRY_ADDRESS ||
   '0x435A9D490EbF92C32D19D20888913B0957917C5B';
 const DEFAULT_RPC_URL =
-  process.env.POLYGON_RPC_URL || 'https://rpc-amoy.polygon.technology/';
+  process.env.POLYGON_RPC_URL || 'https://polygon-amoy.drpc.org';
 
 /**
  * Generate a deterministic, canonical SHA-256 hash of the final agreed settlement file.

@@ -24,10 +24,10 @@ const SAMPLE_VERIFIED: VerifiedRecord = {
   title: 'Agricultural Boundary Demarcation Accord (Plot 412/1)',
   district: 'Varanasi',
   status: 'ANCHORED',
-  settlementHash: '0x14eeec557249ec5feb62914a0c2d64acc029b2ed75daa5d816e4ea9d603c319a',
-  txHash: '0xb5a66e6f47ffd6f7191af3f15e2a467b9fffac97a9e9aec947bb631fa265da02',
-  blockNumber: 15426502,
-  anchoredAt: '2026-09-20T12:38:51Z',
+  settlementHash: '0x8339902e168c7f7a23eb9a84674ed1c1077ca754db90399c0776ab2007fdccdb',
+  txHash: '0x5773f1b4bc8f8cba35cc054bb63fcbea22dae21e00421be4d4b0fbe93fa7303a',
+  blockNumber: 48111201,
+  anchoredAt: '2026-09-20T19:43:56Z',
   auditTrail: [
     {
       eventType: 'CASE_CREATED',
@@ -62,8 +62,8 @@ const SAMPLE_VERIFIED: VerifiedRecord = {
     {
       eventType: 'ANCHORED_ON_CHAIN',
       actor: 'POLYGON_REGISTRY_RELAY',
-      timestamp: '2026-09-20 12:38:51 UTC',
-      description: 'Canonical SHA-256 hash anchored in Polygon Amoy Testnet Block #15426502.',
+      timestamp: '2026-09-20 19:43:56 UTC',
+      description: 'Canonical SHA-256 hash anchored in Polygon Amoy Testnet Block #48111201 via ClearCaseRegistry.sol.',
     },
   ],
 };
@@ -145,7 +145,16 @@ export const Verify: React.FC = () => {
                 </div>
                 <div className={styles.metaItem}>
                   <div className={styles.metaLabel}>Registry Contract</div>
-                  <div className={styles.metaVal}>0x435A9D...17C5B</div>
+                  <div className={styles.metaVal}>
+                    <a
+                      href="https://amoy.polygonscan.com/address/0x700529c7b25f0ebae903c8Ca1EDcC09Fac1280d2"
+                      target="_blank"
+                      rel="noreferrer"
+                      style={{ color: '#0d9488', textDecoration: 'none', fontWeight: 600 }}
+                    >
+                      0x700529...1280d2 ↗
+                    </a>
+                  </div>
                 </div>
                 <div className={styles.metaItem}>
                   <div className={styles.metaLabel}>Confirmation Timestamp</div>
@@ -169,12 +178,22 @@ export const Verify: React.FC = () => {
                   className={styles.explorerLinkBtn}
                 >
                   <ThreeDIcon name="blockchain" size={16} />
-                  <span>View on Polygonscan Explorer ↗</span>
+                  <span>View Settlement Tx on Polygonscan ↗</span>
+                </a>
+                <a
+                  href="https://amoy.polygonscan.com/address/0x700529c7b25f0ebae903c8Ca1EDcC09Fac1280d2"
+                  target="_blank"
+                  rel="noreferrer"
+                  className={styles.explorerLinkBtn}
+                  style={{ background: '#f0fdfa', color: '#0d9488', borderColor: '#ccfbf1' }}
+                >
+                  <ThreeDIcon name="shield" size={16} />
+                  <span>View Smart Contract ↗</span>
                 </a>
               </div>
 
-              <div style={{ marginTop: '14px', fontSize: '0.78rem', color: '#78716c', background: '#f5f5f4', padding: '8px 12px', borderRadius: '6px', border: '1px solid #e7e5e4' }}>
-                <strong>Note on Block Explorer:</strong> This transaction hash was generated in resilient offline demonstration mode (<code>MOCK_BLOCKCHAIN=true</code>). Polygonscan will only find hashes after a live broadcast with a funded testnet private key in <code>backend/.env</code>.
+              <div style={{ marginTop: '14px', fontSize: '0.78rem', color: '#065f46', background: '#ecfdf5', padding: '10px 14px', borderRadius: '6px', border: '1px solid #a7f3d0' }}>
+                <strong>✓ Live Polygon Amoy Blockchain Confirmed:</strong> This dispute accord is immutably anchored on-chain in block <strong>#48111201</strong> by the <strong>ClearCaseRegistry</strong> smart contract. Anyone can independently verify the cryptographic audit trail directly on Polygonscan.
               </div>
             </section>
 
