@@ -1,0 +1,321 @@
+.page {
+  padding-top: calc(var(--space-3xl) + 40px);
+  padding-bottom: var(--space-4xl);
+}
+
+.backLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--color-text-secondary);
+  text-decoration: none;
+  margin-bottom: var(--space-xl);
+  transition: color var(--duration-fast) ease;
+}
+
+.backLink:hover {
+  color: var(--color-text-primary);
+}
+
+.badgeRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-xs);
+  margin-bottom: var(--space-md);
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 12px;
+  border-radius: var(--radius-full);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.badgeCategory {
+  background: #000;
+  color: #fff;
+}
+
+.badgeStatute {
+  background: rgba(0, 153, 255, 0.1);
+  color: #0077cc;
+  border: 1px solid rgba(0, 153, 255, 0.2);
+}
+
+.badgeDialect {
+  background: rgba(0, 0, 0, 0.05);
+  color: #444;
+  border: 1px solid var(--color-border-faint);
+}
+
+.badgeStatus {
+  background: #e6f9ed;
+  color: #107c41;
+  border: 1px solid rgba(16, 124, 65, 0.2);
+}
+
+.badgeEscalated {
+  background: #feebe8;
+  color: #c92a2a;
+  border: 1px solid rgba(201, 42, 42, 0.2);
+}
+
+.title {
+  font-family: var(--font-family-display);
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  font-weight: 850;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  margin-bottom: var(--space-md);
+  color: var(--color-text-primary);
+}
+
+.subhead {
+  font-size: clamp(1.1rem, 2vw, 1.35rem);
+  line-height: 1.5;
+  color: #555;
+  max-width: 840px;
+  margin-bottom: var(--space-2xl);
+}
+
+.metaGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: var(--space-md);
+  padding: var(--space-lg);
+  background: var(--color-bg-secondary);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border-faint);
+  margin-bottom: var(--space-2xl);
+}
+
+.metaItem {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.metaLabel {
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--color-text-secondary);
+}
+
+.metaValue {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+.gridTwoCol {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-xl);
+  margin-bottom: var(--space-2xl);
+}
+
+@media (max-width: 900px) {
+  .gridTwoCol {
+    grid-template-columns: 1fr;
+  }
+}
+
+.card {
+  padding: var(--space-xl);
+  background: #fff;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border-faint);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+}
+
+.cardTitle {
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin-bottom: var(--space-md);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: var(--color-text-primary);
+}
+
+.quoteBox {
+  padding: var(--space-md);
+  background: #fbfbfb;
+  border-left: 3px solid #000;
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  margin-bottom: var(--space-md);
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: #333;
+  font-style: italic;
+}
+
+.bodyText {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: #444;
+  margin-bottom: var(--space-sm);
+}
+
+.statuteBox {
+  padding: var(--space-md);
+  background: rgba(0, 153, 255, 0.04);
+  border: 1px solid rgba(0, 153, 255, 0.15);
+  border-radius: var(--radius-sm);
+  margin-bottom: var(--space-sm);
+}
+
+.statuteName {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #0066cc;
+  margin-bottom: 4px;
+}
+
+.statuteSnippet {
+  font-size: 0.85rem;
+  line-height: 1.45;
+  color: #555;
+}
+
+.confidencePill {
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: var(--radius-full);
+  background: #000;
+  color: #fff;
+}
+
+.accordSection {
+  margin-bottom: var(--space-2xl);
+  padding: var(--space-xl);
+  background: #fff;
+  border: 1px solid var(--color-border-faint);
+  border-radius: var(--radius-md);
+}
+
+.accordSteps {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  margin-top: var(--space-lg);
+}
+
+.stepRow {
+  display: flex;
+  gap: var(--space-md);
+  align-items: flex-start;
+}
+
+.stepNumber {
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #000;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.stepContent {
+  flex: 1;
+}
+
+.stepTitle {
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 4px;
+  color: var(--color-text-primary);
+}
+
+.stepDesc {
+  font-size: 0.92rem;
+  line-height: 1.5;
+  color: #555;
+}
+
+.blockchainCard {
+  padding: var(--space-lg);
+  background: #000;
+  color: #fff;
+  border-radius: var(--radius-md);
+  margin-bottom: var(--space-2xl);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.blockchainHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  padding-bottom: var(--space-xs);
+}
+
+.blockchainTag {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-accent-teal);
+}
+
+.hashText {
+  font-family: var(--font-family-mono);
+  font-size: 0.8rem;
+  color: #bbb;
+  word-break: break-all;
+}
+
+.cedarStamp {
+  font-family: var(--font-family-mono);
+  font-size: 0.75rem;
+  color: #71efe4;
+}
+
+.escalationBox {
+  padding: var(--space-xl);
+  background: #fff5f5;
+  border: 1px solid #ffc9c9;
+  border-left: 4px solid #da3832;
+  border-radius: var(--radius-md);
+  margin-bottom: var(--space-2xl);
+}
+
+.escalationTitle {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #c92a2a;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.escalationDesc {
+  font-size: 0.95rem;
+  line-height: 1.55;
+  color: #495057;
+}
+
+.buttonRow {
+  display: flex;
+  gap: var(--space-md);
+  flex-wrap: wrap;
+  align-items: center;
+  margin-top: var(--space-xl);
+}

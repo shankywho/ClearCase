@@ -1,3 +1,4 @@
+import crypto from 'crypto';
 import { CaseRepository } from '../db/CaseRepository';
 import { PartyRepository } from '../db/PartyRepository';
 import { AuditRepository } from '../db/AuditRepository';
@@ -22,7 +23,7 @@ export interface OtpGenerationResult {
  * Dispatches simulated SMS/IVR alert to terminal.
  */
 export function generateOtp(phone: string, durationSeconds: number = 900): OtpGenerationResult {
-  const otp = Math.floor(100000 + Math.random() * 900000).toString();
+  const otp = crypto.randomInt(100000, 1000000).toString();
   const expiryEpoch = Math.floor(Date.now() / 1000) + durationSeconds;
 
   console.log('----------------------------------------------------------------');

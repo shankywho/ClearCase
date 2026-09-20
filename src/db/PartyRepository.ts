@@ -32,7 +32,7 @@ export class PartyRepository {
     const nowIso = new Date().toISOString();
 
     // Generate 6-digit OTP if not provided
-    const otp = dto.otp || Math.floor(100000 + Math.random() * 900000).toString();
+    const otp = dto.otp || crypto.randomInt(100000, 1000000).toString();
 
     // Default TTL: 15 minutes (900 seconds) from now
     const ttlSeconds = dto.otpExpirySeconds || 900;
@@ -232,7 +232,7 @@ export class PartyRepository {
     const expiryEpoch = Math.floor(Date.now() / 1000) + 900; // 15 mins
 
     for (const party of existingParties) {
-      const newOtp = Math.floor(100000 + Math.random() * 900000).toString();
+      const newOtp = crypto.randomInt(100000, 1000000).toString();
 
       const response = await docClient.send(
         new UpdateCommand({

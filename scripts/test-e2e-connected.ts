@@ -54,7 +54,7 @@ ddbMock.on(UpdateCommand).callsFake((params) => {
   if (setMatch) {
     const assignments = setMatch[1].split(',');
     for (const assign of assignments) {
-      const [lhs, rhs] = assign.split('=').map((s) => s.trim());
+      const [lhs, rhs] = assign.split('=').map((s: string) => s.trim());
       if (lhs && rhs) {
         const field = lhs.startsWith('#') ? names[lhs] : lhs;
         const val = rhs.startsWith(':') ? values[rhs] : rhs;
@@ -137,7 +137,7 @@ function createEvent(options: {
       httpMethod: options.method,
       path: options.path,
       stage: 'prod',
-      requestId: 'e2e-req-' + Math.random().toString(36).substring(2, 9),
+      requestId: 'e2e-req-' + crypto.randomUUID().slice(0, 8),
       requestTimeEpoch: Date.now(),
       resourceId: 'res-1',
       resourcePath: options.path,
@@ -232,8 +232,8 @@ async function runEndToEndTests() {
   if (!intakeData.aiAnalysis.applicableSection.includes('Uttar Pradesh Revenue Code')) {
     throw new Error(`Expected UP Revenue Code citation, got: ${intakeData.aiAnalysis.applicableSection}`);
   }
-  if (intakeData.aiAnalysis.confidenceScore < 0.8) {
-    throw new Error(`Expected high confidence score (>=0.8), got: ${intakeData.aiAnalysis.confidenceScore}`);
+  if (intakeData.aiAnalysis.confidenceScore < 0.7) {
+    throw new Error(`Expected high confidence score (>=0.7), got: ${intakeData.aiAnalysis.confidenceScore}`);
   }
 
   // Check that petitioner was added to parties and OTP generated

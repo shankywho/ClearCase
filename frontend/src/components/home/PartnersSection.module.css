@@ -1,0 +1,62 @@
+.section {
+  padding-block: var(--space-3xl);
+  border-top: 1px solid var(--border-subtle);
+  border-bottom: 1px solid var(--border-subtle);
+  text-align: center;
+}
+
+.label {
+  font-size: var(--text-xs);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-tertiary);
+  margin-bottom: var(--space-2xl);
+}
+
+.logoRow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: var(--space-2xl);
+}
+
+.logoItem {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 36px;
+  filter: grayscale(1) brightness(0.9) contrast(1.2);
+  opacity: 0.75;
+  transition: all var(--transition-fast);
+}
+
+.logoItem:hover {
+  filter: grayscale(0) brightness(1.2);
+  opacity: 1;
+}
+
+.logoImg {
+  height: 100%;
+  max-width: 140px;
+  object-fit: contain;
+}
+
+.textLogo {
+  font-family: var(--font-display);
+  font-size: var(--text-h3);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+}
+
+@media (max-width: 768px) {
+  .logoRow {
+    gap: var(--space-xl);
+  }
+
+  .logoItem {
+    height: 28px;
+  }
+}

@@ -323,7 +323,7 @@ export async function orchestrateDisputeAnalysis(params: {
     try {
       console.log(`[AI Orchestration] Forwarding dispute analysis to Python AI service at ${pythonAiUrl}/analyze...`);
       const controller = new AbortController();
-      const timeoutId = setTimeout(() => controller.abort(), 3000);
+      const timeoutId = setTimeout(() => controller.abort(), 15000);
 
       const resp = await fetch(`${pythonAiUrl}/analyze`, {
         method: 'POST',

@@ -79,10 +79,12 @@ export async function anchorSettlement(
     // Simulate 2.5 second block confirmation delay
     await new Promise((resolve) => setTimeout(resolve, 2500));
 
-    // Generate realistic, deterministic-looking Amoy transaction hash
-    const randomHex = crypto.randomBytes(28).toString('hex');
-    const mockTxHash = `0x${randomHex}`;
-    const mockBlockNumber = 15420000 + Math.floor(Math.random() * 50000);
+    // Generate deterministic Polygon Amoy transaction hash and block number via SHA-256
+    const deterministicSeed = `${settlementHash}:${caseId}:${contractAddress}`;
+    const derivedTxHex = crypto.createHash('sha256').update(deterministicSeed).digest('hex');
+    const mockTxHash = `0x${derivedTxHex}`;
+    const blockOffset = parseInt(derivedTxHex.substring(0, 4), 16) % 10000;
+    const mockBlockNumber = 15420000 + blockOffset;
     const explorerUrl = `https://amoy.polygonscan.com/tx/${mockTxHash}`;
 
     console.log(`[Blockchain: Polygon Amoy] ✅ Transaction Confirmed in Block #${mockBlockNumber}!`);
@@ -136,7 +138,8 @@ export async function anchorSettlement(
       `[Blockchain: Polygon Amoy] Live transaction failed (${error.message}). Falling back to calibrated receipt.`
     );
 
-    const fallbackHex = `0x${crypto.randomBytes(28).toString('hex')}`;
+    const fallbackSeed = `fallback:${settlementHash}:${caseId}:${contractAddress}`;
+    const fallbackHex = `0x${crypto.createHash('sha256').update(fallbackSeed).digest('hex')}`;
     const fallbackExplorer = `https://amoy.polygonscan.com/tx/${fallbackHex}`;
 
     return {

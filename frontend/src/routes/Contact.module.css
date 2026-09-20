@@ -1,0 +1,673 @@
+.container {
+  min-height: 100dvh;
+  padding: clamp(100px, 12vw, 140px) 24px 100px;
+  background-color: #fafaf9;
+  color: #1c1917;
+  position: relative;
+}
+
+.inner {
+  max-width: 1240px;
+  margin: 0 auto;
+}
+
+/* Header Section */
+.headerBlock {
+  margin-bottom: clamp(36px, 5vw, 56px);
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  border-radius: 9999px;
+  background: rgba(5, 150, 105, 0.08);
+  border: 1px solid rgba(5, 150, 105, 0.2);
+  color: #059669;
+  font-family: var(--font-family-mono, monospace);
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 16px;
+}
+
+.pulseDot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #10b981;
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.25);
+  animation: pulseBeacon 1.8s infinite alternate;
+}
+
+@keyframes pulseBeacon {
+  0% { transform: scale(0.9); opacity: 0.7; }
+  100% { transform: scale(1.15); opacity: 1; }
+}
+
+.title {
+  font-family: 'Manuka Black', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: clamp(2.8rem, 6.5vw, 5.2rem);
+  font-weight: 850;
+  line-height: 0.96;
+  letter-spacing: 0.025em;
+  word-spacing: 0.15em;
+  color: #111827;
+  text-transform: uppercase;
+  margin: 0 0 16px;
+}
+
+.subtitle {
+  font-family: var(--font-family-primary, 'Geist', sans-serif);
+  font-size: clamp(1rem, 1.4vw, 1.2rem);
+  color: #57534e;
+  max-width: 760px;
+  line-height: 1.6;
+}
+
+/* 3-Pillar Metrics Strip */
+.metricsStrip {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 16px;
+  margin-bottom: clamp(36px, 5vw, 56px);
+}
+
+.metricCard {
+  background: #ffffff;
+  border: 1px solid #e7e5e4;
+  border-radius: 16px;
+  padding: 18px 22px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.metricLabel {
+  font-family: var(--font-family-mono, monospace);
+  font-size: 0.74rem;
+  font-weight: 700;
+  color: #78716c;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.metricValue {
+  font-family: var(--font-family-primary, 'Geist', sans-serif);
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: #1c1917;
+  letter-spacing: -0.01em;
+}
+
+.metricDesc {
+  font-size: 0.82rem;
+  color: #78716c;
+  line-height: 1.4;
+}
+
+/* Two-Column Grid */
+.layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(28px, 4vw, 44px);
+  margin-bottom: clamp(60px, 8vw, 96px);
+}
+
+@media (min-width: 1024px) {
+  .layout {
+    grid-template-columns: 1.35fr 1fr;
+    align-items: start;
+  }
+}
+
+/* Left Column: Form Card */
+.formCard {
+  background: #ffffff;
+  border: 1px solid #e7e5e4;
+  border-radius: 24px;
+  padding: clamp(24px, 3.5vw, 44px);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03), 0 12px 32px rgba(0, 0, 0, 0.03);
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.formHeader {
+  border-bottom: 1px solid #f0eeed;
+  padding-bottom: 20px;
+}
+
+.formTitle {
+  font-family: var(--font-family-primary, 'Geist', sans-serif);
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: #1c1917;
+  margin: 0 0 6px;
+  letter-spacing: -0.01em;
+}
+
+.formSubtitle {
+  font-size: 0.88rem;
+  color: #78716c;
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* Role Selector Chips */
+.roleSelectorArea {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.roleLabel {
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #78716c;
+}
+
+.roleChipGrid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.roleChip {
+  padding: 8px 14px;
+  border-radius: 9999px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #57534e;
+  background: #f5f5f4;
+  border: 1px solid #e7e5e4;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.roleChip:hover {
+  background: #e7e5e4;
+  color: #1c1917;
+}
+
+.roleChipActive {
+  background: #111827;
+  color: #ffffff;
+  border-color: #111827;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
+}
+
+/* Form Inputs Grid */
+.formGrid2 {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+
+@media (min-width: 640px) {
+  .formGrid2 {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.label {
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #78716c;
+}
+
+.input,
+.select,
+.textarea {
+  font-family: var(--font-family-primary, 'Geist', sans-serif);
+  font-size: 0.92rem;
+  padding: 12px 14px;
+  border-radius: 12px;
+  border: 1px solid #e7e5e4;
+  background: #fafaf9;
+  color: #1c1917;
+  outline: none;
+  transition: all 0.15s ease;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%2378716c' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  appearance: none;
+  -webkit-appearance: none;
+  padding-right: 38px;
+  cursor: pointer;
+}
+
+.input:focus,
+.select:focus,
+.textarea:focus {
+  border-color: #111827;
+  background: #ffffff;
+  box-shadow: 0 0 0 3px rgba(17, 24, 39, 0.08);
+}
+
+.textarea {
+  min-height: 110px;
+  resize: vertical;
+  line-height: 1.5;
+}
+
+/* Capabilities Checklist */
+.capabilitiesSection {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background: #fafaf9;
+  border: 1px solid #e7e5e4;
+  border-radius: 16px;
+  padding: 16px 18px;
+}
+
+.capabilitiesTitle {
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #57534e;
+  margin: 0;
+}
+
+.capabilitiesGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+}
+
+@media (min-width: 640px) {
+  .capabilitiesGrid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.capabilityItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  cursor: pointer;
+  padding: 6px 8px;
+  border-radius: 8px;
+  transition: background 0.15s ease;
+}
+
+.capabilityItem:hover {
+  background: #f5f5f4;
+}
+
+.checkbox {
+  width: 17px;
+  height: 17px;
+  border-radius: 4px;
+  accent-color: #059669;
+  cursor: pointer;
+  margin-top: 2px;
+}
+
+.capabilityContent {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.capabilityName {
+  font-size: 0.84rem;
+  font-weight: 700;
+  color: #1c1917;
+}
+
+.capabilityDetail {
+  font-size: 0.74rem;
+  color: #78716c;
+}
+
+/* Submit Action Button */
+.submitBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  padding: 16px 28px;
+  border-radius: 14px;
+  background: #111827;
+  color: #ffffff;
+  border: none;
+  font-family: var(--font-family-primary, 'Geist', sans-serif);
+  font-size: 0.98rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 4px 14px rgba(17, 24, 39, 0.15);
+}
+
+.submitBtn:hover {
+  background: #000000;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(17, 24, 39, 0.25);
+}
+
+.submitBtn:active {
+  transform: translateY(0);
+}
+
+/* Deployment Success Manifest Dossier */
+.ticketCard {
+  background: #ffffff;
+  border: 1px solid #a7f3d0;
+  border-radius: 20px;
+  padding: clamp(24px, 3.5vw, 36px);
+  box-shadow: 0 12px 36px rgba(5, 150, 105, 0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.ticketTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px dashed #d1fae5;
+  padding-bottom: 16px;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.ticketBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #ecfdf5;
+  color: #065f46;
+  padding: 5px 12px;
+  border-radius: 9999px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.ticketId {
+  font-family: var(--font-family-mono, monospace);
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: #059669;
+}
+
+.ticketHeading {
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: #064e3b;
+  margin: 0;
+}
+
+.ticketMessage {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: #374151;
+  margin: 0;
+}
+
+.ticketGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 14px;
+  background: #f0fdf4;
+  border: 1px solid #dcfce7;
+  border-radius: 14px;
+  padding: 16px;
+}
+
+.ticketItem {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.ticketKey {
+  font-family: var(--font-family-mono, monospace);
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #059669;
+  text-transform: uppercase;
+}
+
+.ticketVal {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #111827;
+}
+
+.ticketActions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.ticketBtnPrimary {
+  padding: 10px 18px;
+  border-radius: 10px;
+  background: #059669;
+  color: #ffffff;
+  border: none;
+  font-weight: 600;
+  font-size: 0.88rem;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.ticketBtnPrimary:hover {
+  background: #047857;
+}
+
+.ticketBtnSecondary {
+  padding: 10px 18px;
+  border-radius: 10px;
+  background: #f5f5f4;
+  color: #1c1917;
+  border: 1px solid #e7e5e4;
+  font-weight: 600;
+  font-size: 0.88rem;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.ticketBtnSecondary:hover {
+  background: #e7e5e4;
+}
+
+/* Right Column: Telemetry & Liaison Cards */
+.infoCol {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.telemetryCard {
+  background: #ffffff;
+  border: 1px solid #e7e5e4;
+  border-radius: 20px;
+  padding: 24px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.cardTopRow {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.cardIconFrame {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: #fafaf9;
+  border: 1px solid #e7e5e4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.cardTitleBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.cardTitle {
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: #1c1917;
+  margin: 0;
+}
+
+.cardSubtitle {
+  font-size: 0.78rem;
+  color: #78716c;
+  margin: 0;
+}
+
+/* Endpoint Feed */
+.endpointList {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.endpointItem {
+  background: #fafaf9;
+  border: 1px solid #e7e5e4;
+  border-radius: 12px;
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.endpointHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.endpointName {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #1c1917;
+}
+
+.endpointStatus {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-family-mono, monospace);
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #059669;
+}
+
+.endpointDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #10b981;
+}
+
+.endpointVal {
+  font-family: var(--font-family-mono, monospace);
+  font-size: 0.8rem;
+  color: #57534e;
+  word-break: break-all;
+}
+
+/* Liaison Directory Card */
+.liaisonList {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.liaisonItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 12px;
+  background: #fafaf9;
+  border: 1px solid #e7e5e4;
+  border-radius: 10px;
+}
+
+.liaisonKey {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #78716c;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.liaisonLink {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #0284c7;
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+.liaisonLink:hover {
+  color: #0369a1;
+  text-decoration: underline;
+}
+
+.liaisonVal {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #1c1917;
+}
+
+/* Hardware Requirements Card */
+.specList {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.specItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-size: 0.82rem;
+  color: #57534e;
+  line-height: 1.45;
+}
+
+.specBullet {
+  color: #059669;
+  font-weight: 700;
+}

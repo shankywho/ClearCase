@@ -1,0 +1,53 @@
+/* ClearCase Keyframe Animations */
+
+@keyframes framerCursorPopAway { 
+  0% { 
+    opacity: 1; 
+    transform: translate(-50%, -50%) scale(0.4) rotate(var(--start-rotate, 0deg)); 
+  }
+  35% { 
+    opacity: 1; 
+    transform: translate(
+      calc(-50% + var(--x, 0) * 0.35px),
+      calc(-50% + var(--y, 0) * 0.35px)
+    ) scale(1.25) rotate(var(--mid-rotate, 15deg)); 
+  }
+  100% { 
+    opacity: 0; 
+    transform: translate(
+      calc(-50% + var(--x, 0) * 1px),
+      calc(-50% + var(--y, 0) * 1px)
+    ) scale(0.15) rotate(var(--end-rotate, 45deg)); 
+  }
+}
+
+@keyframes marqueeScroll {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes pulseSubtle {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.85;
+    transform: scale(0.98);
+  }
+}
+
+@keyframes accordionExpand {
+  from {
+    opacity: 0;
+    max-height: 0;
+  }
+  to {
+    opacity: 1;
+    max-height: 800px;
+  }
+}

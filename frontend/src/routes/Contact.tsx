@@ -1,0 +1,487 @@
+import React, { useState } from 'react';
+import { useScrollReveal } from '@/hooks/useScrollTrigger';
+import { TestimonialsSection } from '@/components/home/TestimonialsSection';
+import { ThreeDIcon } from '@/components/common/ThreeDIcon';
+import styles from './Contact.module.css';
+
+const ROLES = [
+  'Gram Panchayat Pradhan',
+  'Revenue Inspector (Lekhpal)',
+  'DLSA Secretary / Nyaya Sahayak',
+  'Hackathon Evaluator / Researcher',
+  'Civil Society / Para-Legal Worker',
+];
+
+export const Contact: React.FC = () => {
+  const headerRef = useScrollReveal<HTMLDivElement>();
+  const [selectedRole, setSelectedRole] = useState<string>(ROLES[0]);
+  const [fullName, setFullName] = useState<string>('');
+  const [jurisdictionState, setJurisdictionState] = useState<string>('Uttar Pradesh');
+  const [district, setDistrict] = useState<string>('Varanasi');
+  const [villageBlock, setVillageBlock] = useState<string>('Mauza Shivpur, Sadar Tehsil');
+  const [contactInfo, setContactInfo] = useState<string>('');
+  const [notes, setNotes] = useState<string>('');
+  const [capabilities, setCapabilities] = useState<{ [key: string]: boolean }>({
+    voiceIntake: true,
+    cadastreOcr: true,
+    coercionFilter: true,
+    polygonAnchoring: true,
+  });
+
+  const [submitted, setSubmitted] = useState<boolean>(false);
+  const [ticketId, setTicketId] = useState<string>('');
+  const [copiedToken, setCopiedToken] = useState<boolean>(false);
+
+  const toggleCapability = (key: string) => {
+    setCapabilities((prev) => ({ ...prev, [key]: !prev[key] }));
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    const randomId = `MANIFEST-2026-${district.slice(0, 3).toUpperCase()}-${Math.floor(100 + Math.random() * 900)}`;
+    setTicketId(randomId);
+    setSubmitted(true);
+  };
+
+  const handleCopyToken = () => {
+    navigator.clipboard?.writeText('cc_mesh_live_7a9f4e229c1b8401e');
+    setCopiedToken(true);
+    setTimeout(() => setCopiedToken(false), 2500);
+  };
+
+  return (
+    <main className={styles.container}>
+      <div className={styles.inner}>
+        {/* Header Block */}
+        <div ref={headerRef} className={styles.headerBlock}>
+          <div className={styles.eyebrow}>
+            <span className={styles.pulseDot} />
+            <span>Field Deployment &amp; DLSA Pilot Intake • Bharat Builds 2026</span>
+          </div>
+          <h1 className={styles.title}>Deploy ClearCase in Your Block</h1>
+          <p className={styles.subtitle}>
+            Whether you are a Gram Panchayat Pradhan, a District Legal Services Authority (DLSA) secretary, or an evaluator for Bharat Builds 2026, provision an autonomous rural dispute mediation node in your block.
+          </p>
+        </div>
+
+        {/* 3-Pillar Architectural Metrics Strip */}
+        <div className={styles.metricsStrip}>
+          <div className={styles.metricCard}>
+            <div className={styles.metricLabel}>
+              <ThreeDIcon name="mic" size={16} />
+              <span>Offline Edge Latency</span>
+            </div>
+            <div className={styles.metricValue}>&lt; 280ms Local Pipeline</div>
+            <div className={styles.metricDesc}>
+              Groq Whisper Large v3 + multi-agent statutory RAG runs with zero cloud dependency.
+            </div>
+          </div>
+
+          <div className={styles.metricCard}>
+            <div className={styles.metricLabel}>
+              <ThreeDIcon name="scales" size={16} />
+              <span>Statutory Alignment</span>
+            </div>
+            <div className={styles.metricValue}>Section 20 Lok Adalat</div>
+            <div className={styles.metricDesc}>
+              Generates court-enforceable mutual accords under Legal Services Authorities Act, 1987.
+            </div>
+          </div>
+
+          <div className={styles.metricCard}>
+            <div className={styles.metricLabel}>
+              <ThreeDIcon name="blockchain" size={16} />
+              <span>Cryptographic Registry</span>
+            </div>
+            <div className={styles.metricValue}>Polygon Amoy Testnet</div>
+            <div className={styles.metricDesc}>
+              Dual-OTP signed settlement hashes anchored immutably for land registry verification.
+            </div>
+          </div>
+        </div>
+
+        {/* Two-Column Grid: Form & Telemetry */}
+        <div className={styles.layout}>
+          {/* Left Column: Form / Manifest Dossier */}
+          <div className={styles.formCard}>
+            {submitted ? (
+              <div className={styles.ticketCard}>
+                <div className={styles.ticketTop}>
+                  <div className={styles.ticketBadge}>
+                    <span className={styles.pulseDot} />
+                    <span>Pilot Node Provisioned</span>
+                  </div>
+                  <div className={styles.ticketId}>{ticketId}</div>
+                </div>
+
+                <h3 className={styles.ticketHeading}>Deployment Manifest Generated</h3>
+                <p className={styles.ticketMessage}>
+                  Your rural dispute mediation node credentials have been reserved. The ClearCase coordination team and DLSA field engineers have received your jurisdictional parameters.
+                </p>
+
+                <div className={styles.ticketGrid}>
+                  <div className={styles.ticketItem}>
+                    <span className={styles.ticketKey}>Authority / Role</span>
+                    <span className={styles.ticketVal}>{selectedRole}</span>
+                  </div>
+                  <div className={styles.ticketItem}>
+                    <span className={styles.ticketKey}>Jurisdiction Block</span>
+                    <span className={styles.ticketVal}>{district}, {jurisdictionState}</span>
+                  </div>
+                  <div className={styles.ticketItem}>
+                    <span className={styles.ticketKey}>Target Village / Tehsil</span>
+                    <span className={styles.ticketVal}>{villageBlock || 'Mauza Shivpur'}</span>
+                  </div>
+                  <div className={styles.ticketItem}>
+                    <span className={styles.ticketKey}>Local Dialect Model</span>
+                    <span className={styles.ticketVal}>Bhojpuri / Awadhi / Hindi</span>
+                  </div>
+                  <div className={styles.ticketItem}>
+                    <span className={styles.ticketKey}>Edge Cluster Status</span>
+                    <span className={styles.ticketVal} style={{ color: '#059669' }}>READY_FOR_DISPUTE_MESH</span>
+                  </div>
+                  <div className={styles.ticketItem}>
+                    <span className={styles.ticketKey}>Node Secret Token</span>
+                    <span className={styles.ticketVal} style={{ fontFamily: 'monospace' }}>cc_mesh_live_7a9f4e...</span>
+                  </div>
+                </div>
+
+                <div className={styles.ticketActions}>
+                  <button
+                    type="button"
+                    onClick={handleCopyToken}
+                    className={styles.ticketBtnPrimary}
+                  >
+                    {copiedToken ? '✓ Copied Token' : 'Copy Cluster Token'}
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setSubmitted(false);
+                      setFullName('');
+                      setContactInfo('');
+                      setNotes('');
+                    }}
+                    className={styles.ticketBtnSecondary}
+                  >
+                    Provision Another Block
+                  </button>
+                </div>
+              </div>
+            ) : (
+              <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '22px' }}>
+                <div className={styles.formHeader}>
+                  <h2 className={styles.formTitle}>Block Deployment Intake Console</h2>
+                  <p className={styles.formSubtitle}>
+                    Enter administrative boundaries and dialect profiles to configure an edge dispute cluster for your Gram Sabha or court corridor.
+                  </p>
+                </div>
+
+                {/* Role Selector Chips */}
+                <div className={styles.roleSelectorArea}>
+                  <label className={styles.roleLabel}>Designation / Administrative Capacity:</label>
+                  <div className={styles.roleChipGrid}>
+                    {ROLES.map((role) => (
+                      <button
+                        key={role}
+                        type="button"
+                        onClick={() => setSelectedRole(role)}
+                        className={`${styles.roleChip} ${selectedRole === role ? styles.roleChipActive : ''}`}
+                      >
+                        {role}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Form Inputs Grid */}
+                <div className={styles.formGrid2}>
+                  <div className={styles.formGroup}>
+                    <label htmlFor="fullName" className={styles.label}>Representative Name</label>
+                    <input
+                      id="fullName"
+                      type="text"
+                      required
+                      value={fullName}
+                      onChange={(e) => setFullName(e.target.value)}
+                      placeholder="e.g. Ramakant Tiwari"
+                      className={styles.input}
+                    />
+                  </div>
+
+                  <div className={styles.formGroup}>
+                    <label htmlFor="contactInfo" className={styles.label}>Official Mobile / Email</label>
+                    <input
+                      id="contactInfo"
+                      type="text"
+                      required
+                      value={contactInfo}
+                      onChange={(e) => setContactInfo(e.target.value)}
+                      placeholder="e.g. +91 98765 43210 or pradhan@gram.in"
+                      className={styles.input}
+                    />
+                  </div>
+                </div>
+
+                <div className={styles.formGrid2}>
+                  <div className={styles.formGroup}>
+                    <label htmlFor="state" className={styles.label}>Target State</label>
+                    <select
+                      id="state"
+                      value={jurisdictionState}
+                      onChange={(e) => setJurisdictionState(e.target.value)}
+                      className={styles.select}
+                    >
+                      <option value="Uttar Pradesh">Uttar Pradesh</option>
+                      <option value="Haryana">Haryana</option>
+                      <option value="Rajasthan">Rajasthan</option>
+                      <option value="Bihar">Bihar</option>
+                      <option value="Madhya Pradesh">Madhya Pradesh</option>
+                    </select>
+                  </div>
+
+                  <div className={styles.formGroup}>
+                    <label htmlFor="district" className={styles.label}>District Jurisdiction</label>
+                    <select
+                      id="district"
+                      value={district}
+                      onChange={(e) => setDistrict(e.target.value)}
+                      className={styles.select}
+                    >
+                      <option value="Varanasi">Varanasi</option>
+                      <option value="Ayodhya">Ayodhya</option>
+                      <option value="Prayagraj">Prayagraj</option>
+                      <option value="Gorakhpur">Gorakhpur</option>
+                      <option value="Sonipat">Sonipat</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div className={styles.formGroup}>
+                  <label htmlFor="villageBlock" className={styles.label}>Gram Sabha, Mauza &amp; Tehsil</label>
+                  <input
+                    id="villageBlock"
+                    type="text"
+                    required
+                    value={villageBlock}
+                    onChange={(e) => setVillageBlock(e.target.value)}
+                    placeholder="e.g. Mauza Shivpur Gram Sabha, Sadar Tehsil"
+                    className={styles.input}
+                  />
+                </div>
+
+                {/* Target Capabilities Checklist */}
+                <div className={styles.capabilitiesSection}>
+                  <div className={styles.capabilitiesTitle}>Provisioned Mesh Capabilities</div>
+                  <div className={styles.capabilitiesGrid}>
+                    <label className={styles.capabilityItem}>
+                      <input
+                        type="checkbox"
+                        checked={capabilities.voiceIntake}
+                        onChange={() => toggleCapability('voiceIntake')}
+                        className={styles.checkbox}
+                      />
+                      <div className={styles.capabilityContent}>
+                        <span className={styles.capabilityName}>Vernacular Voice STT</span>
+                        <span className={styles.capabilityDetail}>Groq Whisper Large v3 for Bhojpuri/Awadhi</span>
+                      </div>
+                    </label>
+
+                    <label className={styles.capabilityItem}>
+                      <input
+                        type="checkbox"
+                        checked={capabilities.cadastreOcr}
+                        onChange={() => toggleCapability('cadastreOcr')}
+                        className={styles.checkbox}
+                      />
+                      <div className={styles.capabilityContent}>
+                        <span className={styles.capabilityName}>Cadastre Shajra OCR</span>
+                        <span className={styles.capabilityDetail}>Section 24 boundary demarcation matrix</span>
+                      </div>
+                    </label>
+
+                    <label className={styles.capabilityItem}>
+                      <input
+                        type="checkbox"
+                        checked={capabilities.coercionFilter}
+                        onChange={() => toggleCapability('coercionFilter')}
+                        className={styles.checkbox}
+                      />
+                      <div className={styles.capabilityContent}>
+                        <span className={styles.capabilityName}>Coercion &amp; Usury Guard</span>
+                        <span className={styles.capabilityDetail}>Auto-escalation for bonded debt or violence</span>
+                      </div>
+                    </label>
+
+                    <label className={styles.capabilityItem}>
+                      <input
+                        type="checkbox"
+                        checked={capabilities.polygonAnchoring}
+                        onChange={() => toggleCapability('polygonAnchoring')}
+                        className={styles.checkbox}
+                      />
+                      <div className={styles.capabilityContent}>
+                        <span className={styles.capabilityName}>Polygon Amoy Registry</span>
+                        <span className={styles.capabilityDetail}>Cryptographic dual-consent audit trail</span>
+                      </div>
+                    </label>
+                  </div>
+                </div>
+
+                <div className={styles.formGroup}>
+                  <label htmlFor="notes" className={styles.label}>Pilot Scope / Local Grievance Volume</label>
+                  <textarea
+                    id="notes"
+                    value={notes}
+                    onChange={(e) => setNotes(e.target.value)}
+                    placeholder="Describe seasonal dispute spikes (e.g. boundary ridge cuts during Rabi sowing), local dialect challenges, or court backlog..."
+                    className={styles.textarea}
+                  />
+                </div>
+
+                <button type="submit" className={styles.submitBtn}>
+                  <span>Provision Block Mesh Credentials</span>
+                  <span aria-hidden="true">→</span>
+                </button>
+              </form>
+            )}
+          </div>
+
+          {/* Right Column: Telemetry & Liaison Dossier */}
+          <div className={styles.infoCol}>
+            {/* Card 1: Infrastructure Telemetry */}
+            <div className={styles.telemetryCard}>
+              <div className={styles.cardTopRow}>
+                <div className={styles.cardIconFrame}>
+                  <ThreeDIcon name="blockchain" size={24} />
+                </div>
+                <div className={styles.cardTitleBlock}>
+                  <h3 className={styles.cardTitle}>Live Cluster Endpoints</h3>
+                  <p className={styles.cardSubtitle}>Real-time status of connected microservices</p>
+                </div>
+              </div>
+
+              <div className={styles.endpointList}>
+                <div className={styles.endpointItem}>
+                  <div className={styles.endpointHeader}>
+                    <span className={styles.endpointName}>Python AI Microservice</span>
+                    <span className={styles.endpointStatus}>
+                      <span className={styles.endpointDot} />
+                      PORT 8001 LIVE
+                    </span>
+                  </div>
+                  <span className={styles.endpointVal}>http://127.0.0.1:8001</span>
+                </div>
+
+                <div className={styles.endpointItem}>
+                  <div className={styles.endpointHeader}>
+                    <span className={styles.endpointName}>Groq Whisper STT Engine</span>
+                    <span className={styles.endpointStatus}>
+                      <span className={styles.endpointDot} />
+                      ONLINE
+                    </span>
+                  </div>
+                  <span className={styles.endpointVal}>whisper-large-v3 (&lt; 200ms latency)</span>
+                </div>
+
+                <div className={styles.endpointItem}>
+                  <div className={styles.endpointHeader}>
+                    <span className={styles.endpointName}>Node.js Cedar State Mesh</span>
+                    <span className={styles.endpointStatus}>
+                      <span className={styles.endpointDot} />
+                      ACTIVE
+                    </span>
+                  </div>
+                  <span className={styles.endpointVal}>http://127.0.0.1:3000</span>
+                </div>
+
+                <div className={styles.endpointItem}>
+                  <div className={styles.endpointHeader}>
+                    <span className={styles.endpointName}>Polygon Amoy Contract</span>
+                    <span className={styles.endpointStatus}>
+                      <span className={styles.endpointDot} />
+                      VERIFIED
+                    </span>
+                  </div>
+                  <span className={styles.endpointVal}>0x435A9D490EbF92C32D19D20888913B0957917C5B</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Card 2: Direct Technical Liaison */}
+            <div className={styles.telemetryCard}>
+              <div className={styles.cardTopRow}>
+                <div className={styles.cardIconFrame}>
+                  <ThreeDIcon name="shield" size={24} />
+                </div>
+                <div className={styles.cardTitleBlock}>
+                  <h3 className={styles.cardTitle}>DLSA &amp; Pilot Liaison Office</h3>
+                  <p className={styles.cardSubtitle}>Direct contact for hackathon evaluators and researchers</p>
+                </div>
+              </div>
+
+              <div className={styles.liaisonList}>
+                <div className={styles.liaisonItem}>
+                  <span className={styles.liaisonKey}>Technical Dispatch</span>
+                  <a href="mailto:hi@clearcase.in" className={styles.liaisonLink}>hi@clearcase.in</a>
+                </div>
+
+                <div className={styles.liaisonItem}>
+                  <span className={styles.liaisonKey}>Evaluator Helpline</span>
+                  <span className={styles.liaisonVal}>+91 7838430665</span>
+                </div>
+
+                <div className={styles.liaisonItem}>
+                  <span className={styles.liaisonKey}>Open Source Core</span>
+                  <a
+                    href="https://github.com/shankywho/ClearCase"
+                    target="_blank"
+                    rel="noreferrer"
+                    className={styles.liaisonLink}
+                  >
+                    github.com/shankywho/ClearCase
+                  </a>
+                </div>
+
+                <div className={styles.liaisonItem}>
+                  <span className={styles.liaisonKey}>Field Corridor</span>
+                  <span className={styles.liaisonVal}>BHU Research Zone, Varanasi, UP</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Card 3: Minimal Edge Field Requirements */}
+            <div className={styles.telemetryCard}>
+              <div className={styles.cardTopRow}>
+                <div className={styles.cardIconFrame}>
+                  <ThreeDIcon name="clipboard" size={24} />
+                </div>
+                <div className={styles.cardTitleBlock}>
+                  <h3 className={styles.cardTitle}>Edge Hardware Profile</h3>
+                  <p className={styles.cardSubtitle}>Low-spec rural deployment requirements</p>
+                </div>
+              </div>
+
+              <div className={styles.specList}>
+                <div className={styles.specItem}>
+                  <span className={styles.specBullet}>•</span>
+                  <span><strong>Any standard dual-core laptop or Raspberry Pi 5:</strong> Operates at village common service centers (CSCs).</span>
+                </div>
+                <div className={styles.specItem}>
+                  <span className={styles.specBullet}>•</span>
+                  <span><strong>2GB RAM minimum:</strong> Ultra-lightweight memory footprint for local vector search and audio buffering.</span>
+                </div>
+                <div className={styles.specItem}>
+                  <span className={styles.specBullet}>•</span>
+                  <span><strong>Offline-First Resilience:</strong> Works completely offline; syncs cryptographic hashes to Polygon when network reconnects.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <TestimonialsSection />
+    </main>
+  );
+};

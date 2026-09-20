@@ -1,0 +1,83 @@
+.preloader {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 999999;
+  pointer-events: auto;
+  user-select: none;
+  overflow: hidden;
+}
+
+.panelsContainer {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.panel {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 20.05%; /* subtle 0.05% overlap prevents subpixel hairline gaps */
+  height: 100%;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.72) 0%,
+    rgba(255, 255, 255, 0.86) 65%,
+    rgba(255, 255, 255, 0.94) 100%
+  );
+  backdrop-filter: blur(28px) saturate(160%);
+  -webkit-backdrop-filter: blur(28px) saturate(160%);
+  border-right: 1px solid rgba(255, 255, 255, 0.5);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8), -3px 0 18px rgba(0, 0, 0, 0.03);
+  will-change: transform;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+/* Running percentage counter in Manuka Black on bottom right */
+.counterWrapper {
+  position: absolute;
+  bottom: clamp(20px, 4vw, 48px);
+  right: clamp(24px, 4.5vw, 64px);
+  z-index: 10;
+  line-height: 0.82;
+  text-align: right;
+  pointer-events: none;
+}
+
+.percentNumber {
+  font-family: 'Manuka Black', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: clamp(6.5rem, 16vw, 15rem);
+  font-weight: 850;
+  font-style: normal;
+  color: #111111;
+  letter-spacing: 0.05em;
+  display: inline-flex;
+  align-items: baseline;
+  line-height: 0.82;
+  font-variant-numeric: tabular-nums;
+  -webkit-font-feature-settings: "tnum";
+  font-feature-settings: "tnum";
+  text-shadow: 0 2px 20px rgba(255, 255, 255, 0.8);
+}
+
+.percentSymbol {
+  font-size: 0.42em;
+  font-family: 'Manuka Black', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-weight: 850;
+  margin-left: 0.12em;
+  letter-spacing: 0.02em;
+  color: #111111;
+  opacity: 0.75;
+}
+
+@media (max-width: 600px) {
+  .counterWrapper {
+    bottom: 32px;
+    right: 24px;
+  }
+}
