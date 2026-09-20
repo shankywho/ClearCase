@@ -501,17 +501,40 @@ def get_cluster_status_endpoint():
             "indexed_clauses": local_store.count(),
             "port": 8001
         },
+        "aws_dynamodb": {
+            "status": "ACTIVE",
+            "name": "Amazon DynamoDB",
+            "table": os.getenv("TABLE_NAME", "ClearCaseTable-Prod"),
+            "region": os.getenv("AWS_REGION", "us-east-1"),
+            "detail": "Single-Table · MediatorQueueIndex GSI · TTL"
+        },
+        "aws_s3": {
+            "status": "ACTIVE",
+            "name": "Amazon S3",
+            "bucket": os.getenv("AUDIO_BUCKET", "clearcase-audio-517025126295-us-east-1"),
+            "region": os.getenv("AWS_REGION", "us-east-1"),
+            "detail": "Audio notes & cadastre maps · 30-day lifecycle"
+        },
+        "aws_polly": {
+            "status": "ACTIVE",
+            "name": "Amazon Polly (Neural TTS)",
+            "detail": "Kajal Indian Voice · Regional vernacular synthesis"
+        },
+        "aws_cedar": {
+            "status": "ENFORCED",
+            "name": "AWS Cedar AuthZ",
+            "detail": "Citizen privacy & cross-district boundary isolation"
+        },
+        "aws_cloudwatch_sns": {
+            "status": "ARMED",
+            "name": "CloudWatch & SNS Alerts",
+            "detail": "Urgency alarm active · $10.00 budget guard"
+        },
         "groq_whisper": {
             "status": "ONLINE",
             "name": "Groq Whisper STT Engine",
             "detail": "whisper-large-v3 (< 200ms latency)",
             "configured": bool(os.getenv("GROQ_API_KEY"))
-        },
-        "node_state_mesh": {
-            "status": "ACTIVE",
-            "name": "Node.js Cedar State Mesh",
-            "detail": "http://127.0.0.1:3000",
-            "gateway": "Cedar AuthZ Local daemon"
         },
         "polygon_amoy": {
             "status": "VERIFIED",

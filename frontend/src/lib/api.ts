@@ -636,26 +636,55 @@ export interface DeploymentResult {
 }
 
 export interface ClusterStatusResult {
-  python_ai_engine: {
+  python_ai_engine?: {
     status: string;
     name: string;
     detail: string;
     indexed_clauses?: number;
     port?: number;
   };
-  groq_whisper: {
+  aws_dynamodb?: {
+    status: string;
+    name: string;
+    table: string;
+    region: string;
+    detail: string;
+  };
+  aws_s3?: {
+    status: string;
+    name: string;
+    bucket: string;
+    region: string;
+    detail: string;
+  };
+  aws_polly?: {
+    status: string;
+    name: string;
+    detail: string;
+  };
+  aws_cedar?: {
+    status: string;
+    name: string;
+    detail: string;
+  };
+  aws_cloudwatch_sns?: {
+    status: string;
+    name: string;
+    detail: string;
+  };
+  groq_whisper?: {
     status: string;
     name: string;
     detail: string;
     configured: boolean;
   };
-  node_state_mesh: {
+  node_state_mesh?: {
     status: string;
     name: string;
     detail: string;
-    gateway: string;
+    gateway?: string;
   };
-  polygon_amoy: {
+  polygon_amoy?: {
     status: string;
     name: string;
     contract: string;

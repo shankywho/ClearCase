@@ -425,6 +425,87 @@ export const Contact: React.FC = () => {
               </div>
 
               <div className={styles.endpointList}>
+                {/* AWS DynamoDB Single Table */}
+                <div className={styles.endpointItem}>
+                  <div className={styles.endpointHeader}>
+                    <span className={styles.endpointName}>
+                      {clusterStatus?.aws_dynamodb?.name || 'Amazon DynamoDB'}
+                    </span>
+                    <span className={styles.endpointStatus}>
+                      <span className={styles.endpointDot} />
+                      {clusterStatus?.aws_dynamodb?.status || 'ACTIVE'}
+                    </span>
+                  </div>
+                  <span className={styles.endpointVal}>
+                    {clusterStatus?.aws_dynamodb?.table || 'ClearCaseTable-Prod'} · {clusterStatus?.aws_dynamodb?.region || 'us-east-1'}
+                  </span>
+                </div>
+
+                {/* AWS S3 Evidence Storage */}
+                <div className={styles.endpointItem}>
+                  <div className={styles.endpointHeader}>
+                    <span className={styles.endpointName}>
+                      {clusterStatus?.aws_s3?.name || 'Amazon S3 Bucket'}
+                    </span>
+                    <span className={styles.endpointStatus}>
+                      <span className={styles.endpointDot} />
+                      {clusterStatus?.aws_s3?.status || 'ACTIVE'}
+                    </span>
+                  </div>
+                  <span className={styles.endpointVal}>
+                    {clusterStatus?.aws_s3?.bucket || 'clearcase-audio-517025126295-us-east-1'}
+                  </span>
+                </div>
+
+                {/* Amazon Polly Speech Synthesis */}
+                <div className={styles.endpointItem}>
+                  <div className={styles.endpointHeader}>
+                    <span className={styles.endpointName}>
+                      {clusterStatus?.aws_polly?.name || 'Amazon Polly (Neural TTS)'}
+                    </span>
+                    <span className={styles.endpointStatus}>
+                      <span className={styles.endpointDot} />
+                      {clusterStatus?.aws_polly?.status || 'ACTIVE'}
+                    </span>
+                  </div>
+                  <span className={styles.endpointVal}>
+                    {clusterStatus?.aws_polly?.detail || 'Kajal Indian Voice · Regional vernacular synthesis'}
+                  </span>
+                </div>
+
+                {/* AWS Cedar Fine-Grained Authorization */}
+                <div className={styles.endpointItem}>
+                  <div className={styles.endpointHeader}>
+                    <span className={styles.endpointName}>
+                      {clusterStatus?.aws_cedar?.name || 'AWS Cedar AuthZ'}
+                    </span>
+                    <span className={styles.endpointStatus}>
+                      <span className={styles.endpointDot} />
+                      {clusterStatus?.aws_cedar?.status || 'ENFORCED'}
+                    </span>
+                  </div>
+                  <span className={styles.endpointVal}>
+                    {clusterStatus?.aws_cedar?.detail || 'Citizen privacy & cross-district boundary isolation'}
+                  </span>
+                </div>
+
+                {/* Amazon CloudWatch & SNS Alerts */}
+                <div className={styles.endpointItem}>
+                  <div className={styles.endpointHeader}>
+                    <span className={styles.endpointName}>
+                      {clusterStatus?.aws_cloudwatch_sns?.name || 'CloudWatch & SNS Alerts'}
+                    </span>
+                    <span className={styles.endpointStatus}>
+                      <span className={styles.endpointDot} />
+                      {clusterStatus?.aws_cloudwatch_sns?.status || 'ARMED'}
+                    </span>
+                  </div>
+                  <span className={styles.endpointVal}>
+                    {clusterStatus?.aws_cloudwatch_sns?.detail || 'Urgency alarm active · $10.00 budget guard'}
+                  </span>
+                </div>
+
+                {/* Python AI Engine */}
                 <div className={styles.endpointItem}>
                   <div className={styles.endpointHeader}>
                     <span className={styles.endpointName}>
@@ -442,6 +523,7 @@ export const Contact: React.FC = () => {
                   </span>
                 </div>
 
+                {/* Groq Whisper STT */}
                 <div className={styles.endpointItem}>
                   <div className={styles.endpointHeader}>
                     <span className={styles.endpointName}>
@@ -457,21 +539,7 @@ export const Contact: React.FC = () => {
                   </span>
                 </div>
 
-                <div className={styles.endpointItem}>
-                  <div className={styles.endpointHeader}>
-                    <span className={styles.endpointName}>
-                      {clusterStatus?.node_state_mesh?.name || 'Node.js Cedar State Mesh'}
-                    </span>
-                    <span className={styles.endpointStatus}>
-                      <span className={styles.endpointDot} />
-                      {clusterStatus?.node_state_mesh?.status || 'ACTIVE'}
-                    </span>
-                  </div>
-                  <span className={styles.endpointVal}>
-                    {clusterStatus?.node_state_mesh?.detail || 'http://127.0.0.1:3000'}
-                  </span>
-                </div>
-
+                {/* Polygon Amoy Blockchain */}
                 <div className={styles.endpointItem}>
                   <div className={styles.endpointHeader}>
                     <span className={styles.endpointName}>

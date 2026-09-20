@@ -536,7 +536,7 @@ export const Resolve: React.FC = () => {
                     className={styles.audioBtn}
                   >
                     <ThreeDIcon name="speaker" size={16} />
-                    <span>{isPlayingAudio ? 'Playing...' : 'Listen (Audio)'}</span>
+                    <span>{isPlayingAudio ? 'Playing Amazon Polly...' : 'Listen (Amazon Polly TTS)'}</span>
                   </button>
                 </div>
                 <h3 className={styles.cardTitle}>
@@ -597,7 +597,7 @@ export const Resolve: React.FC = () => {
                     className={styles.audioBtn}
                   >
                     <ThreeDIcon name="speaker" size={16} />
-                    <span>{isPlayingAudio ? 'Playing...' : 'Listen (Audio)'}</span>
+                    <span>{isPlayingAudio ? 'Playing Amazon Polly...' : 'Listen (Amazon Polly TTS)'}</span>
                   </button>
                 </div>
                 <h3 className={styles.cardTitle}>Proposed 3-Step Compromise</h3>
