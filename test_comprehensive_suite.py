@@ -199,10 +199,11 @@ class TestClearCaseComprehensiveSuite(unittest.TestCase):
         print(f"[TEST 16 PASS] Groq client safely handles unset API keys.")
 
     def test_17_groq_client_model_selection(self):
-        groq = GroqLLMClient(api_key="gsk_test_key_1234567890", model="llama-3.3-70b-versatile")
+        groq = GroqLLMClient(api_key="gsk_test_key_1234567890", model="gpt-oss-120b", fallback_model="qwen-2.5-32b")
         self.assertTrue(groq.is_configured())
-        self.assertEqual(groq.model, "llama-3.3-70b-versatile")
-        print(f"[TEST 17 PASS] Groq client model configured: {groq.model}.")
+        self.assertEqual(groq.model, "gpt-oss-120b")
+        self.assertEqual(groq.fallback_model, "qwen-2.5-32b")
+        print(f"[TEST 17 PASS] Groq client primary model: {groq.model} with fallback: {groq.fallback_model}.")
 
     # --------------------------------------------------------------------------
     # 8. Transcription Agent Across Dialects (Tests 18-20)

@@ -44,7 +44,7 @@ Windows command prompt and PowerShell default to OEM code page 437 or Windows-12
 ClearCase implements an **automatic, zero-breakage dual fallback**:
 1. **Embedding Layer**: If AWS Titan (`amazon.titan-embed-text-v1`) is unreachable, `ingest.py` automatically initializes local HuggingFace `sentence-transformers/all-MiniLM-L6-v2`. If PyTorch is unavailable, it uses offline deterministic n-gram vectorization.
 2. **LLM Reasoning Layer**: If AWS Bedrock Claude 3.5 Sonnet is unavailable, `agents.py` checks for `GROQ_API_KEY` and invokes open-source models:
-   - `llama-3.3-70b-versatile`
+   - `gpt-oss-120b`
    - `qwen-2.5-32b`
 3. If neither cloud API is available, the built-in deterministic statutory rule engine (`_rule_based_draft()`) executes with 100% reliability for offline village demo mode.
 

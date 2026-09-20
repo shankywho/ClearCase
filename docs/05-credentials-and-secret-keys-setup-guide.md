@@ -26,7 +26,8 @@ BEDROCK_EMBEDDING_MODEL_ID=amazon.titan-embed-text-v1
 # 2. Open-Source LLM Fallback (Groq Cloud)
 # ==============================================================================
 GROQ_API_KEY=gsk_...
-GROQ_MODEL_ID=llama-3.3-70b-versatile
+GROQ_MODEL_ID=gpt-oss-120b
+GROQ_FALLBACK_MODEL_ID=qwen-2.5-32b
 
 # ==============================================================================
 # 3. Hybrid AI Engine Flags
@@ -81,7 +82,7 @@ MOCK_BLOCKCHAIN=true
 2. Sign up or log in with GitHub / Google.
 3. Click **API Keys** in the left navigation.
 4. Click **Create API Key**, name it `ClearCase-Demo`, and copy the key (starts with `gsk_`).
-5. Groq provides generous free-tier access with sub-second latency for `llama-3.3-70b-versatile` and `qwen-2.5-32b`.
+5. Groq provides generous free-tier access with sub-second latency for `gpt-oss-120b` and `qwen-2.5-32b`.
 
 ---
 

@@ -489,32 +489,30 @@ Date: 2026-09-20                    Witness: Gram Panchayat Pradhan / Lekhpal
 
 
 # ------------------------------------------------------------------------------
-# 8. Groq Cloud Open-Source LLM Client (Llama 3.3 70B & Qwen 2.5)
+# 8. Groq Cloud Open-Source LLM Client (GPT-OSS 120B & Qwen 2.5 32B)
 # ------------------------------------------------------------------------------
 
 class GroqLLMClient:
     """
     High-speed Open Source LLM fallback via Groq Cloud API.
-    Supports Meta Llama 3.3 70B Versatile and Qwen 2.5 32B.
+    Supports GPT-OSS 120B as primary and Qwen 2.5 32B as resilient fallback.
     """
-    def __init__(self, api_key: Optional[str] = None, model: Optional[str] = None):
+    def __init__(self, api_key: Optional[str] = None, model: Optional[str] = None, fallback_model: Optional[str] = None):
         self.api_key = api_key or os.getenv("GROQ_API_KEY", "")
-        self.model = model or os.getenv("GROQ_MODEL_ID", "llama-3.3-70b-versatile")
+        self.model = model or os.getenv("GROQ_MODEL_ID", "gpt-oss-120b")
+        self.fallback_model = fallback_model or os.getenv("GROQ_FALLBACK_MODEL_ID", "qwen-2.5-32b")
         self.endpoint = "https://api.groq.com/openai/v1/chat/completions"
 
     def is_configured(self) -> bool:
         return bool(self.api_key and len(self.api_key.strip()) > 10)
 
-    def generate_json(self, system_prompt: str, user_prompt: str) -> Optional[Dict[str, Any]]:
-        if not self.is_configured():
-            return None
-
+    def _execute_groq_request(self, target_model: str, system_prompt: str, user_prompt: str) -> Optional[Dict[str, Any]]:
         headers = {
             "Content-Type": "application/json",
             "Authorization": f"Bearer {self.api_key.strip()}"
         }
         payload = {
-            "model": self.model,
+            "model": target_model,
             "messages": [
                 {"role": "system", "content": system_prompt},
                 {"role": "user", "content": user_prompt}
@@ -523,21 +521,33 @@ class GroqLLMClient:
             "max_tokens": 1500,
             "response_format": {"type": "json_object"}
         }
+        req = urllib.request.Request(
+            self.endpoint,
+            data=json.dumps(payload).encode("utf-8"),
+            headers=headers,
+            method="POST"
+        )
+        with urllib.request.urlopen(req, timeout=12) as response:
+            body = json.loads(response.read().decode("utf-8"))
+            raw_text = body["choices"][0]["message"]["content"]
+            clean_json = re.sub(r"```json|```", "", raw_text).strip()
+            return json.loads(clean_json)
 
+    def generate_json(self, system_prompt: str, user_prompt: str) -> Optional[Dict[str, Any]]:
+        if not self.is_configured():
+            return None
+
+        # 1. Try Primary Groq Model (GPT-OSS 120B)
         try:
-            req = urllib.request.Request(
-                self.endpoint,
-                data=json.dumps(payload).encode("utf-8"),
-                headers=headers,
-                method="POST"
-            )
-            with urllib.request.urlopen(req, timeout=12) as response:
-                body = json.loads(response.read().decode("utf-8"))
-                raw_text = body["choices"][0]["message"]["content"]
-                clean_json = re.sub(r"```json|```", "", raw_text).strip()
-                return json.loads(clean_json)
+            return self._execute_groq_request(self.model, system_prompt, user_prompt)
         except Exception as e:
-            print(f"[GroqLLMClient] Groq inference failed ({e}). Falling back to next provider.")
+            print(f"[GroqLLMClient] Primary model {self.model} failed ({e}). Retrying with fallback {self.fallback_model}...")
+
+        # 2. Try Fallback Groq Model (Qwen 2.5 32B)
+        try:
+            return self._execute_groq_request(self.fallback_model, system_prompt, user_prompt)
+        except Exception as e:
+            print(f"[GroqLLMClient] Fallback model {self.fallback_model} failed ({e}).")
             return None
 
 

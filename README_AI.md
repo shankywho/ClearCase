@@ -239,7 +239,7 @@ In addition to core statutory RAG, ClearCase v2.0 introduces 5 killer multi-agen
    - Generates a court-ready, bilingual pre-litigation application formatted under Section 19 & 20 of the Legal Services Authorities Act, 1987.
    - Includes prayer for a compromise award under Section 21 having the force of a civil court decree.
 6. **Groq Open-Source Dual Fallback (`GroqLLMClient`)**:
-   - Seamless fallback to `llama-3.3-70b-versatile` and `qwen-2.5-32b` on Groq if AWS Bedrock is throttled or offline.
+   - Seamless fallback to `gpt-oss-120b` and `qwen-2.5-32b` on Groq if AWS Bedrock is throttled or offline.
 
 ---
 
