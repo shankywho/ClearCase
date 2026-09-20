@@ -105,12 +105,15 @@ class DeterministicFallbackEmbeddingClient(EmbeddingClient):
 
     def get_embedding(self, text: str) -> List[float]:
         vec = [0.0] * self.dim
-        tokens = re.findall(r"\w+", text.lower())
+        stopwords = {"in", "the", "of", "and", "to", "a", "is", "that", "for", "on", "with", "as", "by", "at", "from", "it", "an", "be", "this", "which", "or", "all", "any", "no", "not", "act"}
+        tokens = [w for w in re.findall(r"\w+", text.lower()) if w not in stopwords and len(w) > 1]
         if not tokens:
             return vec
         for token in tokens:
-            idx = int(hashlib.md5(token.encode("utf-8")).hexdigest(), 16) % self.dim
-            vec[idx] += 1.0
+            h = hashlib.md5(token.encode("utf-8")).hexdigest()
+            idx = int(h, 16) % self.dim
+            sign = 1.0 if (int(h[:2], 16) & 1) else -1.0
+            vec[idx] += sign
         # L2 normalize
         norm = math.sqrt(sum(x * x for x in vec))
         if norm > 0:

@@ -10,7 +10,9 @@
     "test:ai": "tsx scripts/test-ai-orchestration.ts",
     "test:phase3": "tsx scripts/test-phase3.ts",
     "test:phase4": "tsx scripts/test-phase4.ts",
-    "test:all": "npm run build && npm test && npm run test:ai && npm run test:phase3 && npm run test:phase4",
+    "test:e2e": "tsx scripts/test-e2e-connected.ts",
+    "test:python": "./venv/bin/python test_ai_pipeline.py && ./venv/bin/python test_comprehensive_suite.py",
+    "test:all": "npm run build && npm test && npm run test:ai && npm run test:phase3 && npm run test:phase4 && npm run test:e2e",
     "db:init": "tsx scripts/init-local-db.ts",
     "db:test": "tsx scripts/test-repositories.ts"
   },
