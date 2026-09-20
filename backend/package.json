@@ -14,7 +14,8 @@
     "test:python": "./venv/bin/python test_ai_pipeline.py && ./venv/bin/python test_comprehensive_suite.py",
     "test:all": "npm run build && npm test && npm run test:ai && npm run test:phase3 && npm run test:phase4 && npm run test:e2e",
     "db:init": "tsx scripts/init-local-db.ts",
-    "db:test": "tsx scripts/test-repositories.ts"
+    "db:test": "tsx scripts/test-repositories.ts",
+    "aws:teardown": "bash scripts/teardown-aws.sh"
   },
   "keywords": [
     "aws",
