@@ -195,9 +195,9 @@ export type DisputeAnalysisResponse = AnalyzeResponse;
 
 const AI_MICROSERVICE_URL =
   import.meta.env.VITE_AI_SERVICE_URL ||
-  (typeof window !== 'undefined' && window.location.hostname === 'localhost'
+  (typeof window !== 'undefined' && (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')
     ? 'http://localhost:8001'
-    : 'http://127.0.0.1:8001');
+    : 'https://clearcase-1.onrender.com');
 
 /**
  * Check connectivity to the Python AI Microservice
