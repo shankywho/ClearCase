@@ -25,7 +25,7 @@ This document provides a comprehensive blueprint for the ClearCase frontend clie
 ## 2. Core Screen & Component Breakdown
 
 ### A. App Header & Status Bar
-- **Logo & Title**: "ClearCase | न्याय सेतु (Nyaya Setu)"
+- **Logo & Title**: "ClearCase"
 - **Network & Offline Badge**: "Mesh Active / Local Index Synchronized" (Green dot indicator).
 - **Dialect Switcher**: Dropdown supporting:
   - Bhojpuri (भोजपुरी)

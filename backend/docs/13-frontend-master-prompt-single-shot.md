@@ -6,11 +6,11 @@
 ---
 
 ```markdown
-# MISSION PROMPT: BUILD "CLEARCASE | न्याय सेतु" FRONTEND (SINGLE-SHOT COMPLETE WEB APP)
+# MISSION PROMPT: BUILD "CLEARCASE" FRONTEND (SINGLE-SHOT COMPLETE WEB APP)
 
 You are an expert Principal Frontend Architect and UI/UX Designer.
 Your mission is to build the complete, production-ready frontend web application for:
-"ClearCase (न्याय सेतु)" — an offline-first, voice-native, statutory RAG-based AI dispute resolution mesh designed for rural Indian citizens and Gram Panchayats.
+"ClearCase" — an offline-first, voice-native, statutory RAG-based AI dispute resolution mesh designed for rural Indian citizens and Gram Panchayats.
 
 The app interfaces directly with:
 1. Python AI Microservice on `http://localhost:8000` (Endpoints: `/health`, `/transcribe`, `/analyze`, `/speak`, `/analyze-record`, `/generate-petition`)
@@ -39,7 +39,7 @@ The app interfaces directly with:
 The application should be a responsive Single Page Application (React/Next.js or Vanilla HTML5/CSS3/JavaScript) with a clean tabbed/step navigation:
 
 ### Screen 1: Top Navigation & Status Bar
-- Brand: **"ClearCase | न्याय सेतु"** with an emblem/scales of justice icon.
+- Brand: **"ClearCase"** with an emblem/scales of justice icon.
 - Network status badge: "Mesh Mode: Active (Local Offline-Ready)" with pulsating green LED indicator.
 - Dialect Selector: Dropdown with options:
   - भोजपुरी (Bhojpuri)

@@ -1,7 +1,7 @@
 # Team TableTurners: 5-Part Technical Blog & Social Media Series
 
 **Hackathon**: *Bharat Builds by WeMakeDevs* | **Track**: AWS First Commit  
-**Project**: **ClearCase (न्याय सेतु)** — Offline-First, Voice-Native AI Legal Dispute Resolution Mesh  
+**Project**: **ClearCase** — Offline-First, Voice-Native AI Legal Dispute Resolution Mesh  
 **Team TableTurners**:
 - **Akshat Arya** (Team Lead) — AI/ML Architecture, Multimodal Multi-Agent Systems & AI System Design
 - **Ansh Johnson** — Frontend Architecture, Low-Literacy Vernacular UX & Voice Interaction Design
@@ -20,7 +20,7 @@ In rural India, it's not a statistic—it’s two neighbors who haven't spoken i
 When our team—**TableTurners**—sat down for the *Bharat Builds* hackathon by WeMakeDevs, we asked a fundamental question:  
 *Why should a farmer need to travel 60 kilometers, decipher archaic colonial English notices, and wait three years just to resolve a boundary demarcation that a local Lekhpal could verify in twenty minutes?*
 
-That question led to **ClearCase (न्याय सेतु)**: an offline-first, voice-native AI legal dispute resolution mesh built for rural Bharat.
+That question led to **ClearCase**: an offline-first, voice-native AI legal dispute resolution mesh built for rural Bharat.
 
 ### How It Works:
 1. **Speak Naturally**: A villager taps one button and speaks their grievance in their regional dialect—Bhojpuri, Awadhi, Maithili, Malvi, or Haryanvi.
