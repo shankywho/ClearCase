@@ -1,0 +1,38 @@
+{
+  "scenario_id": "demo-14-brick",
+  "dispute_type": "Brick Kiln Seasonal Labor Balance Wage Deferral",
+  "dialect": "bhojpuri",
+  "state": "Bihar",
+  "district": "Patna",
+  "input": {
+    "raw_vernacular_audio_or_text": "Kiln manager deferred balance remuneration of 6 seasonal brick molders upon kiln closure.",
+    "petitioner": {
+      "name": "Citizen 14A",
+      "phone": "+919800000014"
+    },
+    "respondent": {
+      "name": "Citizen 14B",
+      "phone": "+919811110014"
+    }
+  },
+  "expected_transcription": {
+    "original_text": "Kiln manager deferred balance remuneration of 6 seasonal brick molders upon kiln closure.",
+    "english_text": "Kiln manager deferred balance remuneration of 6 seasonal brick molders upon kiln closure.",
+    "detected_dialect": "bhojpuri",
+    "confidence": 0.94
+  },
+  "expected_draft_output": {
+    "grievance_summary": "Kiln manager deferred balance remuneration of 6 seasonal brick molders upon kiln closure.",
+    "applicable_sections": [
+      {
+        "act": "State Revenue / Tenancy / Easement Act",
+        "section": "Governing Section",
+        "text_snippet": "Statutory clause governing rural land and labor rights."
+      }
+    ],
+    "settlement_draft": "1. Parties agree to mutual compromise.\n2. Verified under village Panchayat supervision.\n3. Signed and closed.",
+    "confidence_score": 0.85,
+    "escalate_to_human": false,
+    "escalation_reason": null
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "scenario_id": "demo-15-monsoon",
+  "dispute_type": "Diversion of Field Drainage Causing Waterlogging",
+  "dialect": "hindi",
+  "state": "Uttar Pradesh",
+  "district": "Sitapur",
+  "input": {
+    "raw_vernacular_audio_or_text": "Neighbor erected embankment diverting rainwater runoff directly into newly sown paddy.",
+    "petitioner": {
+      "name": "Citizen 15A",
+      "phone": "+919800000015"
+    },
+    "respondent": {
+      "name": "Citizen 15B",
+      "phone": "+919811110015"
+    }
+  },
+  "expected_transcription": {
+    "original_text": "Neighbor erected embankment diverting rainwater runoff directly into newly sown paddy.",
+    "english_text": "Neighbor erected embankment diverting rainwater runoff directly into newly sown paddy.",
+    "detected_dialect": "hindi",
+    "confidence": 0.94
+  },
+  "expected_draft_output": {
+    "grievance_summary": "Neighbor erected embankment diverting rainwater runoff directly into newly sown paddy.",
+    "applicable_sections": [
+      {
+        "act": "State Revenue / Tenancy / Easement Act",
+        "section": "Governing Section",
+        "text_snippet": "Statutory clause governing rural land and labor rights."
+      }
+    ],
+    "settlement_draft": "1. Parties agree to mutual compromise.\n2. Verified under village Panchayat supervision.\n3. Signed and closed.",
+    "confidence_score": 0.85,
+    "escalate_to_human": false,
+    "escalation_reason": null
+  }
+}

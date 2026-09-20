@@ -1,0 +1,38 @@
+{
+  "scenario_id": "demo-22-female",
+  "dispute_type": "Coerced Gift Deed and Intimidation of Elderly Widow",
+  "dialect": "bhojpuri",
+  "state": "Uttar Pradesh",
+  "district": "Jaunpur",
+  "input": {
+    "raw_vernacular_audio_or_text": "Relatives coercing illiterate widow to sign gift deed for ancestral holding.",
+    "petitioner": {
+      "name": "Citizen 22A",
+      "phone": "+919800000022"
+    },
+    "respondent": {
+      "name": "Citizen 22B",
+      "phone": "+919811110022"
+    }
+  },
+  "expected_transcription": {
+    "original_text": "Relatives coercing illiterate widow to sign gift deed for ancestral holding.",
+    "english_text": "Relatives coercing illiterate widow to sign gift deed for ancestral holding.",
+    "detected_dialect": "bhojpuri",
+    "confidence": 0.94
+  },
+  "expected_draft_output": {
+    "grievance_summary": "Relatives coercing illiterate widow to sign gift deed for ancestral holding.",
+    "applicable_sections": [
+      {
+        "act": "State Revenue / Tenancy / Easement Act",
+        "section": "Governing Section",
+        "text_snippet": "Statutory clause governing rural land and labor rights."
+      }
+    ],
+    "settlement_draft": "Escalated for physical verification.",
+    "confidence_score": 0.4,
+    "escalate_to_human": true,
+    "escalation_reason": "Matter involves complex title/coercion/matrimonial or criminal jurisdiction."
+  }
+}

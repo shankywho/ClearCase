@@ -1,0 +1,38 @@
+{
+  "scenario_id": "demo-11-tractor",
+  "dispute_type": "Tractor Custom Hiring Breakdown & Repair Cost Apportionment",
+  "dialect": "haryanvi",
+  "state": "Haryana",
+  "district": "Karnal",
+  "input": {
+    "raw_vernacular_audio_or_text": "Tractor breakdown during field tillage; owner demanded full hire charges plus repair costs.",
+    "petitioner": {
+      "name": "Citizen 11A",
+      "phone": "+919800000011"
+    },
+    "respondent": {
+      "name": "Citizen 11B",
+      "phone": "+919811110011"
+    }
+  },
+  "expected_transcription": {
+    "original_text": "Tractor breakdown during field tillage; owner demanded full hire charges plus repair costs.",
+    "english_text": "Tractor breakdown during field tillage; owner demanded full hire charges plus repair costs.",
+    "detected_dialect": "haryanvi",
+    "confidence": 0.94
+  },
+  "expected_draft_output": {
+    "grievance_summary": "Tractor breakdown during field tillage; owner demanded full hire charges plus repair costs.",
+    "applicable_sections": [
+      {
+        "act": "State Revenue / Tenancy / Easement Act",
+        "section": "Governing Section",
+        "text_snippet": "Statutory clause governing rural land and labor rights."
+      }
+    ],
+    "settlement_draft": "1. Parties agree to mutual compromise.\n2. Verified under village Panchayat supervision.\n3. Signed and closed.",
+    "confidence_score": 0.85,
+    "escalate_to_human": false,
+    "escalation_reason": null
+  }
+}

@@ -1,0 +1,47 @@
+{
+  "scenario_id": "demo-08-cart-track-obstruction",
+  "dispute_type": "Customary Cart-Track (Rasta) Obstruction with Thorny Hedge",
+  "dialect": "haryanvi",
+  "state": "Haryana",
+  "district": "Rohtak",
+  "village": "Sampla",
+  "input": {
+    "raw_vernacular_audio_or_text": "Gaam ke purane kache raste pe padosi ne kaante ki taar aur jhaadi laga di. Khet me tractor aur buggi le jaan ka rasta band kar diya. Pachaas saal te sabhi zamindar ees raste te jaave the.",
+    "petitioner": {
+      "name": "Balbir Singh Hooda",
+      "phone": "+919812345670"
+    },
+    "respondent": {
+      "name": "Hawa Singh Malik",
+      "phone": "+919812345680"
+    }
+  },
+  "expected_transcription": {
+    "original_text": "Gaam ke purane kache raste pe padosi ne kaante ki taar aur jhaadi laga di. Khet me tractor aur buggi le jaan ka rasta band kar diya. Pachaas saal te sabhi zamindar ees raste te jaave the.",
+    "english_text": "The neighbor erected barbed wire and thorny shrubs over an old village dirt track, blocking tractor and bullock cart access to our fields that farmers have used for fifty years.",
+    "detected_dialect": "haryanvi",
+    "confidence": 0.96
+  },
+  "expected_statutory_matches": [
+    {
+      "act": "Indian Easements Act, 1882",
+      "section": "Section 15: Acquisition of Right of Way by Prescription",
+      "text_snippet": "Protects open and peaceable enjoyment of customary agricultural access ways used for over twenty years without interruption.",
+      "similarity_score": 0.93
+    }
+  ],
+  "expected_draft_output": {
+    "grievance_summary": "Dispute concerning the unlawful blockage of a customary 50-year-old agricultural cart-track by installing barbed wire and thorny hedges.",
+    "applicable_sections": [
+      {
+        "act": "Indian Easements Act, 1882",
+        "section": "Section 15 & 33: Protection of Easements and Disturbance Remedies",
+        "text_snippet": "Customary farm access tracks cannot be obstructed by servient owners."
+      }
+    ],
+    "settlement_draft": "1. The respondent agrees to remove the barbed wire and clear the thorny hedge within 48 hours to restore an 8-foot wide clear passageway.\n2. Both parties agree that the pathway shall be maintained exclusively for agricultural implements, bullock carts, and tractors.\n3. The village Panchayat shall mark the boundary stones along the track to prevent future encroachment.",
+    "confidence_score": 0.88,
+    "escalate_to_human": false,
+    "escalation_reason": null
+  }
+}

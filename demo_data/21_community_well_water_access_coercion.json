@@ -1,0 +1,38 @@
+{
+  "scenario_id": "demo-21-community",
+  "dispute_type": "Denial of Village Drinking Water Access (Coercion)",
+  "dialect": "hindi",
+  "state": "Uttar Pradesh",
+  "district": "Hardoi",
+  "input": {
+    "raw_vernacular_audio_or_text": "Influential residents preventing access to village communal water pump.",
+    "petitioner": {
+      "name": "Citizen 21A",
+      "phone": "+919800000021"
+    },
+    "respondent": {
+      "name": "Citizen 21B",
+      "phone": "+919811110021"
+    }
+  },
+  "expected_transcription": {
+    "original_text": "Influential residents preventing access to village communal water pump.",
+    "english_text": "Influential residents preventing access to village communal water pump.",
+    "detected_dialect": "hindi",
+    "confidence": 0.94
+  },
+  "expected_draft_output": {
+    "grievance_summary": "Influential residents preventing access to village communal water pump.",
+    "applicable_sections": [
+      {
+        "act": "State Revenue / Tenancy / Easement Act",
+        "section": "Governing Section",
+        "text_snippet": "Statutory clause governing rural land and labor rights."
+      }
+    ],
+    "settlement_draft": "Escalated for physical verification.",
+    "confidence_score": 0.4,
+    "escalate_to_human": true,
+    "escalation_reason": "Matter involves complex title/coercion/matrimonial or criminal jurisdiction."
+  }
+}

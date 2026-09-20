@@ -1,0 +1,53 @@
+{
+  "scenario_id": "demo-03-shop-rent",
+  "dispute_type": "Village Bazaar Shop Rent Dispute and Eviction Threat",
+  "dialect": "hindi",
+  "state": "Uttar Pradesh",
+  "district": "Gorakhpur",
+  "village": "Pipraich Mandi",
+  "input": {
+    "raw_vernacular_audio_or_text": "Mandi me paanch saal se parchun ki dukan chala rahe hain. Maalik achanak bol raha hai ki kiraya 2000 se badha kar 3500 karo nahi to kal subah samaan phek kar tala laga denge.",
+    "petitioner": {
+      "name": "Dinesh Chandra Gupta",
+      "phone": "+919712345678"
+    },
+    "respondent": {
+      "name": "Kedarnath Tiwari (Landlord)",
+      "phone": "+919798765432"
+    }
+  },
+  "expected_transcription": {
+    "original_text": "Mandi me paanch saal se parchun ki dukan chala rahe hain. Maalik achanak bol raha hai ki kiraya 2000 se badha kar 3500 karo nahi to kal subah samaan phek kar tala laga denge.",
+    "english_text": "I have been operating a grocery shop in the bazaar for five years. The owner is suddenly demanding a rent increase from ₹2,000 to ₹3,500, threatening to throw out my stock and lock the shop tomorrow morning if refused.",
+    "detected_dialect": "hindi",
+    "confidence": 0.95
+  },
+  "expected_statutory_matches": [
+    {
+      "act": "Uttar Pradesh Regulation of Urban Premises Tenancy Act, 2021",
+      "section": "Section 8: Rent Payable and Prohibition of Arbitrary Increases",
+      "text_snippet": "Prohibits unilateral or arbitrary rent escalation exceeding statutory limits (maximum 7% annual revision for commercial premises without substantial structural improvements).",
+      "similarity_score": 0.88
+    },
+    {
+      "act": "Uttar Pradesh Regulation of Urban Premises Tenancy Act, 2021",
+      "section": "Section 21: Protection Against Unlawful Eviction and Recovery of Possession",
+      "text_snippet": "Prohibits summary or forceful eviction without due process and minimum thirty days' written notice.",
+      "similarity_score": 0.85
+    }
+  ],
+  "expected_draft_output": {
+    "grievance_summary": "Commercial shop tenant in Pipraich Mandi disputes a unilateral 75% rent hike (from ₹2,000 to ₹3,500 per month) and immediate threat of illegal lock-out by the landlord.",
+    "applicable_sections": [
+      {
+        "act": "Uttar Pradesh Regulation of Urban Premises Tenancy Act, 2021",
+        "section": "Section 8 & 21: Rent Revision and Protection Against Arbitrary Eviction",
+        "text_snippet": "Commercial rent revisions must be reasonable and forceful eviction without statutory 30-day notice is prohibited."
+      }
+    ],
+    "settlement_draft": "1. Both parties agree to execute a written commercial tenancy agreement for a term of 11 months with a fair, mutually agreed rent revised from ₹2,000 to ₹2,300 per month.\n2. The landlord undertakes not to disconnect electricity or impede customer access, and agrees to refrain from summary eviction or lock-out threats.\n3. The tenant agrees to pay the revised rent strictly before the 7th day of each calendar month and provide 30 days' advance notice prior to any future vacation.",
+    "confidence_score": 0.84,
+    "escalate_to_human": false,
+    "escalation_reason": null
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "scenario_id": "demo-18-village",
+  "dispute_type": "Cooperative Dairy Milk Measurement & Payment Dispute",
+  "dialect": "haryanvi",
+  "state": "Haryana",
+  "district": "Hisar",
+  "input": {
+    "raw_vernacular_audio_or_text": "Dispute over alleged arbitrary fat content deduction on milk deliveries.",
+    "petitioner": {
+      "name": "Citizen 18A",
+      "phone": "+919800000018"
+    },
+    "respondent": {
+      "name": "Citizen 18B",
+      "phone": "+919811110018"
+    }
+  },
+  "expected_transcription": {
+    "original_text": "Dispute over alleged arbitrary fat content deduction on milk deliveries.",
+    "english_text": "Dispute over alleged arbitrary fat content deduction on milk deliveries.",
+    "detected_dialect": "haryanvi",
+    "confidence": 0.94
+  },
+  "expected_draft_output": {
+    "grievance_summary": "Dispute over alleged arbitrary fat content deduction on milk deliveries.",
+    "applicable_sections": [
+      {
+        "act": "State Revenue / Tenancy / Easement Act",
+        "section": "Governing Section",
+        "text_snippet": "Statutory clause governing rural land and labor rights."
+      }
+    ],
+    "settlement_draft": "1. Parties agree to mutual compromise.\n2. Verified under village Panchayat supervision.\n3. Signed and closed.",
+    "confidence_score": 0.85,
+    "escalate_to_human": false,
+    "escalation_reason": null
+  }
+}

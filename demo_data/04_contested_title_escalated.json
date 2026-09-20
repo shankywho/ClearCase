@@ -1,0 +1,47 @@
+{
+  "scenario_id": "demo-04-contested-title-escalated",
+  "dispute_type": "Contested Ancestral Title and Forged Partition Deed",
+  "dialect": "bhojpuri",
+  "state": "Uttar Pradesh",
+  "district": "Varanasi",
+  "village": "Mauza Baragaon",
+  "input": {
+    "raw_vernacular_audio_or_text": "Humre chacha ke ladka bolat baadan ki purana batwara nakli raha. Babaji ke marla ke baad farzi wasiyat banwa ke naam chadhwa lihlan aur bolat baadan ki humar koi hissa naahi ba.",
+    "petitioner": {
+      "name": "Kailash Nath Mishra",
+      "phone": "+919655443322"
+    },
+    "respondent": {
+      "name": "Vinod Kumar Mishra",
+      "phone": "+919677889900"
+    }
+  },
+  "expected_transcription": {
+    "original_text": "Humre chacha ke ladka bolat baadan ki purana batwara nakli raha. Babaji ke marla ke baad farzi wasiyat banwa ke naam chadhwa lihlan aur bolat baadan ki humar koi hissa naahi ba.",
+    "english_text": "My cousin claims that our grandfather's old partition was fake. After our grandfather passed away, he allegedly got his name mutated into the revenue records using a forged will, and now asserts that I have no share in the ancestral land.",
+    "detected_dialect": "bhojpuri",
+    "confidence": 0.93
+  },
+  "expected_statutory_matches": [
+    {
+      "act": "Code of Civil Procedure, 1908",
+      "section": "Section 89: Alternative Dispute Resolution",
+      "text_snippet": "Encourages mediation in suitable civil causes, excluding cases involving serious allegations of fraud, forgery of registered instruments, or complex declaration of hereditary title.",
+      "similarity_score": 0.58
+    }
+  ],
+  "expected_draft_output": {
+    "grievance_summary": "Dispute involving competing claims of hereditary ownership over ancestral land, with allegations of a forged testamentary will and invalid ancestral family partition.",
+    "applicable_sections": [
+      {
+        "act": "Code of Civil Procedure, 1908",
+        "section": "Section 89: Settlement of Disputes Outside the Court",
+        "text_snippet": "Mediation guidelines restrict automated compromise where contested title deeds and allegations of document forgery require judicial evidence."
+      }
+    ],
+    "settlement_draft": "Because this matter directly touches upon allegations of a forged will and disputed ancestral partition documentation requiring verification of original revenue succession records, automated settlement is restricted. This case is escalated to the Human Panchayat Mediator and Tehsildar for physical hearing and document verification.",
+    "confidence_score": 0.52,
+    "escalate_to_human": true,
+    "escalation_reason": "Statutory confidence score 0.52 is below the 0.60 safety threshold. Dispute involves contested hereditary title, testamentary validity, and allegations of document forgery which cannot be resolved via automated informal mediation."
+  }
+}

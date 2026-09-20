@@ -1,0 +1,38 @@
+{
+  "scenario_id": "demo-25-commercial",
+  "dispute_type": "Commercial Mandi Grain Godown Rent & Eviction Dispute",
+  "dialect": "hindi",
+  "state": "Uttar Pradesh",
+  "district": "Hapur",
+  "input": {
+    "raw_vernacular_audio_or_text": "Agricultural merchant godown lease dispute regarding seasonal grain storage.",
+    "petitioner": {
+      "name": "Citizen 25A",
+      "phone": "+919800000025"
+    },
+    "respondent": {
+      "name": "Citizen 25B",
+      "phone": "+919811110025"
+    }
+  },
+  "expected_transcription": {
+    "original_text": "Agricultural merchant godown lease dispute regarding seasonal grain storage.",
+    "english_text": "Agricultural merchant godown lease dispute regarding seasonal grain storage.",
+    "detected_dialect": "hindi",
+    "confidence": 0.94
+  },
+  "expected_draft_output": {
+    "grievance_summary": "Agricultural merchant godown lease dispute regarding seasonal grain storage.",
+    "applicable_sections": [
+      {
+        "act": "State Revenue / Tenancy / Easement Act",
+        "section": "Governing Section",
+        "text_snippet": "Statutory clause governing rural land and labor rights."
+      }
+    ],
+    "settlement_draft": "1. Parties agree to mutual compromise.\n2. Verified under village Panchayat supervision.\n3. Signed and closed.",
+    "confidence_score": 0.85,
+    "escalate_to_human": false,
+    "escalation_reason": null
+  }
+}

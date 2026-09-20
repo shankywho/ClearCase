@@ -1,0 +1,74 @@
+[
+  {
+    "precedent_id": "PREC-VNS-2024-001",
+    "village": "Mauza Shivpur",
+    "district": "Varanasi",
+    "state": "Uttar Pradesh",
+    "dispute_category": "boundary_ridge",
+    "summary": "Encroachment of 2-foot agricultural boundary ridge (medh) during seasonal wheat sowing.",
+    "resolution_formula": "Both landholders consented to an official spot survey by the Gram Lekhpal using the village Shajra map. The boundary ridge was restored to the marked coordinates with survey expenses split 50-50, and both parties undertook not to disturb standing crops.",
+    "applicable_act": "Uttar Pradesh Revenue Code, 2006, Section 24",
+    "outcome_status": "MUTUALLY_RESOLVED",
+    "year": 2024
+  },
+  {
+    "precedent_id": "PREC-AYO-2024-012",
+    "village": "Rampur Gram",
+    "district": "Ayodhya",
+    "state": "Uttar Pradesh",
+    "dispute_category": "agricultural_wages",
+    "summary": "Contractor delayed balance wages of ₹3,600 for 15 days of paddy harvesting labor.",
+    "resolution_formula": "The contractor disbursed the full balance wage of ₹3,600 via direct cash payment within 7 days, witnessed by the Gram Panchayat Pradhan with a signed payment receipt, closing all further harvest wage claims.",
+    "applicable_act": "Minimum Wages Act, 1948, Section 20",
+    "outcome_status": "MUTUALLY_RESOLVED",
+    "year": 2024
+  },
+  {
+    "precedent_id": "PREC-GKP-2023-045",
+    "village": "Pipraich Mandi",
+    "district": "Gorakhpur",
+    "state": "Uttar Pradesh",
+    "dispute_category": "shop_rent",
+    "summary": "Landlord demanded an arbitrary 75% commercial rent increase and threatened immediate lock-out of grocery shop.",
+    "resolution_formula": "Parties executed a formal 11-month written agreement revising rent by a reasonable 15% (from ₹2,000 to ₹2,300), with mandatory 30 days written notice prior to eviction and an agreement not to cut electricity.",
+    "applicable_act": "UP Regulation of Urban Premises Tenancy Act, 2021, Sections 8 & 21",
+    "outcome_status": "MUTUALLY_RESOLVED",
+    "year": 2023
+  },
+  {
+    "precedent_id": "PREC-SNP-2023-009",
+    "village": "Ganaur",
+    "district": "Sonipat",
+    "state": "Haryana",
+    "dispute_category": "easement_passage",
+    "summary": "Farmer obstructed the customary 10-foot bullock cart track (rasta) to the neighbor's inner agricultural field.",
+    "resolution_formula": "The Panchayat verified that the path had been used peaceably for over 25 years. The obstructing farmer agreed to clear the thorny hedge and restore 8 feet of motorable passage for tractor access.",
+    "applicable_act": "Indian Easements Act, 1882, Section 15",
+    "outcome_status": "MUTUALLY_RESOLVED",
+    "year": 2023
+  },
+  {
+    "precedent_id": "PREC-MZP-2024-018",
+    "village": "Kurhani",
+    "district": "Muzaffarpur",
+    "state": "Bihar",
+    "dispute_category": "sharecropping_batai",
+    "summary": "Disagreement on sharing irrigation diesel expenditure and 50-50 paddy harvest division between landowner and bataidar.",
+    "resolution_formula": "Parties agreed that actual diesel expenditure of ₹2,200 would be deducted first from gross grain sale proceeds, and remaining harvested grain divided equally (50-50) at the village threshing floor.",
+    "applicable_act": "Bihar Tenancy Act / Model Agricultural Land Leasing Act",
+    "outcome_status": "MUTUALLY_RESOLVED",
+    "year": 2024
+  },
+  {
+    "precedent_id": "PREC-ALW-2024-007",
+    "village": "Tijara",
+    "district": "Alwar",
+    "state": "Rajasthan",
+    "dispute_category": "cattle_crop_damage",
+    "summary": "Neighbor's stray milch cattle entered standing mustard field causing damage estimated at ₹5,000.",
+    "resolution_formula": "Cattle owner paid ₹2,500 ex-gratia compensation and agreed to construct a reinforced wire fence along the boundary, with no further police complaint filed.",
+    "applicable_act": "Cattle Trespass Act, 1871, Section 10",
+    "outcome_status": "MUTUALLY_RESOLVED",
+    "year": 2024
+  }
+]

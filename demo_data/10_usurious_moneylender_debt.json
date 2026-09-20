@@ -1,0 +1,47 @@
+{
+  "scenario_id": "demo-10-usurious-debt-escalated",
+  "dispute_type": "Usurious Moneylending Debt & Unlawful Land Record Retention",
+  "dialect": "bhojpuri",
+  "state": "Uttar Pradesh",
+  "district": "Mirzapur",
+  "village": "Chunar",
+  "input": {
+    "raw_vernacular_audio_or_text": "Bete ke ilaaj khatir mahajan se 20,000 rupya liye rahe. 5 percent mahina byaj pe byaj jod kar ab 1 lakh maang raha hai aur humare khet ki khatauni aur aadhaar card girvi rakh kar vapas nahi kar raha.",
+    "petitioner": {
+      "name": "Ram Das Kol",
+      "phone": "+919611224455"
+    },
+    "respondent": {
+      "name": "Lala Murlidhar (Moneylender)",
+      "phone": "+919611226677"
+    }
+  },
+  "expected_transcription": {
+    "original_text": "Bete ke ilaaj khatir mahajan se 20,000 rupya liye rahe. 5 percent mahina byaj pe byaj jod kar ab 1 lakh maang raha hai aur humare khet ki khatauni aur aadhaar card girvi rakh kar vapas nahi kar raha.",
+    "english_text": "I borrowed ₹20,000 from the local moneylender for my son's medical treatment. At 5% compounding monthly interest he now demands ₹1,00,000 and refuses to return my land deed and Aadhaar card held hostage.",
+    "detected_dialect": "bhojpuri",
+    "confidence": 0.95
+  },
+  "expected_statutory_matches": [
+    {
+      "act": "Uttar Pradesh Regulation of Money Lending Act, 1976",
+      "section": "Section 12: Maximum Rates of Interest and Prohibition of Usury",
+      "text_snippet": "Restricts maximum statutory interest on informal loans and prohibits compounding; unlawful retention of identity documents is a cognizable offense.",
+      "similarity_score": 0.76
+    }
+  ],
+  "expected_draft_output": {
+    "grievance_summary": "Complaint alleging predatory moneylending with illegal 60% annual compounding interest and coercive retention of government identity and land title documents.",
+    "applicable_sections": [
+      {
+        "act": "UP Regulation of Money Lending Act, 1976",
+        "section": "Section 12: Unlawful Usury",
+        "text_snippet": "Unlicensed lending and document withholding trigger criminal scrutiny."
+      }
+    ],
+    "settlement_draft": "Automated settlement is restricted due to severe statutory violations regarding usurious moneylending and unlawful retention of identity documents. This case is escalated to the District Legal Services Authority (DLSA) and Revenue Tehsildar for urgent protection of the petitioner.",
+    "confidence_score": 0.42,
+    "escalate_to_human": true,
+    "escalation_reason": "Exploitation Alert: Informal loan with unlawful usurious compounding interest (60%/yr) and illegal withholding of Aadhaar and Khatauni documents requires formal legal aid intervention."
+  }
+}

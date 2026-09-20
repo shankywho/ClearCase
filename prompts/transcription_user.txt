@@ -1,0 +1,7 @@
+Raw Grievance Input:
+"{raw_input}"
+
+Dialect Hint (if provided):
+"{dialect_hint}"
+
+Transcribe and translate into English for statutory legal retrieval. Output JSON only.

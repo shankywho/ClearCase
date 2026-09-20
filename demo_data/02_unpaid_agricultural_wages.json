@@ -1,0 +1,53 @@
+{
+  "scenario_id": "demo-02-wages",
+  "dispute_type": "Unpaid Agricultural Labor Wages",
+  "dialect": "awadhi",
+  "state": "Uttar Pradesh",
+  "district": "Ayodhya",
+  "village": "Rampur Gram",
+  "input": {
+    "raw_vernacular_audio_or_text": "Hum thekedar ke khet me pandrah din lagatar dhaan katai ka kaam kiye rahe. Teen hazar chhe sau rupya baaki baate, mangne par bolis ki agle fasal pe denge aur gaali diya.",
+    "petitioner": {
+      "name": "Santosh Kumar Rawat",
+      "phone": "+919811223344"
+    },
+    "respondent": {
+      "name": "Balwant Singh (Contractor)",
+      "phone": "+919822334455"
+    }
+  },
+  "expected_transcription": {
+    "original_text": "Hum thekedar ke khet me pandrah din lagatar dhaan katai ka kaam kiye rahe. Teen hazar chhe sau rupya baaki baate, mangne par bolis ki agle fasal pe denge aur gaali diya.",
+    "english_text": "I worked continuously for fifteen days harvesting paddy in the contractor's fields. An outstanding balance of ₹3,600 remains unpaid; upon asking, he said he would pay during the next harvest season and abused me.",
+    "detected_dialect": "awadhi",
+    "confidence": 0.94
+  },
+  "expected_statutory_matches": [
+    {
+      "act": "Minimum Wages Act, 1948",
+      "section": "Section 20: Claims arising out of payment of less than minimum rates of wages",
+      "text_snippet": "Empowers the designated authority or Panchayat conciliator to hear claims regarding delayed or non-payment of agricultural wages with compensation up to ten times the balance.",
+      "similarity_score": 0.91
+    },
+    {
+      "act": "Minimum Wages Act, 1948",
+      "section": "Section 12: Obligation to Pay Minimum Wages Without Deductions",
+      "text_snippet": "Employer must pay wages at notified rates without unauthorized deferral or deductions.",
+      "similarity_score": 0.86
+    }
+  ],
+  "expected_draft_output": {
+    "grievance_summary": "Agricultural laborer claims ₹3,600 in unpaid wages for 15 days of paddy harvesting labor, which the contractor unilaterally deferred to the next harvest season.",
+    "applicable_sections": [
+      {
+        "act": "Minimum Wages Act, 1948",
+        "section": "Section 20: Claims arising out of payment of less than minimum rates of wages",
+        "text_snippet": "Statutory claim procedure for non-payment or delayed remuneration for scheduled agricultural operations."
+      }
+    ],
+    "settlement_draft": "1. The contractor agrees to disburse the full outstanding wage balance of ₹3,600 to the laborer within seven (7) calendar days via UPI or cash with written receipt.\n2. Both parties agree that the payment shall be witnessed and signed by the Gram Panchayat Pradhan or labor conciliator.\n3. Upon full receipt of ₹3,600, all claims regarding the Kharif harvesting wages shall be permanently settled and closed without further dispute.",
+    "confidence_score": 0.89,
+    "escalate_to_human": false,
+    "escalation_reason": null
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "scenario_id": "demo-17-threshing",
+  "dispute_type": "Shared Agricultural Threshing Floor (Khalihan) Obstruction",
+  "dialect": "bhojpuri",
+  "state": "Uttar Pradesh",
+  "district": "Deoria",
+  "input": {
+    "raw_vernacular_audio_or_text": "Co-villager dumped cowdung cakes on communal harvest threshing area.",
+    "petitioner": {
+      "name": "Citizen 17A",
+      "phone": "+919800000017"
+    },
+    "respondent": {
+      "name": "Citizen 17B",
+      "phone": "+919811110017"
+    }
+  },
+  "expected_transcription": {
+    "original_text": "Co-villager dumped cowdung cakes on communal harvest threshing area.",
+    "english_text": "Co-villager dumped cowdung cakes on communal harvest threshing area.",
+    "detected_dialect": "bhojpuri",
+    "confidence": 0.94
+  },
+  "expected_draft_output": {
+    "grievance_summary": "Co-villager dumped cowdung cakes on communal harvest threshing area.",
+    "applicable_sections": [
+      {
+        "act": "State Revenue / Tenancy / Easement Act",
+        "section": "Governing Section",
+        "text_snippet": "Statutory clause governing rural land and labor rights."
+      }
+    ],
+    "settlement_draft": "1. Parties agree to mutual compromise.\n2. Verified under village Panchayat supervision.\n3. Signed and closed.",
+    "confidence_score": 0.85,
+    "escalate_to_human": false,
+    "escalation_reason": null
+  }
+}

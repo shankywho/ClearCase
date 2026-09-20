@@ -1,0 +1,47 @@
+{
+  "scenario_id": "demo-07-batai-sharecropping",
+  "dispute_type": "Sharecropping (Batai/Adhia) Crop Division & Input Cost Apportionment",
+  "dialect": "maithili",
+  "state": "Bihar",
+  "district": "Muzaffarpur",
+  "village": "Kurhani",
+  "input": {
+    "raw_vernacular_audio_or_text": "Hum paanch bigha zameen par aadha-aadha fasal (batai) pe dhaan boye rahian. Katai ke baad maalik bolait chhi ki khad aur beej ka pura karcha humre hissa se kategi aur aadha dhaan nahi deb.",
+    "petitioner": {
+      "name": "Laxman Mandal (Bataidar)",
+      "phone": "+919733445566"
+    },
+    "respondent": {
+      "name": "Janardan Jha (Landlord)",
+      "phone": "+919733447788"
+    }
+  },
+  "expected_transcription": {
+    "original_text": "Hum paanch bigha zameen par aadha-aadha fasal (batai) pe dhaan boye rahian. Katai ke baad maalik bolait chhi ki khad aur beej ka pura karcha humre hissa se kategi aur aadha dhaan nahi deb.",
+    "english_text": "I cultivated paddy on five bighas of land under a 50-50 sharecropping agreement. After harvest, the landlord demands deducting the entire fertilizer and seed cost solely from my share and refuses to release my half.",
+    "detected_dialect": "maithili",
+    "confidence": 0.94
+  },
+  "expected_statutory_matches": [
+    {
+      "act": "Bihar Tenancy Act / Model Agricultural Land Leasing Act",
+      "section": "Section 32: Apportionment of Produce between Landowner and Sharecropper",
+      "text_snippet": "Produce division on shared cultivation mandates equitable deduction of certified variable inputs before division.",
+      "similarity_score": 0.89
+    }
+  ],
+  "expected_draft_output": {
+    "grievance_summary": "Sharecropper disputes the landlord's unilateral deduction of all cultivation input costs exclusively from the cultivator's half-share of harvested paddy.",
+    "applicable_sections": [
+      {
+        "act": "Model Agricultural Land Leasing Act",
+        "section": "Section 9: Rights and Responsibilities of Landowner and Lessee",
+        "text_snippet": "Operational input costs are borne equally or as agreed; produce is divided net of certified joint expenses."
+      }
+    ],
+    "settlement_draft": "1. Both parties agree that the verified input expenditure of ₹6,500 (fertilizer and seeds) shall be shared equally (50-50), deducting ₹3,250 from each party's sale proceeds.\n2. The 48 quintals of harvested paddy shall be partitioned equally (24 quintals each) at the village godown.\n3. Both parties agree to record terms in writing before the Gram Panchayat Pradhan prior to the next Rabi sowing cycle.",
+    "confidence_score": 0.85,
+    "escalate_to_human": false,
+    "escalation_reason": null
+  }
+}

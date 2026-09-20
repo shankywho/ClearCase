@@ -1,0 +1,47 @@
+{
+  "scenario_id": "demo-05-criminal-violence-escalated",
+  "dispute_type": "Physical Violence and Criminal Intimidation",
+  "dialect": "haryanvi",
+  "state": "Haryana",
+  "district": "Sonipat",
+  "village": "Ganaur",
+  "input": {
+    "raw_vernacular_audio_or_text": "Tubewell se paani lene par lathi dande se humare bhai ko maara, sar phod diya aur dhamki di ki dubara aaye to jaan se maar denge. Aspatal me dakhil hai.",
+    "petitioner": {
+      "name": "Surender Singh",
+      "phone": "+919500112233"
+    },
+    "respondent": {
+      "name": "Jagbir Singh & Sons",
+      "phone": "+919500998877"
+    }
+  },
+  "expected_transcription": {
+    "original_text": "Tubewell se paani lene par lathi dande se humare bhai ko maara, sar phod diya aur dhamki di ki dubara aaye to jaan se maar denge. Aspatal me dakhil hai.",
+    "english_text": "Over fetching water from the tubewell, they assaulted my brother with lathis and sticks, fractured his skull, and issued death threats if we return. He is currently admitted to the hospital.",
+    "detected_dialect": "haryanvi",
+    "confidence": 0.95
+  },
+  "expected_statutory_matches": [
+    {
+      "act": "Legal Services Authorities Act, 1987",
+      "section": "Section 19: Organization of Lok Adalats",
+      "text_snippet": "Lok Adalats and pre-litigation conciliators have jurisdiction over civil disputes and compoundable criminal offenses only, strictly excluding non-compoundable offenses involving grievous bodily hurt.",
+      "similarity_score": 0.40
+    }
+  ],
+  "expected_draft_output": {
+    "grievance_summary": "Allegation of violent physical assault with wooden lathis causing grievous head injury and hospitalization, coupled with criminal intimidation regarding agricultural tubewell access.",
+    "applicable_sections": [
+      {
+        "act": "Legal Services Authorities Act, 1987",
+        "section": "Section 19(5): Jurisdiction of Lok Adalats",
+        "text_snippet": "Cognizance is barred for non-compoundable offenses involving severe bodily injury and armed assault."
+      }
+    ],
+    "settlement_draft": "Automated civil mediation is strictly barred for complaints alleging severe physical violence, grievous bodily harm, and criminal intimidation. The disputants are advised to report immediately to the local police station and seek formal legal aid through the District Legal Services Authority (DLSA).",
+    "confidence_score": 0.35,
+    "escalate_to_human": true,
+    "escalation_reason": "Criminal offense involving grievous bodily hurt, physical assault with weapons, and criminal intimidation is strictly outside the jurisdiction of informal civil mediation."
+  }
+}

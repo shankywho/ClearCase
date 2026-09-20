@@ -1,0 +1,53 @@
+{
+  "scenario_id": "demo-01-boundary",
+  "dispute_type": "Land Boundary Ridge Encroachment",
+  "dialect": "bhojpuri",
+  "state": "Uttar Pradesh",
+  "district": "Varanasi",
+  "village": "Mauza Shivpur",
+  "input": {
+    "raw_vernacular_audio_or_text": "Padosi khet ki purani medh kaat kar do feet humre khet ki or bada liya hai gehu buaai ke samay. Bolte hain ki zameen unki hai.",
+    "petitioner": {
+      "name": "Ram Lakhan Yadav",
+      "phone": "+919876543210"
+    },
+    "respondent": {
+      "name": "Harish Chandra Singh",
+      "phone": "+919123456780"
+    }
+  },
+  "expected_transcription": {
+    "original_text": "Padosi khet ki purani medh kaat kar do feet humre khet ki or bada liya hai gehu buaai ke samay. Bolte hain ki zameen unki hai.",
+    "english_text": "The neighboring landowner cut down the old boundary ridge and encroached two feet into my field during wheat sowing, claiming the land belongs to them.",
+    "detected_dialect": "bhojpuri",
+    "confidence": 0.96
+  },
+  "expected_statutory_matches": [
+    {
+      "act": "Uttar Pradesh Revenue Code, 2006",
+      "section": "Section 24: Settlement of boundary disputes and demarcation",
+      "text_snippet": "The Sub-Divisional Officer may demarcate boundaries of any holding or plot and settle any dispute concerning the same through on-spot measurement by the Lekhpal based on village Shajra map.",
+      "similarity_score": 0.92
+    },
+    {
+      "act": "Uttar Pradesh Revenue Code, 2006",
+      "section": "Section 20: Maintenance and Repair of Boundary Marks",
+      "text_snippet": "Every tenure-holder shall be responsible for the maintenance and repair of the permanent boundary marks erected on his holding.",
+      "similarity_score": 0.84
+    }
+  ],
+  "expected_draft_output": {
+    "grievance_summary": "Dispute between adjacent agricultural tenure-holders regarding an alleged two-foot encroachment resulting from cutting the boundary ridge (medh) prior to wheat sowing in Mauza Shivpur.",
+    "applicable_sections": [
+      {
+        "act": "Uttar Pradesh Revenue Code, 2006",
+        "section": "Section 24: Settlement of boundary disputes and demarcation",
+        "text_snippet": "Authorizes demarcation based on village cadastre Shajra map and chain measurement by the Lekhpal with summary restoration of encroached ridges."
+      }
+    ],
+    "settlement_draft": "1. Both parties mutually agree to request a spot demarcation by the local Village Lekhpal within 7 days based on the official village Shajra cadastre map.\n2. Both landholders agree to jointly reconstruct the boundary ridge (medh) along the demarcated coordinates, sharing the labor or cost equally.\n3. Both parties undertake not to interfere with standing wheat crops or irrigation channels and agree to abide peacefully by the Lekhpal's verified boundary markers.",
+    "confidence_score": 0.88,
+    "escalate_to_human": false,
+    "escalation_reason": null
+  }
+}

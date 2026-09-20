@@ -1,0 +1,38 @@
+{
+  "scenario_id": "demo-16-courtyard",
+  "dispute_type": "Village Abadi Domestic Wastewater Discharge Dispute",
+  "dialect": "bhojpuri",
+  "state": "Uttar Pradesh",
+  "district": "Ballia",
+  "input": {
+    "raw_vernacular_audio_or_text": "Household drainage channel redirected into adjacent residential courtyard.",
+    "petitioner": {
+      "name": "Citizen 16A",
+      "phone": "+919800000016"
+    },
+    "respondent": {
+      "name": "Citizen 16B",
+      "phone": "+919811110016"
+    }
+  },
+  "expected_transcription": {
+    "original_text": "Household drainage channel redirected into adjacent residential courtyard.",
+    "english_text": "Household drainage channel redirected into adjacent residential courtyard.",
+    "detected_dialect": "bhojpuri",
+    "confidence": 0.94
+  },
+  "expected_draft_output": {
+    "grievance_summary": "Household drainage channel redirected into adjacent residential courtyard.",
+    "applicable_sections": [
+      {
+        "act": "State Revenue / Tenancy / Easement Act",
+        "section": "Governing Section",
+        "text_snippet": "Statutory clause governing rural land and labor rights."
+      }
+    ],
+    "settlement_draft": "1. Parties agree to mutual compromise.\n2. Verified under village Panchayat supervision.\n3. Signed and closed.",
+    "confidence_score": 0.85,
+    "escalate_to_human": false,
+    "escalation_reason": null
+  }
+}

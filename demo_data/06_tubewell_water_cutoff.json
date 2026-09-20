@@ -1,0 +1,53 @@
+{
+  "scenario_id": "demo-06-tubewell-cutoff",
+  "dispute_type": "Irrigation Tubewell Watercourse Obstruction",
+  "dialect": "bhojpuri",
+  "state": "Uttar Pradesh",
+  "district": "Bulandshahr",
+  "village": "Mauza Siyana",
+  "input": {
+    "raw_vernacular_audio_or_text": "Humre khet me pichhle 15 saal se padosi ke tubewell se nali aawat rahi. Abki baar unka ladka nali kaat dihis aur bolat ba ki paani naahi denge jabki diesel ka paisa hum pehle hi de chuke hain.",
+    "petitioner": {
+      "name": "Maheshwar Dayal",
+      "phone": "+919811002233"
+    },
+    "respondent": {
+      "name": "Raghuraj Tyagi",
+      "phone": "+919811004455"
+    }
+  },
+  "expected_transcription": {
+    "original_text": "Humre khet me pichhle 15 saal se padosi ke tubewell se nali aawat rahi. Abki baar unka ladka nali kaat dihis aur bolat ba ki paani naahi denge jabki diesel ka paisa hum pehle hi de chuke hain.",
+    "english_text": "For the past 15 years, an irrigation watercourse from the neighbor's tubewell has supplied my field. This season his son severed the channel and refused water access even though diesel expenses were prepaid.",
+    "detected_dialect": "bhojpuri",
+    "confidence": 0.95
+  },
+  "expected_statutory_matches": [
+    {
+      "act": "Indian Easements Act, 1882",
+      "section": "Section 15: Acquisition of Right of Way and Watercourse by Prescription",
+      "text_snippet": "Uninterrupted twenty-year enjoyment of irrigation water passage constitutes an absolute prescriptive easement.",
+      "similarity_score": 0.91
+    },
+    {
+      "act": "Uttar Pradesh Revenue Code, 2006",
+      "section": "Section 25: Rights of Way and Water Channels",
+      "text_snippet": "Provides summary remedy against wrongful obstruction of water channels across agricultural holdings.",
+      "similarity_score": 0.87
+    }
+  ],
+  "expected_draft_output": {
+    "grievance_summary": "Dispute over wrongful severance of a long-standing agricultural tubewell watercourse channel after diesel advance payment was tendered.",
+    "applicable_sections": [
+      {
+        "act": "Indian Easements Act, 1882",
+        "section": "Section 15: Prescriptive Right to Watercourse",
+        "text_snippet": "Protects established irrigation passages from unilateral disconnection."
+      }
+    ],
+    "settlement_draft": "1. The tubewell owner agrees to immediately restore the severed irrigation earthen channel to allow water flow to the petitioner's standing crops.\n2. The petitioner's prepaid diesel cost of ₹1,400 shall be credited toward 18 hours of pumping time.\n3. Both parties agree to execute a seasonal pumping schedule witnessed by the village Panchayat water committee.",
+    "confidence_score": 0.87,
+    "escalate_to_human": false,
+    "escalation_reason": null
+  }
+}

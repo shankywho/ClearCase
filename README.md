@@ -39,13 +39,27 @@ This repository hosts the **complete end-to-end backend system** (Phases 1 throu
         +------------------------------+       +------------------------------+
 ```
 
-### Technical Documentation Deep-Dives
+### Complete Documentation Suite (`docs/`)
+* **Python AI/ML Multi-Agent Core**: [README_AI.md](README_AI.md)
+* **Project Original Pitch Deck Context**: [docs/legal.pdf](docs/legal.pdf)
+* **01. Project Overview & Bharat Domain Context**: [docs/01-project-overview-and-domain-context.md](docs/01-project-overview-and-domain-context.md)
+* **02. Backend Integration & Developer Guide**: [docs/02-backend-integration-and-developer-guide.md](docs/02-backend-integration-and-developer-guide.md)
+* **03. AI Stack & Multi-Agent Architecture**: [docs/03-ai-stack-and-multi-agent-architecture.md](docs/03-ai-stack-and-multi-agent-architecture.md)
+* **04. Proposed Architecture, User Flows & Mermaid Diagrams**: [docs/04-proposed-architecture-user-flow-and-diagrams.md](docs/04-proposed-architecture-user-flow-and-diagrams.md)
+* **05. Credentials & Secret Keys Setup Guide**: [docs/05-credentials-and-secret-keys-setup-guide.md](docs/05-credentials-and-secret-keys-setup-guide.md)
+* **06. AWS Configuration & Cloud Services**: [docs/06-aws-configuration-and-cloud-services.md](docs/06-aws-configuration-and-cloud-services.md)
+* **07. Full Project Summary & Key Pointers**: [docs/07-full-project-summary-and-key-pointers.md](docs/07-full-project-summary-and-key-pointers.md)
+* **08. Troubleshooting & Common Issues Guide**: [docs/08-troubleshooting-and-common-issues.md](docs/08-troubleshooting-and-common-issues.md)
+* **09. How to Run End-to-End Commands Guide**: [docs/09-how-to-run-end-to-end-commands-guide.md](docs/09-how-to-run-end-to-end-commands-guide.md)
+* **10. Frontend UI Specifications & Low-Literacy Requirements**: [docs/10-frontend-ui-specifications-and-requirements.md](docs/10-frontend-ui-specifications-and-requirements.md)
+* **11. Full Features Catalog & Capabilities Matrix**: [docs/11-full-features-catalog.md](docs/11-full-features-catalog.md)
+* **12. Complete API & AI Endpoints Reference**: [docs/12-complete-api-and-ai-endpoints-reference.md](docs/12-complete-api-and-ai-endpoints-reference.md)
+* **13. Frontend Single-Shot Master Prompt**: [docs/13-frontend-master-prompt-single-shot.md](docs/13-frontend-master-prompt-single-shot.md)
 * **Single-Table Design & Schema**: [docs/database-schema.md](docs/database-schema.md)
-* **AI Multi-Agent RAG Pipeline**: [docs/ai-orchestration.md](docs/ai-orchestration.md)
 * **AWS Cedar Authorization**: [docs/authorization-cedar.md](docs/authorization-cedar.md)
 * **Dual-Party OTP Consent Engine**: [docs/otp-consent-flow.md](docs/otp-consent-flow.md)
 * **Polygon Amoy Blockchain Anchoring**: [docs/blockchain-anchoring.md](docs/blockchain-anchoring.md)
-* **Complete Backend API & Endpoints Reference**: [docs/backend-api-summary.md](docs/backend-api-summary.md)
+* **Backend API Summary**: [docs/backend-api-summary.md](docs/backend-api-summary.md)
 
 ---
 

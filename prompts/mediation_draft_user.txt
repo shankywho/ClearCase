@@ -1,0 +1,14 @@
+CITIZEN GRIEVANCE TRANSCRIPT:
+"{transcript}"
+
+JURISDICTION CONTEXT:
+State: {state}
+District: {district}
+Regional Dialect / Language: {dialect}
+
+RETRIEVED STATUTORY CLAUSES (RAG CONTEXT):
+{statute_context}
+
+TASK:
+Formulate the structured settlement proposal strictly adhering to the JSON schema.
+Remember: ONLY cite the retrieved clauses above. Never invent laws. Escalate honestly if out of scope or unsure.

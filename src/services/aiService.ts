@@ -317,6 +317,60 @@ export async function orchestrateDisputeAnalysis(params: {
   console.log('[AI Orchestration] Starting end-to-end multi-agent dispute analysis');
   console.log(`[AI Orchestration] Jurisdiction: ${params.district}, ${params.state}`);
 
+  // Optional Bridge: Check if Python FastAPI AI microservice is enabled
+  const pythonAiUrl = process.env.AI_SERVICE_URL || (process.env.USE_PYTHON_AI === 'true' ? 'http://127.0.0.1:8000' : null);
+  if (pythonAiUrl) {
+    try {
+      console.log(`[AI Orchestration] Forwarding dispute analysis to Python AI service at ${pythonAiUrl}/analyze...`);
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 3000);
+
+      const resp = await fetch(`${pythonAiUrl}/analyze`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          grievance_text: params.transcript || params.audioRef || 'Land boundary dispute',
+          dialect: params.dialect || 'bhojpuri',
+          state: params.state,
+          district: params.district,
+        }),
+        signal: controller.signal,
+      });
+      clearTimeout(timeoutId);
+
+      if (resp.ok) {
+        const data: any = await resp.json();
+        console.log('[AI Orchestration] Successfully received analysis from Python AI microservice!');
+        return {
+          transcription: {
+            originalText: params.transcript || 'Grievance audio',
+            englishText: data.grievance_summary || params.transcript || 'English summary',
+            detectedDialect: params.dialect || 'bhojpuri',
+            confidence: 0.95,
+          },
+          statutes: (data.applicable_sections || []).map((s: any) => ({
+            act: s.act,
+            section: s.section,
+            clauseTitle: s.section,
+            relevanceSummary: s.text_snippet,
+            similarityScore: 0.9,
+          })),
+          draft: {
+            grievanceSummary: data.grievance_summary,
+            applicableSection: data.applicableSection || (data.applicable_sections?.[0]?.act + ', ' + data.applicable_sections?.[0]?.section) || '',
+            confidenceScore: data.confidence_score,
+            suggestedDraft: data.settlement_draft,
+            escalationRecommended: data.escalate_to_human,
+            escalationReason: data.escalation_reason || undefined,
+          },
+          suggestedStatus: data.status || (data.escalate_to_human ? 'ESCALATED' : 'SETTLEMENT_PROPOSED'),
+        };
+      }
+    } catch (err: any) {
+      console.warn(`[AI Orchestration] Python AI microservice connection skipped (${err.message}). Using native TypeScript pipeline.`);
+    }
+  }
+
   // Step 1: Transcription Agent
   let transcription: TranscriptionResult;
   if (params.transcript) {
